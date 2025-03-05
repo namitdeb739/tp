@@ -7,24 +7,24 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## TenantTrack
 
-### John Doe
+### Lee Yen Shen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leeyenshen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.linkedin.com/in/yen-shen-lee-b00b61208/)]
+[[github](https://github.com/leeyenshen)]
+[[portfolio](team/leeyenshen)]
 
-* Role: Project Advisor
+* Role: Integration
 
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/leeyenshen)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/leeyenshen)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/leeyenshen)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/leeyenshen)]
 
 * Role: Developer
 * Responsibilities: UI
