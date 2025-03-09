@@ -9,6 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## TenantTrack
 
+### Ong Qi An
+
+<img src="images/QiAn.png" width="200px">
+
+[[homepage](https://www.linkedin.com/in/ong-qi-an-174703300/)]
+[[github](https://github.com/blobfish465)]
+[[portfolio](team/QiAn.md)]
+
+* Role: Scheduling and tracking
+
+### Namit Deb
+
+<img src="images/namitdeb739.png" width="200px">
+
+[[homepage](www.linkedin.com/in/namitdeb739)]
+[[github](https://github.com/namitdeb739)]
+[[portfolio](team/namitdeb739.md)]
+
+* Role: Documentation
+
 ### Lee Yen Shen
 
 <img src="images/leeyenshen.png" width="200px">
@@ -19,21 +39,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Integration
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/leeyenshen)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/leeyenshen)]
+[[github](http://github.com/johndoe)] [[portfolio](team/QiAn)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,17 +53,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/leeyenshen)]
+[[portfolio](team/QiAn)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Huan Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/huan-kiat.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/leeyenshen)]
+[[homepage](https://www.linkedin.com/in/huan-kiat-lim-560069345/)]
+[[github](http://github.com/Huan-Kiat)]
+[[portfolio](team/HuanKiat.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
