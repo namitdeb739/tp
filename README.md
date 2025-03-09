@@ -14,8 +14,8 @@ TenantTrack is a software project designed to assist **landlords who manage mult
 - **As a starting point for a software engineering course project**, allowing students to build upon an existing well-structured codebase.
 - **As a case study** for software engineering concepts such as object-oriented design, CLI/GUI integration, and user-centered development.
 - **As a reference implementation** for projects involving tenant and property management.
-- 
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
+
+The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 
