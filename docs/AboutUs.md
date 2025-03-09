@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Namit Deb
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/namitdeb739.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](www.linkedin.com/in/namitdeb739)]
+[[github](https://github.com/namitdeb739)]
+[[portfolio](team/namitdeb739.md)]
 
-* Role: Project Advisor
+* Role: Documentation
 
 ### Jane Doe
 
