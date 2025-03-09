@@ -29,15 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Documentation
 
-### Jane Doe
+### Lee Yen Shen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leeyenshen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/QiAn)]
+[[homepage](https://www.linkedin.com/in/yen-shen-lee-b00b61208/)]
+[[github](https://github.com/leeyenshen)]
+[[portfolio](team/leeyenshen.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration
 
 ### Johnny Doe
 
@@ -65,5 +65,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[homepage](https://www.linkedin.com/in/huan-kiat-lim-560069345/)]
 [[github](http://github.com/Huan-Kiat)]
 [[portfolio](team/HuanKiat.md)]
+
 
 * Role: Code Quality
