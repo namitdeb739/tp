@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://www.linkedin.com/in/yen-shen-lee-b00b61208/)]
 [[github](https://github.com/leeyenshen)]
-[[portfolio](team/leeyenshen)]
+[[portfolio](team/leeyenshen.md)]
 
 * Role: Integration
 
@@ -65,5 +65,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[homepage](https://www.linkedin.com/in/huan-kiat-lim-560069345/)]
 [[github](http://github.com/Huan-Kiat)]
 [[portfolio](team/HuanKiat.md)]
+
 
 * Role: Code Quality
