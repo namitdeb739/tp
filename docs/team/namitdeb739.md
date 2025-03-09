@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Qi An's Project Portfolio Page
+title: Namit Deb's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3
@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
@@ -41,6 +41,4 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_ -->
+  * Integrated a new Github plugin (CircleCI) to the team repo -->

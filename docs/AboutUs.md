@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Scheduling and tracking
 
+### Namit Deb
+
+<img src="images/namitdeb739.png" width="200px">
+
+[[homepage](www.linkedin.com/in/namitdeb739)]
+[[github](https://github.com/namitdeb739)]
+[[portfolio](team/namitdeb739.md)]
+
+* Role: Documentation
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
