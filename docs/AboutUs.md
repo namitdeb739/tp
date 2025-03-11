@@ -7,33 +7,43 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## TenantTrack
 
-### John Doe
+### Ong Qi An
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/QiAn.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.linkedin.com/in/ong-qi-an-174703300/)]
+[[github](https://github.com/blobfish465)]
+[[portfolio](team/QiAn.md)]
 
-* Role: Project Advisor
+* Role: Scheduling and tracking
 
-### Jane Doe
+### Namit Deb
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/namitdeb739.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](www.linkedin.com/in/namitdeb739)]
+[[github](https://github.com/namitdeb739)]
+[[portfolio](team/namitdeb739.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+
+### Lee Yen Shen
+
+<img src="images/leeyenshen.png" width="200px">
+
+[[homepage](https://www.linkedin.com/in/yen-shen-lee-b00b61208/)]
+[[github](https://github.com/leeyenshen)]
+[[portfolio](team/leeyenshen.md)]
+
+* Role: Integration
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/QiAn)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,17 +53,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/QiAn)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Huan Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/huan-kiat.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.linkedin.com/in/huan-kiat-lim-560069345/)]
+[[github](http://github.com/Huan-Kiat)]
+[[portfolio](team/HuanKiat.md)]
 
-* Role: Developer
-* Responsibilities: UI
+
+* Role: Code Quality
