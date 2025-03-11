@@ -27,11 +27,11 @@ class JsonAdaptedTenant {
     public JsonAdaptedTenant(@JsonProperty("name") String name,
             /*
              * @JsonProperty("phone") String phone,
-             * 
+             *
              * @JsonProperty("email") String email,
              */ @JsonProperty("address") String address/*
                                                         * ,
-                                                        * 
+                                                        *
                                                         * @JsonProperty("tags") List<JsonAdaptedTag>
                                                         * tags
                                                         */) {
