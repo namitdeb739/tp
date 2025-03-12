@@ -16,7 +16,7 @@ import seedu.address.model.tenant.Tenant;
  */
 public class SampleDataUtil {
     public static Tenant[] getSamplePersons() {
-        return new Tenant[] {new Tenant(new Name("Alex Yeoh"),
+        return new Tenant[]{new Tenant(new Name("Alex Yeoh"),
                 /*
                  * new Phone("87438807"), new
                  * Email(
@@ -24,8 +24,7 @@ public class SampleDataUtil {
                  */
                 new Address("Blk 30 Geylang Street 29, #06-40")
         /* getTagSet("friends") */
-        ),
-            new Tenant(new Name("Bernice Yu"),
+        ), new Tenant(new Name("Bernice Yu"),
                 /*
                  * new
                  * Phone
@@ -41,15 +40,14 @@ public class SampleDataUtil {
                  * ,
                  */
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")
-            /*
-             * ,
-             * getTagSet
-             * (
-             * "colleagues",
-             * "friends")
-             */
-            ),
-            new Tenant(new Name("Charlotte Oliveiro"),
+        /*
+         * ,
+         * getTagSet
+         * (
+         * "colleagues",
+         * "friends")
+         */
+        ), new Tenant(new Name("Charlotte Oliveiro"),
                 /*
                  * new Phone("93210283"),
                  * new Email(
@@ -57,54 +55,51 @@ public class SampleDataUtil {
                  * ),
                  */
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04")
-            /*
-             * ,
-             * getTagSet
-             * (
-             * "neighbours")
-             */
-            ),
-            new Tenant(new Name("David Li"),
+        /*
+         * ,
+         * getTagSet
+         * (
+         * "neighbours")
+         */
+        ), new Tenant(new Name("David Li"),
                 /*
                  * new Phone("91031282"), new
                  * Email("lidavid@example.com"),
                  */
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43")
-            /*
-             * ,
-             * getTagSet
-             * (
-             * "family")
-             */
-            ),
-            new Tenant(new Name("Irfan Ibrahim"),
+        /*
+         * ,
+         * getTagSet
+         * (
+         * "family")
+         */
+        ), new Tenant(new Name("Irfan Ibrahim"),
                 /*
-                * new Phone("92492021"), new
-                * Email("irfan@example.com"),
-                */
+                 * new Phone("92492021"), new
+                 * Email("irfan@example.com"),
+                 */
                 new Address("Blk 47 Tampines Street 20, #17-35")
-            /*
-            * ,
-            * getTagSet
-            * (
-            * "classmates")
-            */
-            ),
-            new Tenant(new Name("Roy Balakrishnan"),
+        /*
+         * ,
+         * getTagSet
+         * (
+         * "classmates")
+         */
+        ), new Tenant(new Name("Roy Balakrishnan"),
                 /*
-                * new Phone("92624417"),
-                * new
-                * Email("royb@example.com"
-                * ),
-                */
+                 * new Phone("92624417"),
+                 * new
+                 * Email("royb@example.com"
+                 * ),
+                 */
                 new Address("Blk 45 Aljunied Street 85, #11-31")
-            /*
-            * ,
-            * getTagSet
-            * (
-            * "colleagues")
-            */
-            )};
+        /*
+         * ,
+         * getTagSet
+         * (
+         * "colleagues")
+         */
+        )};
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {

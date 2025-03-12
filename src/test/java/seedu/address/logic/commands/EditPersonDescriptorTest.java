@@ -7,7 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditCommand.EditTenantDescriptor;
 import seedu.address.testutil.EditTenantDescriptorBuilder;
 
@@ -63,12 +65,12 @@ public class EditPersonDescriptorTest {
         String expected = EditTenantDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null)
                 + /*
-                   * ", phone=" + editPersonDescriptor.getPhone().orElse(null) + ", email=" +
-                   * editPersonDescriptor.getEmail().orElse(null) +
-                   */ ", address=" + editPersonDescriptor.getAddress()
-                        .orElse(null) /*
-                                       * + ", tags=" + editPersonDescriptor.getTags().orElse(null)
-                                       */
+         * ", phone=" + editPersonDescriptor.getPhone().orElse(null) + ", email=" +
+         * editPersonDescriptor.getEmail().orElse(null) +
+         */ ", address=" + editPersonDescriptor.getAddress()
+                .orElse(null) /*
+         * + ", tags=" + editPersonDescriptor.getTags().orElse(null)
+         */
                 + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
