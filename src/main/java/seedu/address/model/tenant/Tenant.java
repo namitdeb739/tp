@@ -1,7 +1,9 @@
 package seedu.address.model.tenant;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -47,10 +49,10 @@ public class Tenant {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
-     * modification is attempted.
-     */
+    //    /**
+    //     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
+    //     * modification is attempted.
+    //     */
     // public Set<Tag> getTags() {
     // return Collections.unmodifiableSet(tags);
     // }

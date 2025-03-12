@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tenant.Address;
 import seedu.address.model.tenant.Name;
@@ -25,16 +26,19 @@ class JsonAdaptedTenant {
      */
     @JsonCreator
     public JsonAdaptedTenant(@JsonProperty("name") String name,
-            /*
-             * @JsonProperty("phone") String phone,
-             *
-             * @JsonProperty("email") String email,
-             */ @JsonProperty("address") String address/*
-                                                        * ,
-                                                        *
-                                                        * @JsonProperty("tags") List<JsonAdaptedTag>
-                                                        * tags
-                                                        */) {
+        /*
+         * @JsonProperty("phone") String phone,
+         *
+         * @JsonProperty("email") String email,
+         */
+        @JsonProperty("address") String address
+    /*
+     * ,
+     *
+     * @JsonProperty("tags") List<JsonAdaptedTag>
+     * tags
+     */
+    ) {
         this.name = name;
         // this.phone = phone;
         // this.email = email;
