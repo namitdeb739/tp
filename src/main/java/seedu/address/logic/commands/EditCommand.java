@@ -32,10 +32,10 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_NAME + "NAME] "
             + /*
-               * "[" + PREFIX_PHONE + "PHONE] " + "[" + PREFIX_EMAIL + "EMAIL] " +
-               */ "[" + PREFIX_ADDRESS + "ADDRESS] "
+     * "[" + PREFIX_PHONE + "PHONE] " + "[" + PREFIX_EMAIL + "EMAIL] " +
+     */ "[" + PREFIX_ADDRESS + "ADDRESS] "
             + /* "[" + PREFIX_TAG + "TAG]...\n" + */"Example: " + COMMAND_WORD + " 1 "
-    /* + PREFIX_PHONE + "91234567 " + PREFIX_EMAIL + "johndoe@example.com" */;
+            /* + PREFIX_PHONE + "91234567 " + PREFIX_EMAIL + "johndoe@example.com" */;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
     private final EditTenantDescriptor editTenantDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditTenantDescriptor editPersonDescriptor) {
@@ -84,7 +84,7 @@ public class EditCommand extends Command {
      * {@code editPersonDescriptor}.
      */
     private static Tenant createEditedPerson(Tenant personToEdit,
-            EditTenantDescriptor editPersonDescriptor) {
+                                             EditTenantDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -131,7 +131,8 @@ public class EditCommand extends Command {
         private Address address;
         // private Set<Tag> tags;
 
-        public EditTenantDescriptor() {}
+        public EditTenantDescriptor() {
+        }
 
         /**
          * Copy constructor. A defensive copy of {@code tags} is used internally.
@@ -223,10 +224,10 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this).add("name", name)
-                /*
-                * .add("phone", phone) .add("email", email)
-                */
-                .add("address", address)/* .add("tags", tags) */.toString();
+                    /*
+                     * .add("phone", phone) .add("email", email)
+                     */
+                    .add("address", address)/* .add("tags", tags) */.toString();
         }
     }
 }

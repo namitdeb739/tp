@@ -26,18 +26,10 @@ class JsonAdaptedTenant {
      */
     @JsonCreator
     public JsonAdaptedTenant(@JsonProperty("name") String name,
-        /*
-         * @JsonProperty("phone") String phone,
-         *
-         * @JsonProperty("email") String email,
-         */
-        @JsonProperty("address") String address
-    /*
-     * ,
-     *
-     * @JsonProperty("tags") List<JsonAdaptedTag>
-     * tags
-     */
+                             // @JsonProperty("phone") String phone,
+                             // @JsonProperty("email") String email,
+                             @JsonProperty("address") String address
+    //, @JsonProperty("tags") List<JsonAdaptedTag> tags
     ) {
         this.name = name;
         // this.phone = phone;
@@ -64,7 +56,7 @@ class JsonAdaptedTenant {
      * Converts this Jackson-friendly adapted person object into the model's {@code Tenant} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *         person.
+     *                               person.
      */
     public Tenant toModelType() throws IllegalValueException {
         // final List<Tag> personTags = new ArrayList<>();
