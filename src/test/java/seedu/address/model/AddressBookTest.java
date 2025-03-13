@@ -7,15 +7,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.getTypicalAddressBook;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tenant.Tenant;
-import seedu.address.model.tenant.exceptions.DuplicatePersonException;
+import seedu.address.model.tenant.exceptions.DuplicateTenantException;
 import seedu.address.testutil.TenantBuilder;
 
 public class AddressBookTest {
@@ -47,7 +50,7 @@ public class AddressBookTest {
         List<Tenant> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTenantException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -76,8 +79,7 @@ public class AddressBookTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
     @Test

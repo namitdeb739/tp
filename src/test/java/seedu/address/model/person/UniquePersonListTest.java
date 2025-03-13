@@ -7,14 +7,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.BOB;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tenant.Tenant;
 import seedu.address.model.tenant.UniqueTenantList;
-import seedu.address.model.tenant.exceptions.DuplicatePersonException;
-import seedu.address.model.tenant.exceptions.PersonNotFoundException;
+import seedu.address.model.tenant.exceptions.DuplicateTenantException;
+import seedu.address.model.tenant.exceptions.TenantNotFoundException;
 import seedu.address.testutil.TenantBuilder;
 
 public class UniquePersonListTest {
@@ -53,7 +56,7 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        assertThrows(DuplicateTenantException.class, () -> uniquePersonList.add(ALICE));
     }
 
     @Test
@@ -68,7 +71,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(TenantNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -104,7 +107,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateTenantException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
     }
 
     @Test
@@ -114,7 +117,7 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(TenantNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test
@@ -127,8 +130,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniquePersonList.setPersons((UniqueTenantList) null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniqueTenantList) null));
     }
 
     @Test
@@ -142,8 +144,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniquePersonList.setPersons((List<Tenant>) null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Tenant>) null));
     }
 
     @Test
@@ -159,19 +160,17 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Tenant> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class,
-                () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+        assertThrows(DuplicateTenantException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(),
-                uniquePersonList.toString());
+        assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
 }

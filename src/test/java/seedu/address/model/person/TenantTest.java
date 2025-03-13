@@ -7,7 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.BOB;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.TenantBuilder;
 
@@ -29,9 +31,9 @@ public class TenantTest {
 
         // same name, all other attributes different -> returns true
         Tenant editedAlice = new TenantBuilder(ALICE)/*
-                                                      * .withPhone(VALID_PHONE_BOB).withEmail(
-                                                      * VALID_EMAIL_BOB)
-                                                      */
+         * .withPhone(VALID_PHONE_BOB).withEmail(
+         * VALID_EMAIL_BOB)
+         */
                 .withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -92,8 +94,8 @@ public class TenantTest {
     public void toStringMethod() {
         String expected = Tenant.class.getCanonicalName() + "{name=" + ALICE.getName()
                 + /*
-                   * ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() +
-                   */ ", address=" + ALICE.getAddress() + /* ", tags=" + ALICE.getTags() + */ "}";
+         * ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() +
+         */ ", address=" + ALICE.getAddress() + /* ", tags=" + ALICE.getTags() + */ "}";
         assertEquals(expected, ALICE.toString());
     }
 }
