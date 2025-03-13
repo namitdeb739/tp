@@ -35,43 +35,43 @@ public class EditPersonDescriptorTest {
 
         // different name -> returns false
         EditTenantDescriptor editedAmy =
-                new EditTenantDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+            new EditTenantDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy =
-                new EditTenantDescriptorBuilder(DESC_AMY)/* .withPhone(VALID_PHONE_BOB) */.build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // editedAmy =
+        //         new EditTenantDescriptorBuilder(DESC_AMY)/* .withPhone(VALID_PHONE_BOB) */.build();
+        // assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy =
-                new EditTenantDescriptorBuilder(DESC_AMY)/* .withEmail(VALID_EMAIL_BOB) */.build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // editedAmy =
+        //    new EditTenantDescriptorBuilder(DESC_AMY)/* .withEmail(VALID_EMAIL_BOB) */.build();
+        // assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
         editedAmy =
-                new EditTenantDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+            new EditTenantDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy =
-                new EditTenantDescriptorBuilder(DESC_AMY)/* .withTags(VALID_TAG_HUSBAND) */.build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // editedAmy =
+        //     new EditTenantDescriptorBuilder(DESC_AMY)/* .withTags(VALID_TAG_HUSBAND) */.build();
+        // assertFalse(DESC_AMY.equals(editedAmy));
     }
 
     @Test
     public void toStringMethod() {
         EditTenantDescriptor editPersonDescriptor = new EditTenantDescriptor();
         String expected = EditTenantDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null)
-                + /*
+            + editPersonDescriptor.getName().orElse(null)
+            + /*
          * ", phone=" + editPersonDescriptor.getPhone().orElse(null) + ", email=" +
          * editPersonDescriptor.getEmail().orElse(null) +
          */ ", address=" + editPersonDescriptor.getAddress()
-                .orElse(null) /*
+            .orElse(null) /*
          * + ", tags=" + editPersonDescriptor.getTags().orElse(null)
          */
-                + "}";
+            + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

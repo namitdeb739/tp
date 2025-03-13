@@ -35,8 +35,7 @@ import seedu.address.testutil.TenantBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
-    private static final IOException DUMMY_AD_EXCEPTION =
-            new AccessDeniedException("dummy access denied exception");
+    private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy access denied exception");
 
     @TempDir
     public Path temporaryFolder;
@@ -47,9 +46,9 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+            new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+            new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -75,13 +74,13 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION,
-                String.format(LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
+            String.format(LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
     public void execute_storageThrowsAdException_throwsCommandException() {
         assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
-                LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
+            LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
     }
 
     @Test
@@ -163,21 +162,20 @@ public class LogicManagerTest {
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
-                    throws IOException {
+            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
                 throw e;
             }
         };
 
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
+            new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+            + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Tenant expectedPerson = new TenantBuilder(AMY)./* withTags(). */build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
