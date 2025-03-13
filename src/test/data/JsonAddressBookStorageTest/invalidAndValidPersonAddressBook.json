@@ -9,8 +9,8 @@
       }
     },
     {
-      "name": "Person With Invalid Phone Field",
-      "address": "4th street",
+      "name": "Person With Empty Address Field",
+      "address": "",
       "_metadata": {
         "phone": "948asdf2424",
         "email": "hans@example.com",
