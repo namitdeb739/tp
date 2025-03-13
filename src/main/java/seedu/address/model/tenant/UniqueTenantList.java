@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.tenant;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,90 +8,89 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tenant.exceptions.DuplicateTenantException;
+import seedu.address.model.tenant.exceptions.TenantNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
- *
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls. A
+ * person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such,
+ * adding and updating of persons uses Person#isSamePerson(Person) for equality so as to ensure that
+ * the person being added or updated is unique in terms of identity in the UniquePersonList.
+ * However, the removal of a person uses Person#equals(Object) so as to ensure that the person with
+ * exactly the same fields will be removed.
+ * <p>
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Tenant#isSamePerson(Tenant)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniqueTenantList implements Iterable<Tenant> {
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
+    private final ObservableList<Tenant> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Tenant> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Person toCheck) {
+    public boolean contains(Tenant toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a person to the list. The person must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void add(Tenant toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTenantException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * Replaces the person {@code target} in the list with {@code editedPerson}. {@code target} must
+     * exist in the list. The person identity of {@code editedPerson} must not be the same as
+     * another existing person in the list.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Tenant target, Tenant editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TenantNotFoundException();
         }
 
         if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTenantException();
         }
 
         internalList.set(index, editedPerson);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent person from the list. The person must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Tenant toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TenantNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueTenantList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code persons}. {@code persons} must not contain
+     * duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    public void setPersons(List<Tenant> persons) {
         requireAllNonNull(persons);
         if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTenantException();
         }
 
         internalList.setAll(persons);
@@ -100,12 +99,12 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Person> asUnmodifiableObservableList() {
+    public ObservableList<Tenant> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Tenant> iterator() {
         return internalList.iterator();
     }
 
@@ -116,11 +115,11 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueTenantList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
+        UniqueTenantList otherUniquePersonList = (UniqueTenantList) other;
         return internalList.equals(otherUniquePersonList.internalList);
     }
 
@@ -137,7 +136,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Person> persons) {
+    private boolean personsAreUnique(List<Tenant> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
                 if (persons.get(i).isSamePerson(persons.get(j))) {
