@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tenant.Address;
-import seedu.address.model.tenant.Email;
+//import seedu.address.model.tenant.Email;
 import seedu.address.model.tenant.Name;
-import seedu.address.model.tenant.Phone;
+//import seedu.address.model.tenant.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -56,13 +56,13 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-    @Test
+    /*@Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedTenant person = new JsonAdaptedTenant(VALID_NAME, /*
+        JsonAdaptedTenant person = new JsonAdaptedTenant(VALID_NAME, *//*
          * INVALID_PHONE,
          * VALID_EMAIL,
-         */
-                VALID_ADDRESS/* , VALID_TAGS */);
+         *//*
+                VALID_ADDRESS*//* , VALID_TAGS *//*);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -70,7 +70,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedTenant person = new JsonAdaptedTenant(VALID_NAME,
-                /* null, VALID_EMAIL, */ VALID_ADDRESS/* , VALID_TAGS */);
+                *//* null, VALID_EMAIL, *//* VALID_ADDRESS*//* , VALID_TAGS *//*);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -78,11 +78,11 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedTenant person = new JsonAdaptedTenant(VALID_NAME, /*
+        JsonAdaptedTenant person = new JsonAdaptedTenant(VALID_NAME, *//*
          * VALID_PHONE,
          * INVALID_EMAIL,
-         */
-                VALID_ADDRESS/* , VALID_TAGS */);
+         *//*
+                VALID_ADDRESS*//* , VALID_TAGS *//*);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -90,11 +90,11 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedTenant person = new JsonAdaptedTenant(VALID_NAME,
-                /* VALID_PHONE, null, */ VALID_ADDRESS/* , VALID_TAGS */);
+                *//* VALID_PHONE, null, *//* VALID_ADDRESS*//* , VALID_TAGS *//*);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
+    }*/
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
