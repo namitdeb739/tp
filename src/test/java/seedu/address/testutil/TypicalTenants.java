@@ -65,7 +65,7 @@ public class TypicalTenants {
     private TypicalTenants() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code TenantTracker} with all the typical persons.
      */
     public static TenantTracker getTypicalTenantTracker() {
         TenantTracker ab = new TenantTracker();

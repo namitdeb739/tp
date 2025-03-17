@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Tenant> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given tenantTracker and userPrefs.
      */
     public ModelManager(ReadOnlyTenantTracker tenantTracker, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(tenantTracker, userPrefs);

@@ -12,7 +12,7 @@ import seedu.address.model.tenant.Name;
 import seedu.address.model.tenant.Tenant;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TenantTracker} with sample data.
  */
 public class SampleDataUtil {
     public static Tenant[] getSampleTenants() {

@@ -48,11 +48,11 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void tenantTrackerReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class. More extensive testing of UserPref saving/reading is done
-         * in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonTenantTrackerStorage} class. More extensive testing of UserPref saving/reading is done
+         * in {@link JsonTenantTrackerStorageTest} class.
          */
         TenantTracker original = getTypicalTenantTracker();
         storageManager.saveTenantTracker(original);
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getTenantTrackerFilePath() {
         assertNotNull(storageManager.getTenantTrackerFilePath());
     }
 

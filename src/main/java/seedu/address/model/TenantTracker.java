@@ -30,7 +30,7 @@ public class TenantTracker implements ReadOnlyTenantTracker {
     public TenantTracker() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TenantTracker using the Persons in the {@code toBeCopied}
      */
     public TenantTracker(ReadOnlyTenantTracker toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class TenantTracker implements ReadOnlyTenantTracker {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TenantTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyTenantTracker newData) {
         requireNonNull(newData);
@@ -85,7 +85,7 @@ public class TenantTracker implements ReadOnlyTenantTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in the address
+     * Removes {@code key} from this {@code TenantTracker}. {@code key} must exist in the address
      * book.
      */
     public void removeTenant(Tenant key) {

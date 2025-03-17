@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTenantTracker;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TenantTracker data stored as a json file on the hard disk.
  */
 public class JsonTenantTrackerStorage implements TenantTrackerStorage {
 
@@ -45,14 +45,14 @@ public class JsonTenantTrackerStorage implements TenantTrackerStorage {
     public Optional<ReadOnlyTenantTracker> readTenantTracker(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTenantTracker> jsonAddressBook =
+        Optional<JsonSerializableTenantTracker> jsonTenantTracker =
                 JsonUtil.readJsonFile(filePath, JsonSerializableTenantTracker.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonTenantTracker.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonTenantTracker.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,8 +60,8 @@ public class JsonTenantTrackerStorage implements TenantTrackerStorage {
     }
 
     @Override
-    public void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException {
-        saveTenantTracker(addressBook, filePath);
+    public void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker) throws IOException {
+        saveTenantTracker(readOnlyTenantTracker, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonTenantTrackerStorage implements TenantTrackerStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker, Path filePath) throws IOException {
+        requireNonNull(readOnlyTenantTracker);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTenantTracker(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTenantTracker(readOnlyTenantTracker), filePath);
     }
 
 }

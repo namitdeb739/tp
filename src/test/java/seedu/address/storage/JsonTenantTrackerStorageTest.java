@@ -26,11 +26,11 @@ public class JsonTenantTrackerStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readTenantTracker_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readTenantTracker(null));
     }
 
-    private java.util.Optional<ReadOnlyTenantTracker> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyTenantTracker> readTenantTracker(String filePath) throws Exception {
         return new JsonTenantTrackerStorage(Paths.get(filePath))
                 .readTenantTracker(addToTestDataPathIfNotNull(filePath));
     }
@@ -41,26 +41,26 @@ public class JsonTenantTrackerStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readTenantTracker("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatTenantTracker.json"));
+        assertThrows(DataLoadingException.class, () -> readTenantTracker("notJsonFormatTenantTracker.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidTenantTenantTracker.json"));
+    public void readTenantTracker_invalidPersonAddressBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readTenantTracker("invalidAndValidTenantTenantTracker.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidTenantAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidTenantTenantTracker.json"));
+    public void readTenantTracker_invalidAndValidTenant_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readTenantTracker("invalidAndValidTenantTenantTracker.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveTenantTracker_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTenantTracker.json");
         TenantTracker original = getTypicalTenantTracker();
         JsonTenantTrackerStorage jsonTenantTrackerStorage = new JsonTenantTrackerStorage(filePath);
@@ -86,16 +86,16 @@ public class JsonTenantTrackerStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveTenantTracker_nullTenantTracker_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveTenantTracker(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code tenantTracker} at the specified {@code filePath}.
      */
-    private void saveTenantTracker(ReadOnlyTenantTracker addressBook, String filePath) {
+    private void saveTenantTracker(ReadOnlyTenantTracker tenantTracker, String filePath) {
         try {
-            new JsonTenantTrackerStorage(Paths.get(filePath)).saveTenantTracker(addressBook,
+            new JsonTenantTrackerStorage(Paths.get(filePath)).saveTenantTracker(tenantTracker,
                     addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
@@ -103,7 +103,7 @@ public class JsonTenantTrackerStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveTenantTracker_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveTenantTracker(new TenantTracker(), null));
     }
 }
