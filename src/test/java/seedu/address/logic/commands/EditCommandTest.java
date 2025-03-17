@@ -47,8 +47,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
+
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -72,8 +71,6 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -86,12 +83,9 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
 
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -109,8 +103,6 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
@@ -120,12 +112,7 @@ public class EditCommandTest {
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
 
-    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -135,8 +122,6 @@ public class EditCommandTest {
         EditCommand editCommand =
                 new EditCommand(INDEX_FIRST_PERSON, new EditTenantDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
@@ -170,9 +155,6 @@ public class EditCommandTest {
     @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
-    @Test
-    public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
         EditTenantDescriptor copyDescriptor = new EditTenantDescriptor(DESC_AMY);
@@ -199,9 +181,6 @@ public class EditCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
 
-        // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
-    }
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
     }

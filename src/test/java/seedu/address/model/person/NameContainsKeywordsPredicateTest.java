@@ -74,7 +74,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate
                 .test(new TenantBuilder().withName("Alice", "Lee")/*
                                                                    * .withPhone("12345") .withEmail("alice@email.com")
-                                                                   */.withAddress("Main Street").build()));
+                                                                   */.withAddress("Main Street 123445").build()));
     }
 
     @Test

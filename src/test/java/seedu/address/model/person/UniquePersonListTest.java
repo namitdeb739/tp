@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tenant.Tenant;
 import seedu.address.model.tenant.UniqueTenantList;
-import seedu.address.model.tenant.exceptions.PersonNotFoundException;
+import seedu.address.model.tenant.exceptions.TenantNotFoundException;
 import seedu.address.testutil.TenantBuilder;
 
 public class UniquePersonListTest {
@@ -114,8 +114,8 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueTenantList.remove(ALICE));
+    public void remove_personDoesNotExist_throwsTenantNotFoundException() {
+        assertThrows(TenantNotFoundException.class, () -> uniqueTenantList.remove(ALICE));
     }
 
     @Test

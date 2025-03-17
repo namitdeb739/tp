@@ -45,10 +45,10 @@ public class TypicalTenants {
     // Manually added
     public static final Tenant HOON = new TenantBuilder().withName("Hoon", "Meier")
             /* .withPhone("8482424").withEmail("stefan@example.com") */
-            .withAddress("little india").build();
+            .withAddress("little india, 123456").build();
     public static final Tenant IDA = new TenantBuilder().withName("Ida", "Mueller")
             /* .withPhone("8482131").withEmail("hans@example.com") */
-            .withAddress("chicago ave").build();
+            .withAddress("chicago ave, 123456").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Tenant AMY = new TenantBuilder().withName(VALID_GIVEN_NAME_AMY, VALID_FAMILY_NAME_AMY)
@@ -60,7 +60,6 @@ public class TypicalTenants {
             // .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalTenants() {} // prevents instantiation

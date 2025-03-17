@@ -16,7 +16,8 @@ public class Address {
      * The first character of the address must not be a whitespace, otherwise " " (a blank string)
      * becomes a valid input. It must contain a 6-digit Singaporean postcode.
      */
-    public static final String VALIDATION_REGEX = "[^\\s][^\\d{6}].*";
+    public static final String VALIDATION_REGEX = ".*\\b\\d{6}\\b.*";
+
 
     public final String value;
 
