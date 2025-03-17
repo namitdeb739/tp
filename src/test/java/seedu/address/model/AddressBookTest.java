@@ -7,11 +7,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.getTypicalAddressBook;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tenant.Tenant;
@@ -42,8 +45,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Tenant editedAlice = new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                /* .withTags(VALID_TAG_HUSBAND) */.build();
+        Tenant editedAlice =
+                new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
         List<Tenant> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -69,21 +72,19 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addTenant(ALICE);
-        Tenant editedAlice = new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                /* .withTags(VALID_TAG_HUSBAND) */.build();
+        Tenant editedAlice =
+                new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
         assertTrue(addressBook.hasTenant(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> addressBook.getTenantList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTenantList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = TenantTracker.class.getCanonicalName() + "{persons="
-                + addressBook.getTenantList() + "}";
+        String expected = TenantTracker.class.getCanonicalName() + "{persons=" + addressBook.getTenantList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 

@@ -7,9 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.BOB;
+
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tenant.Tenant;
 import seedu.address.model.tenant.UniqueTenantList;
 import seedu.address.model.tenant.exceptions.DuplicatePersonException;
@@ -39,8 +42,8 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTenantList.add(ALICE);
-        Tenant editedAlice = new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                /* .withTags(VALID_TAG_HUSBAND) */.build();
+        Tenant editedAlice =
+                new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
         assertTrue(uniqueTenantList.contains(editedAlice));
     }
 
@@ -82,8 +85,8 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueTenantList.add(ALICE);
-        Tenant editedAlice = new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                /* .withTags(VALID_TAG_HUSBAND) */.build();
+        Tenant editedAlice =
+                new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
         uniqueTenantList.setTenant(ALICE, editedAlice);
         UniqueTenantList expectedUniquePersonList = new UniqueTenantList();
         expectedUniquePersonList.add(editedAlice);
@@ -126,8 +129,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueTenantList.setPersons((UniqueTenantList) null));
+        assertThrows(NullPointerException.class, () -> uniqueTenantList.setPersons((UniqueTenantList) null));
     }
 
     @Test
@@ -141,8 +143,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueTenantList.setPersons((List<Tenant>) null));
+        assertThrows(NullPointerException.class, () -> uniqueTenantList.setPersons((List<Tenant>) null));
     }
 
     @Test
@@ -164,13 +165,12 @@ public class UniquePersonListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> uniqueTenantList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> uniqueTenantList
+                ./* Placeholder comment because checkstyle is a bitch */ asUnmodifiableObservableList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        assertEquals(uniqueTenantList.asUnmodifiableObservableList().toString(),
-                uniqueTenantList.toString());
+        assertEquals(uniqueTenantList.asUnmodifiableObservableList().toString(), uniqueTenantList.toString());
     }
 }

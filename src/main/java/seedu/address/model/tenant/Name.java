@@ -2,6 +2,7 @@ package seedu.address.model.tenant;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.StringTokenizer;
 
 /**
@@ -19,17 +20,22 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String fullName;
+    public final String givenName;
+
+    public final String familyName;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param given A valid name.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = capitaliseName(name);
+    public Name(String given, String family) {
+        requireNonNull(given);
+        requireNonNull(family);
+        checkArgument(isValidName(given), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(family), MESSAGE_CONSTRAINTS);
+        givenName = capitaliseName(given);
+        familyName = capitaliseName(family);
     }
 
     /**
@@ -39,10 +45,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
-        return fullName;
+        return givenName + " " + familyName;
     }
 
     @Override
@@ -57,12 +62,12 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        return familyName.equals(otherName.familyName);
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return familyName.hashCode();
     }
 
     /**

@@ -2,11 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GIVEN_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -28,7 +30,7 @@ public class EditCommand extends Command {
             + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_NAME + "NAME] "
+            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_GIVEN_NAME + "NAME] "
             + /*
                * "[" + PREFIX_PHONE + "PHONE] " + "[" + PREFIX_EMAIL + "EMAIL] " +
                */ "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -220,10 +222,7 @@ public class EditCommand extends Command {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).add("name", name)
-                    /*
-                     * .add("phone", phone) .add("email", email)
-                     */.add("address", address)/* .add("tags", tags) */.toString();
+            return new ToStringBuilder(this).add("name", name).add("address", address).toString();
         }
     }
 }

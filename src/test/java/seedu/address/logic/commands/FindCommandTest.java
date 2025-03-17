@@ -9,9 +9,12 @@ import static seedu.address.testutil.TypicalTenants.CARL;
 import static seedu.address.testutil.TypicalTenants.ELLE;
 import static seedu.address.testutil.TypicalTenants.FIONA;
 import static seedu.address.testutil.TypicalTenants.getTypicalAddressBook;
+
 import java.util.Arrays;
 import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -73,8 +76,7 @@ public class FindCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());

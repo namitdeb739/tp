@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.TenantTracker;
 import seedu.address.model.tag.Tag;
@@ -15,13 +16,13 @@ import seedu.address.model.tenant.Tenant;
  */
 public class SampleDataUtil {
     public static Tenant[] getSamplePersons() {
-        return new Tenant[] {new Tenant(new Name("Alex Yeoh"),
+        return new Tenant[] {new Tenant(new Name("Alex", "Yeoh"),
                 /*
                  * new Phone("87438807"), new Email( "alexyeoh@example.com"),
                  */
                 new Address("Blk 30 Geylang Street 29, #06-40")
                 /* getTagSet("friends") */
-                ), new Tenant(new Name("Bernice Yu"),
+                ), new Tenant(new Name("Bernice", "Yu"),
                         /*
                          * new Phone ( "99272758" ) , new Email ( "berniceyu@example.com" ) ,
                          */
@@ -29,7 +30,7 @@ public class SampleDataUtil {
                 /*
                  * , getTagSet ( "colleagues", "friends")
                  */
-                ), new Tenant(new Name("Charlotte Oliveiro"),
+                ), new Tenant(new Name("Charlotte", "Oliveiro"),
                         /*
                          * new Phone("93210283"), new Email( "charlotte@example.com" ),
                          */
@@ -37,7 +38,7 @@ public class SampleDataUtil {
                 /*
                  * , getTagSet ( "neighbours")
                  */
-                ), new Tenant(new Name("David Li"),
+                ), new Tenant(new Name("David", "Li"),
                         /*
                          * new Phone("91031282"), new Email("lidavid@example.com"),
                          */
@@ -45,7 +46,7 @@ public class SampleDataUtil {
                 /*
                  * , getTagSet ( "family")
                  */
-                ), new Tenant(new Name("Irfan Ibrahim"),
+                ), new Tenant(new Name("Irfan", "Ibrahim"),
                         /*
                          * new Phone("92492021"), new Email("irfan@example.com"),
                          */
@@ -53,7 +54,7 @@ public class SampleDataUtil {
                 /*
                  * , getTagSet ( "classmates")
                  */
-                ), new Tenant(new Name("Roy Balakrishnan"),
+                ), new Tenant(new Name("Roy", "Balakrishnan"),
                         /*
                          * new Phone("92624417"), new Email("royb@example.com" ),
                          */
@@ -72,11 +73,11 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-        /**
-         * Returns a tag set containing the list of strings given.
-         */
-        public static Set<Tag> getTagSet(String... strings) {
-                return Arrays.stream(strings).map(Tag::new).collect(Collectors.toSet());
-        }
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Tag> getTagSet(String... strings) {
+        return Arrays.stream(strings).map(Tag::new).collect(Collectors.toSet());
+    }
 
 }

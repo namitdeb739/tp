@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.tenant.Tenant;
@@ -69,9 +70,9 @@ public interface Model {
     void addTenant(Tenant tenant);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}. {@code target} must exist
-     * in the address book. The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the address book.
+     * Replaces the given person {@code target} with {@code editedPerson}. {@code target} must exist in
+     * the address book. The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Tenant target, Tenant editedPerson);
 

@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.tenant.Tenant;
 
@@ -36,8 +37,10 @@ public class Messages {
      */
     public static String format(Tenant tenant) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(tenant.getName())/* .append("; Phone: ").append(person.getPhone())
-                .append("; Email: ").append(person.getEmail()) */.append("; Address: ")
+        builder.append(tenant.getName())/*
+                                         * .append("; Phone: ").append(person.getPhone())
+                                         * .append("; Email: ").append(person.getEmail())
+                                         */.append("; Address: ")
                 .append(tenant.getAddress())/* .append("; Tags: ") */;
         // person.getTags().forEach(builder::append);
         return builder.toString();

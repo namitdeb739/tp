@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GIVEN_NAME_BOB;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.BOB;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.TenantBuilder;
 
@@ -29,23 +32,23 @@ public class TenantTest {
 
         // same name, all other attributes different -> returns true
         Tenant editedAlice = new TenantBuilder(ALICE)/*
-                                                      * .withPhone(VALID_PHONE_BOB).withEmail(
-                                                      * VALID_EMAIL_BOB)
+                                                      * .withPhone(VALID_PHONE_BOB).withEmail( VALID_EMAIL_BOB)
                                                       */
                 .withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new TenantBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new TenantBuilder(ALICE).withName(VALID_GIVEN_NAME_BOB, VALID_FAMILY_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Tenant editedBob = new TenantBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Tenant editedBob =
+                new TenantBuilder(BOB).withName(VALID_GIVEN_NAME_BOB.toLowerCase(), VALID_FAMILY_NAME_BOB).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TenantBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        String nameWithTrailingSpaces = VALID_GIVEN_NAME_BOB + " ";
+        editedBob = new TenantBuilder(BOB).withName(nameWithTrailingSpaces, VALID_FAMILY_NAME_BOB).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 
@@ -68,7 +71,7 @@ public class TenantTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Tenant editedAlice = new TenantBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Tenant editedAlice = new TenantBuilder(ALICE).withName(VALID_GIVEN_NAME_BOB, VALID_FAMILY_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

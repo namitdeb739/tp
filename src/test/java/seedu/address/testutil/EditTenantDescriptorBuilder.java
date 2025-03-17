@@ -35,8 +35,8 @@ public class EditTenantDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditTenantDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+    public EditTenantDescriptorBuilder withName(String given, String family) {
+        descriptor.setName(new Name(given, family));
         return this;
     }
 
