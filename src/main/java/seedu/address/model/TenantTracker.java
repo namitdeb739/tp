@@ -12,28 +12,27 @@ import seedu.address.model.tenant.UniqueTenantList;
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TenantTracker implements ReadOnlyTenantTracker {
 
-    private final UniqueTenantList persons;
+    private final UniqueTenantList tenants;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid
      * duplication between constructors. See
-     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid
-     * duplication among constructors.
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html Note that non-static init
+     * blocks are not recommended to use. There are other ways to avoid duplication among
+     * constructors.
      */
     {
-        persons = new UniqueTenantList();
+        tenants = new UniqueTenantList();
     }
 
-    public AddressBook() {
-    }
+    public TenantTracker() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TenantTracker(ReadOnlyTenantTracker toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -45,16 +44,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * contain duplicate persons.
      */
     public void setPersons(List<Tenant> persons) {
-        this.persons.setPersons(persons);
+        this.tenants.setPersons(persons);
     }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTenantTracker newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPersons(newData.getTenantList());
     }
 
     //// person-level operations
@@ -62,16 +61,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Tenant person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasTenant(Tenant tenant) {
+        requireNonNull(tenant);
+        return tenants.contains(tenant);
     }
 
     /**
      * Adds a person to the address book. The person must not already exist in the address book.
      */
-    public void addPerson(Tenant p) {
-        persons.add(p);
+    public void addTenant(Tenant p) {
+        tenants.add(p);
     }
 
     /**
@@ -79,30 +78,30 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book. The person identity of {@code editedPerson}
      * must not be the same as another existing person in the address book.
      */
-    public void setPerson(Tenant target, Tenant editedPerson) {
-        requireNonNull(editedPerson);
+    public void setTenant(Tenant target, Tenant editedTenant) {
+        requireNonNull(editedTenant);
 
-        persons.setPerson(target, editedPerson);
+        tenants.setTenant(target, editedTenant);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in the address
      * book.
      */
-    public void removePerson(Tenant key) {
-        persons.remove(key);
+    public void removeTenant(Tenant key) {
+        tenants.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("persons", persons).toString();
+        return new ToStringBuilder(this).add("tenants", tenants).toString();
     }
 
     @Override
-    public ObservableList<Tenant> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Tenant> getTenantList() {
+        return tenants.asUnmodifiableObservableList();
     }
 
     @Override
@@ -112,16 +111,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof TenantTracker)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        TenantTracker otherTenantTracker = (TenantTracker) other;
+        return tenants.equals(otherTenantTracker.tenants);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return tenants.hashCode();
     }
 }

@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
         }
 
         Tenant personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
+        model.deleteTenant(personToDelete);
         return new CommandResult(
                 String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
