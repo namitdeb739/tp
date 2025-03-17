@@ -37,6 +37,14 @@ public class Tenant {
         return name;
     }
 
+    public String getGivenName() {
+        return name.givenName;
+    }
+
+    public String getFamilyName() {
+        return name.familyName;
+    }
+
     // public Phone getPhone() {
     // return phone;
     // }
@@ -49,17 +57,17 @@ public class Tenant {
         return address;
     }
 
-    //    /**
-    //     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
-    //     * modification is attempted.
-    //     */
+    // /**
+    // * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
+    // * modification is attempted.
+    // */
     // public Set<Tag> getTags() {
     // return Collections.unmodifiableSet(tags);
     // }
 
     /**
-     * Returns true if both persons have the same name. This defines a weaker notion of equality
-     * between two persons.
+     * Returns true if both persons have the same name. This defines a weaker notion of equality between
+     * two persons.
      */
     public boolean isSamePerson(Tenant otherPerson) {
         if (otherPerson == this) {
@@ -85,11 +93,8 @@ public class Tenant {
         }
 
         Tenant otherPerson = (Tenant) other;
-        return name.equals(otherPerson.name)
-                && /*
-         * phone.equals(otherPerson.phone) && email.equals(otherPerson.email) &&
-         */ address.equals(otherPerson.address)
-                /* && tags.equals(otherPerson.tags) */;
+        return name.equals(otherPerson.name) && address.equals(otherPerson.address)
+        /* && tags.equals(otherPerson.tags) */;
     }
 
     @Override
@@ -101,9 +106,8 @@ public class Tenant {
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("name", name)/*
-         * .add("phone", phone).add("email",
-         * email)
-         */
+                                                           * .add("phone", phone).add("email", email)
+                                                           */
                 .add("address", address)/* .add("tags", tags) */.toString();
     }
 

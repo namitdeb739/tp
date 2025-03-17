@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GIVEN_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class EditCommand extends Command {
             + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_NAME + "NAME] "
+            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_GIVEN_NAME + "NAME] "
             + /*
      * "[" + PREFIX_PHONE + "PHONE] " + "[" + PREFIX_EMAIL + "EMAIL] " +
      */ "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -69,12 +69,12 @@ public class EditCommand extends Command {
         Tenant tenantToEdit = lastShownList.get(index.getZeroBased());
         Tenant editedTenant = createEditedPerson(tenantToEdit, editTenantDescriptor);
 
-        if (!tenantToEdit.isSamePerson(editedTenant) && model.hasPerson(editedTenant)) {
+        if (!tenantToEdit.isSamePerson(editedTenant) && model.hasTenant(editedTenant)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(tenantToEdit, editedTenant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTenant)));
     }
@@ -223,11 +223,7 @@ public class EditCommand extends Command {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).add("name", name)
-                    /*
-                     * .add("phone", phone) .add("email", email)
-                     */
-                    .add("address", address)/* .add("tags", tags) */.toString();
+            return new ToStringBuilder(this).add("name", name).add("address", address).toString();
         }
     }
 }
