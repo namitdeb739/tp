@@ -2,6 +2,7 @@ package seedu.address.model.tenant;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.util.StringTokenizer;
 
 /**
  * Represents a Person's name in the address book. Guarantees: immutable; is valid as declared in
@@ -16,7 +17,7 @@ public class Name {
     /*
      * The name can contain any character, and it should not be blank or purely whitespace
      */
-    public static final String VALIDATION_REGEX = ".*\\S.*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String fullName;
 
@@ -28,7 +29,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        fullName = capitaliseName(name);
     }
 
     /**
@@ -62,6 +63,22 @@ public class Name {
     @Override
     public int hashCode() {
         return fullName.hashCode();
+    }
+
+    /**
+     * Capitalizes the first letter of each word in the name.
+     */
+    private String capitaliseName(String name) {
+        StringTokenizer tokenizer = new StringTokenizer(name);
+        StringBuilder capitalizedName = new StringBuilder();
+
+        while (tokenizer.hasMoreTokens()) {
+            String word = tokenizer.nextToken();
+            capitalizedName.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1).toLowerCase()).append(" ");
+        }
+
+        return capitalizedName.toString().trim();
     }
 
 }
