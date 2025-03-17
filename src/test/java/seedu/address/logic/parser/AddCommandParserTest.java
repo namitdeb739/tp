@@ -30,6 +30,7 @@ import seedu.address.testutil.TenantBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
+    private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -78,6 +79,7 @@ public class AddCommandParserTest {
                                        */));
 
         // invalid value followed by valid value
+        // invalid value followed by valid value
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + validExpectedTenantString,
@@ -95,6 +97,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedTenantString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
 
+        // valid value followed by invalid value
         // valid value followed by invalid value
 
         // invalid name

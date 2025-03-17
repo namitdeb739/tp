@@ -35,7 +35,7 @@ class JsonSerializableTenantTracker {
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     *        {@code JsonSerializableAddressBook}.
+     *               {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableTenantTracker(ReadOnlyTenantTracker source) {
         tenants.addAll(source.getTenantList().stream().map(JsonAdaptedTenant::new).collect(Collectors.toList()));

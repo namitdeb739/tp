@@ -53,8 +53,8 @@ public class UniquePersonListTest {
 
     // @Test
     // public void add_duplicatePerson_throwsDuplicatePersonException() {
-    //     uniqueTenantList.add(ALICE);
-    //     assertThrows(DuplicatePersonException.class, () -> uniqueTenantList.add(ALICE));
+    // uniqueTenantList.add(ALICE);
+    // assertThrows(DuplicatePersonException.class, () -> uniqueTenantList.add(ALICE));
     // }
 
     @Test

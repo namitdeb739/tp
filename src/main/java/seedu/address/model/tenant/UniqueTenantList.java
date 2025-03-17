@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.tenant.exceptions.PersonNotFoundException;
+import seedu.address.model.tenant.exceptions.TenantNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls. A
@@ -17,7 +17,7 @@ import seedu.address.model.tenant.exceptions.PersonNotFoundException;
  * the person being added or updated is unique in terms of identity in the UniquePersonList.
  * However, the removal of a person uses Person#equals(Object) so as to ensure that the person with
  * exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Tenant#isSamePerson(Tenant)
@@ -57,7 +57,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TenantNotFoundException();
         }
 
         // if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
@@ -73,7 +73,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
     public void remove(Tenant toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TenantNotFoundException();
         }
     }
 

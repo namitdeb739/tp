@@ -5,17 +5,17 @@
 ![Ui](docs/images/Ui.png)
 
 
-# TenantTrack 
+# TenantTrack
 
 ## About
 TenantTrack is a software project designed to assist **landlords who manage multiple rental properties**. It aims to streamline contact management by providing an **efficient and user-friendly** interface optimized for both command-line interaction and a graphical user interface (GUI).<br>
-  
+
 ## Example usages are:
 - **As a starting point for a software engineering course project**, allowing students to build upon an existing well-structured codebase.
 - **As a case study** for software engineering concepts such as object-oriented design, CLI/GUI integration, and user-centered development.
 - **As a reference implementation** for projects involving tenant and property management.
-- 
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
+
+The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 
@@ -25,7 +25,7 @@ TenantTrack is a software project designed to assist **landlords who manage mult
 - **Structured and scalable** – Implements clear data structures to handle tenant information efficiently.
 - **Error handling and validation** – Ensures proper input validation for tenant names and addresses, including postcode verification.
 - **Duplicate handling** – Allows duplicate names and addresses while considering future extensions for unique identifiers.
- 
+
 ## Project Features
 TenantTrack provides core functionality for managing tenant information efficiently:
 

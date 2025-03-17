@@ -48,7 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         // Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Tenant person = new Tenant(name, /* phone, email, */ address/* , tagList */);
+        Tenant person = new Tenant(name, /* phone, email, */ address/* , tagList */);
 
+        return new AddCommand(person);
+    }
         return new AddCommand(person);
     }
 

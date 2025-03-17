@@ -77,8 +77,12 @@ public class TenantTest {
         // different phone -> returns false
         // editedAlice = new TenantBuilder(ALICE)/* .withPhone(VALID_PHONE_BOB) */.build();
         // assertFalse(ALICE.equals(editedAlice));
+        // editedAlice = new TenantBuilder(ALICE)/* .withPhone(VALID_PHONE_BOB) */.build();
+        // assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
+        // editedAlice = new TenantBuilder(ALICE)/* .withEmail(VALID_EMAIL_BOB) */.build();
+        // assertFalse(ALICE.equals(editedAlice));
         // editedAlice = new TenantBuilder(ALICE)/* .withEmail(VALID_EMAIL_BOB) */.build();
         // assertFalse(ALICE.equals(editedAlice));
 
@@ -89,14 +93,16 @@ public class TenantTest {
         // different tags -> returns false
         // editedAlice = new TenantBuilder(ALICE)/* .withTags(VALID_TAG_HUSBAND) */.build();
         // assertFalse(ALICE.equals(editedAlice));
+        // editedAlice = new TenantBuilder(ALICE)/* .withTags(VALID_TAG_HUSBAND) */.build();
+        // assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
         String expected = Tenant.class.getCanonicalName() + "{name=" + ALICE.getName()
-                + /*
-                   * ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() +
-                   */ ", address=" + ALICE.getAddress() + /* ", tags=" + ALICE.getTags() + */ "}";
+            + /*
+         * ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail() +
+         */ ", address=" + ALICE.getAddress() + /* ", tags=" + ALICE.getTags() + */ "}";
         assertEquals(expected, ALICE.toString());
     }
 }
