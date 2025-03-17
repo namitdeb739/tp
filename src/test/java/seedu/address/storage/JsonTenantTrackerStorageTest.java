@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.HOON;
 import static seedu.address.testutil.TypicalTenants.IDA;
-import static seedu.address.testutil.TypicalTenants.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTenants.getTypicalTenantTracker;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,8 +19,8 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.TenantTracker;
 
-public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+public class JsonTenantTrackerStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTenantTrackerStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -31,7 +31,8 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyTenantTracker> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonTenantTrackerStorage(Paths.get(filePath))
+                .readTenantTracker(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -45,56 +46,56 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatTenantTracker.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidTenantTenantTracker.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readAddressBook_invalidAndValidTenantAddressBook_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidTenantTenantTracker.json"));
     }
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        TenantTracker original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        Path filePath = testFolder.resolve("TempTenantTracker.json");
+        TenantTracker original = getTypicalTenantTracker();
+        JsonTenantTrackerStorage jsonTenantTrackerStorage = new JsonTenantTrackerStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyTenantTracker readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonTenantTrackerStorage.saveTenantTracker(original, filePath);
+        ReadOnlyTenantTracker readBack = jsonTenantTrackerStorage.readTenantTracker(filePath).get();
         assertEquals(original, new TenantTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addTenant(HOON);
         original.removeTenant(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonTenantTrackerStorage.saveTenantTracker(original, filePath);
+        readBack = jsonTenantTrackerStorage.readTenantTracker(filePath).get();
         assertEquals(original, new TenantTracker(readBack));
 
         // Save and read without specifying file path
         original.addTenant(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonTenantTrackerStorage.saveTenantTracker(original); // file path not specified
+        readBack = jsonTenantTrackerStorage.readTenantTracker().get(); // file path not specified
         assertEquals(original, new TenantTracker(readBack));
 
     }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveTenantTracker(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyTenantTracker addressBook, String filePath) {
+    private void saveTenantTracker(ReadOnlyTenantTracker addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath)).saveAddressBook(addressBook,
+            new JsonTenantTrackerStorage(Paths.get(filePath)).saveTenantTracker(addressBook,
                     addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
@@ -103,6 +104,6 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new TenantTracker(), null));
+        assertThrows(NullPointerException.class, () -> saveTenantTracker(new TenantTracker(), null));
     }
 }

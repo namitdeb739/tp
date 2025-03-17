@@ -15,7 +15,7 @@ import seedu.address.model.tenant.Tenant;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Tenant[] getSamplePersons() {
+    public static Tenant[] getSampleTenants() {
         return new Tenant[] {new Tenant(new Name("Alex", "Yeoh"),
                 /*
                  * new Phone("87438807"), new Email( "alexyeoh@example.com"),
@@ -65,12 +65,12 @@ public class SampleDataUtil {
                 )};
     }
 
-    public static ReadOnlyTenantTracker getSampleAddressBook() {
-        TenantTracker sampleAb = new TenantTracker();
-        for (Tenant samplePerson : getSamplePersons()) {
-            sampleAb.addTenant(samplePerson);
+    public static ReadOnlyTenantTracker getSampleTenantTracker() {
+        TenantTracker sampleTt = new TenantTracker();
+        for (Tenant sampleTenant : getSampleTenants()) {
+            sampleTt.addTenant(sampleTenant);
         }
-        return sampleAb;
+        return sampleTt;
     }
 
     /**

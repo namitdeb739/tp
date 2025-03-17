@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GIVEN_NAME;
 
 import seedu.address.logic.commands.AddCommand;
@@ -15,19 +16,20 @@ public class TenantUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Tenant person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Tenant tenant) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(tenant);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Tenant person) {
+    public static String getPersonDetails(Tenant tenant) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_GIVEN_NAME + person.getName().familyName + " ");
+        sb.append(PREFIX_GIVEN_NAME + tenant.getName().givenName + " ");
+        sb.append(PREFIX_FAMILY_NAME + tenant.getName().familyName + " ");
         // sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         // sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_ADDRESS + tenant.getAddress().value + " ");
         // person.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }

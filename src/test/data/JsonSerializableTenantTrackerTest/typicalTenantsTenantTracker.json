@@ -1,0 +1,40 @@
+{
+  "_comment": "TenantTracker save file which contains the same TenantTracker values as in TypicalTenants#getTypicalTenantTracker()",
+  "tenants": [
+    {
+      "givenName": "Alice",
+      "familyName": "Pauline",
+      "address": "123, Jurong West Ave 6, #08-111, 123456"
+    },
+    {
+      "givenName": "Benson",
+      "familyName": "Meier",
+      "address": "311, Clementi Ave 2, #02-25, 123456"
+    },
+    {
+      "givenName": "Carl",
+      "familyName": "Kurz",
+      "address": "wall street, 123456"
+    },
+    {
+      "givenName": "Daniel",
+      "familyName": "Meier",
+      "address": "10th street, 123456"
+    },
+    {
+      "givenName": "Elle",
+      "familyName": "Meyer",
+      "address": "michegan ave, 123456"
+    },
+    {
+      "givenName": "Fiona",
+      "familyName": "Kunz",
+      "address": "little tokyo, 123456"
+    },
+    {
+      "givenName": "George",
+      "familyName": "Best",
+      "address": "4th street, 123456"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tenant.Tenant;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTenantTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TenantBuilder;
@@ -45,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTenantTrackerStorage tenantTrackerStorage =
+                new JsonTenantTrackerStorage(temporaryFolder.resolve("tenanttracker.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(tenantTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -84,7 +84,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTenantList().remove(0));
     }
 
     /**
@@ -156,9 +156,9 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
+        JsonTenantTrackerStorage addressBookStorage = new JsonTenantTrackerStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
+            public void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
                 throw e;
             }
         };

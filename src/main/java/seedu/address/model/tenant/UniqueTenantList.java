@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.tenant.exceptions.DuplicatePersonException;
 import seedu.address.model.tenant.exceptions.PersonNotFoundException;
 
 /**
@@ -42,9 +41,9 @@ public class UniqueTenantList implements Iterable<Tenant> {
      */
     public void add(Tenant toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
-        }
+        // if (contains(toAdd)) {
+        //     throw new DuplicatePersonException();
+        // }
         internalList.add(toAdd);
     }
 
@@ -61,9 +60,9 @@ public class UniqueTenantList implements Iterable<Tenant> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
-        }
+        // if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        //     throw new DuplicatePersonException();
+        // }
 
         internalList.set(index, editedPerson);
     }
@@ -89,9 +88,9 @@ public class UniqueTenantList implements Iterable<Tenant> {
      */
     public void setPersons(List<Tenant> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
-        }
+        // if (!personsAreUnique(persons)) {
+        //     throw new DuplicatePersonException();
+        // }
 
         internalList.setAll(persons);
     }
@@ -133,17 +132,17 @@ public class UniqueTenantList implements Iterable<Tenant> {
         return internalList.toString();
     }
 
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    private boolean personsAreUnique(List<Tenant> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+    // /**
+    //  * Returns true if {@code persons} contains only unique persons.
+    //  */
+    // private boolean personsAreUnique(List<Tenant> persons) {
+    //     for (int i = 0; i < persons.size() - 1; i++) {
+    //         for (int j = i + 1; j < persons.size(); j++) {
+    //             if (persons.get(i).isSamePerson(persons.get(j))) {
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
 }

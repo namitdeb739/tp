@@ -17,37 +17,36 @@ import seedu.address.model.ReadOnlyTenantTracker;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonTenantTrackerStorage implements TenantTrackerStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTenantTrackerStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTenantTrackerStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTenantTrackerFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTenantTracker> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTenantTracker> readTenantTracker() throws DataLoadingException {
+        return readTenantTracker(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTenantTracker()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyTenantTracker> readAddressBook(Path filePath)
-            throws DataLoadingException {
+    public Optional<ReadOnlyTenantTracker> readTenantTracker(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook =
-                JsonUtil.readJsonFile(filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableTenantTracker> jsonAddressBook =
+                JsonUtil.readJsonFile(filePath, JsonSerializableTenantTracker.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -61,22 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTenantTracker addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException {
+        saveTenantTracker(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTenantTracker)}.
+     * Similar to {@link #saveTenantTracker(ReadOnlyTenantTracker)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyTenantTracker addressBook, Path filePath)
-            throws IOException {
+    public void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTenantTracker(addressBook), filePath);
     }
 
 }

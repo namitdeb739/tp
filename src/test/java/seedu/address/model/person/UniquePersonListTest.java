@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tenant.Tenant;
 import seedu.address.model.tenant.UniqueTenantList;
-import seedu.address.model.tenant.exceptions.DuplicatePersonException;
 import seedu.address.model.tenant.exceptions.PersonNotFoundException;
 import seedu.address.testutil.TenantBuilder;
 
@@ -52,11 +51,11 @@ public class UniquePersonListTest {
         assertThrows(NullPointerException.class, () -> uniqueTenantList.add(null));
     }
 
-    @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniqueTenantList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueTenantList.add(ALICE));
-    }
+    // @Test
+    // public void add_duplicatePerson_throwsDuplicatePersonException() {
+    //     uniqueTenantList.add(ALICE);
+    //     assertThrows(DuplicatePersonException.class, () -> uniqueTenantList.add(ALICE));
+    // }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {

@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTenants.CARL;
 import static seedu.address.testutil.TypicalTenants.ELLE;
 import static seedu.address.testutil.TypicalTenants.FIONA;
-import static seedu.address.testutil.TypicalTenants.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTenants.getTypicalTenantTracker;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.address.model.tenant.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTenantTracker(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTenantTracker(), new UserPrefs());
 
     @Test
     public void equals() {

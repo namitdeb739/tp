@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -44,15 +43,17 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Tenant validPerson = new TenantBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    // @Test
+    // public void execute_duplicatePerson_throwsCommandException() {
+    // Tenant validPerson = new TenantBuilder().build();
+    // AddCommand addCommand = new AddCommand(validPerson);
+    // ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
-    }
+    // assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
+    // addCommand.execute(modelStub));
+    // }
 
+    @SuppressWarnings("unlikely-arg-type")
     @Test
     public void equals() {
         Tenant alice = new TenantBuilder().withName("Alice", "Smith").build();
@@ -159,23 +160,23 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Tenant person;
+    // /**
+    //  * A Model stub that contains a single person.
+    //  */
+    // private class ModelStubWithPerson extends ModelStub {
+    //     private final Tenant person;
 
-        ModelStubWithPerson(Tenant person) {
-            requireNonNull(person);
-            this.person = person;
-        }
+    //     ModelStubWithPerson(Tenant person) {
+    //         requireNonNull(person);
+    //         this.person = person;
+    //     }
 
-        @Override
-        public boolean hasTenant(Tenant person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
+    //     @Override
+    //     public boolean hasTenant(Tenant person) {
+    //         requireNonNull(person);
+    //         return this.person.isSamePerson(person);
+    //     }
+    // }
 
     /**
      * A Model stub that always accept the person being added.

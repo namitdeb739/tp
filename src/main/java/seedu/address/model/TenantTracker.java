@@ -96,7 +96,7 @@ public class TenantTracker implements ReadOnlyTenantTracker {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("tenant", tenants).toString();
+        return new ToStringBuilder(this).add("tenants", tenants).toString();
     }
 
     @Override

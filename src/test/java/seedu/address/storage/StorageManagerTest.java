@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalTenants.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTenants.getTypicalTenantTracker;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTenantTrackerStorage tenantTrackerStorage = new JsonTenantTrackerStorage(getTempFilePath("tt"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(tenantTrackerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -54,15 +54,15 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class. More extensive testing of UserPref saving/reading is done
          * in {@link JsonAddressBookStorageTest} class.
          */
-        TenantTracker original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyTenantTracker retrieved = storageManager.readAddressBook().get();
+        TenantTracker original = getTypicalTenantTracker();
+        storageManager.saveTenantTracker(original);
+        ReadOnlyTenantTracker retrieved = storageManager.readTenantTracker().get();
         assertEquals(original, new TenantTracker(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getTenantTrackerFilePath());
     }
 
 }

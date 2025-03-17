@@ -17,16 +17,15 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TenantTrackerStorage tenantTrackerStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and
      * {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage,
-            UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(TenantTrackerStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.tenantTrackerStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,32 +50,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTenantTrackerFilePath() {
+        return tenantTrackerStorage.getTenantTrackerFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTenantTracker> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTenantTracker> readTenantTracker() throws DataLoadingException {
+        return readTenantTracker(tenantTrackerStorage.getTenantTrackerFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTenantTracker> readAddressBook(Path filePath)
-            throws DataLoadingException {
+    public Optional<ReadOnlyTenantTracker> readTenantTracker(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return tenantTrackerStorage.readTenantTracker(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTenantTracker addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException {
+        saveTenantTracker(addressBook, tenantTrackerStorage.getTenantTrackerFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTenantTracker addressBook, Path filePath)
-            throws IOException {
+    public void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        tenantTrackerStorage.saveTenantTracker(addressBook, filePath);
     }
 
 }

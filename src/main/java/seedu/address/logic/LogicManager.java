@@ -22,8 +22,7 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_FORMAT =
-            "Could not save data due to the following error: %s";
+    public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
 
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
             "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
@@ -32,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final TenantTrackerParser addressBookParser;
+    private final TenantTrackerParser tenantTrackerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new TenantTrackerParser();
+        tenantTrackerParser = new TenantTrackerParser();
     }
 
     @Override
@@ -48,14 +47,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = tenantTrackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getTenantTracker());
+            storage.saveTenantTracker(model.getTenantTracker());
         } catch (AccessDeniedException e) {
-            throw new CommandException(
-                    String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
+            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
             throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);
         }
@@ -64,17 +62,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTenantTracker getAddressBook() {
+    public ReadOnlyTenantTracker getTenantTracker() {
         return model.getTenantTracker();
     }
 
     @Override
-    public ObservableList<Tenant> getFilteredPersonList() {
+    public ObservableList<Tenant> getFilteredTenantList() {
         return model.getFilteredPersonList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getTenantTrackerFilePath() {
         return model.getTenantTrackerFilePath();
     }
 

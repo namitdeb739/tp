@@ -10,25 +10,25 @@ import seedu.address.model.ReadOnlyTenantTracker;
 /**
  * Represents a storage for {@link seedu.address.model.TenantTracker}.
  */
-public interface AddressBookStorage {
+public interface TenantTrackerStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTenantTrackerFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyTenantTracker}. Returns {@code Optional.empty()}
-     * if storage file is not found.
+     * Returns AddressBook data as a {@link ReadOnlyTenantTracker}. Returns {@code Optional.empty()} if
+     * storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyTenantTracker> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyTenantTracker> readTenantTracker() throws DataLoadingException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTenantTrackerFilePath()
      */
-    Optional<ReadOnlyTenantTracker> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyTenantTracker> readTenantTracker(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyTenantTracker} to the storage.
@@ -36,11 +36,11 @@ public interface AddressBookStorage {
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTenantTracker addressBook) throws IOException;
+    void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTenantTracker)
+     * @see #saveTenantTracker(ReadOnlyTenantTracker)
      */
-    void saveAddressBook(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException;
+    void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException;
 
 }

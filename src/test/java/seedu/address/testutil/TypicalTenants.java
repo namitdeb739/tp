@@ -20,27 +20,27 @@ import seedu.address.model.tenant.Tenant;
 public class TypicalTenants {
 
     public static final Tenant ALICE =
-            new TenantBuilder().withName("Alice", "Pauline").withAddress("123, Jurong West Ave 6, #08-111")
+            new TenantBuilder().withName("Alice", "Pauline").withAddress("123, Jurong West Ave 6, #08-111, 123456")
                     // .withEmail("alice@example.com").withPhone("94351253").withTags("friends")
                     .build();
     public static final Tenant BENSON =
-            new TenantBuilder().withName("Benson", "Meier").withAddress("311, Clementi Ave 2, #02-25")
+            new TenantBuilder().withName("Benson", "Meier").withAddress("311, Clementi Ave 2, #02-25, 123456")
                     /* .withPhone("98765432").withTags("owesMoney", "friends") */.build();
     public static final Tenant CARL = new TenantBuilder().withName("Carl", "Kurz")
             /* .withPhone("95352563").withEmail("heinz@example.com") */
-            .withAddress("wall street").build();
+            .withAddress("wall street, 123456").build();
     public static final Tenant DANIEL = new TenantBuilder().withName("Daniel", "Meier")
             /* .withPhone("87652533").withEmail("cornelia@example.com") */
-            .withAddress("10th street")/* .withTags("friends") */.build();
+            .withAddress("10th street, 123456")/* .withTags("friends") */.build();
     public static final Tenant ELLE = new TenantBuilder().withName("Elle", "Meyer")
             /* .withPhone("9482224").withEmail("werner@example.com") */
-            .withAddress("michegan ave").build();
+            .withAddress("michegan ave, 123456").build();
     public static final Tenant FIONA = new TenantBuilder().withName("Fiona", "Kunz")
             /* .withPhone("9482427").withEmail("lydia@example.com") */
-            .withAddress("little tokyo").build();
+            .withAddress("little tokyo, 123456").build();
     public static final Tenant GEORGE = new TenantBuilder().withName("George", "Best")
             /* .withPhone("9482442").withEmail("anna@example.com") */
-            .withAddress("4th street").build();
+            .withAddress("4th street, 123456").build();
 
     // Manually added
     public static final Tenant HOON = new TenantBuilder().withName("Hoon", "Meier")
@@ -67,15 +67,15 @@ public class TypicalTenants {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static TenantTracker getTypicalAddressBook() {
+    public static TenantTracker getTypicalTenantTracker() {
         TenantTracker ab = new TenantTracker();
-        for (Tenant person : getTypicalPersons()) {
-            ab.addTenant(person);
+        for (Tenant tenant : getTypicalTenants()) {
+            ab.addTenant(tenant);
         }
         return ab;
     }
 
-    public static List<Tenant> getTypicalPersons() {
+    public static List<Tenant> getTypicalTenants() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

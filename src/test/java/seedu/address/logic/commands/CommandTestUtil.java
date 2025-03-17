@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GIVEN_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -31,13 +32,17 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1, 123456";
+    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3, 987654";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_GIVEN_NAME + VALID_GIVEN_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_GIVEN_NAME + VALID_GIVEN_NAME_BOB;
+    public static final String GIVEN_NAME_DESC_AMY = " " + PREFIX_GIVEN_NAME + VALID_GIVEN_NAME_AMY;
+    public static final String FAMILY_NAME_DESC_AMY = " " + PREFIX_FAMILY_NAME + VALID_FAMILY_NAME_AMY;
+    public static final String NAME_DESC_AMY = GIVEN_NAME_DESC_AMY + FAMILY_NAME_DESC_AMY;
+    public static final String GIVEN_NAME_DESC_BOB = " " + PREFIX_GIVEN_NAME + VALID_GIVEN_NAME_BOB;
+    public static final String FAMILY_NAME_DESC_BOB = " " + PREFIX_FAMILY_NAME + VALID_FAMILY_NAME_BOB;
+    public static final String NAME_DESC_BOB = GIVEN_NAME_DESC_BOB + FAMILY_NAME_DESC_BOB;
     // public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     // public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     // public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -47,8 +52,9 @@ public class CommandTestUtil {
     // public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     // public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_GIVEN_NAME + "James&"; // '&' not allowed
-    // in names
+    // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_GIVEN_NAME + "   " + PREFIX_FAMILY_NAME + "   ";
+
     // public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not
     // allowed
     // in phones
