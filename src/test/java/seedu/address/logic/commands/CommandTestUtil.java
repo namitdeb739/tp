@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TenantTracker;
 import seedu.address.model.tenant.NameContainsKeywordsPredicate;
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.EditTenantDescriptorBuilder;
@@ -110,11 +110,11 @@ public class CommandTestUtil {
             String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        TenantTracker expectedAddressBook = new TenantTracker(actualModel.getTenantTracker());
         List<Tenant> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getTenantTracker());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
 
@@ -127,7 +127,7 @@ public class CommandTestUtil {
 
         Tenant person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(
+        model.updateFilteredTenantList(
                 new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());

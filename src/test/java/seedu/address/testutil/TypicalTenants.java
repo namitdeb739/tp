@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TenantTracker;
 import seedu.address.model.tenant.Tenant;
 
 /**
@@ -53,10 +53,10 @@ public class TypicalTenants {
             /* .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY) */
             .withAddress(VALID_ADDRESS_AMY)/* .withTags(VALID_TAG_FRIEND) */.build();
     public static final Tenant BOB = new TenantBuilder().withName(VALID_NAME_BOB)
-            /*
-             * .withPhone(VALID_PHONE_BOB) .withEmail(VALID_EMAIL_BOB)
-             */.withAddress(VALID_ADDRESS_BOB)
-            /* .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND) */.build();
+            // .withPhone(VALID_PHONE_BOB) .withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            // .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -65,10 +65,10 @@ public class TypicalTenants {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TenantTracker getTypicalAddressBook() {
+        TenantTracker ab = new TenantTracker();
         for (Tenant person : getTypicalPersons()) {
-            ab.addPerson(person);
+            ab.addTenant(person);
         }
         return ab;
     }

@@ -28,7 +28,7 @@ import seedu.address.testutil.TenantUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TenantTrackerParser parser = new TenantTrackerParser();
 
     @Test
     public void parseCommand_add() throws Exception {

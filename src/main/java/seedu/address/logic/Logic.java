@@ -1,13 +1,12 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.tenant.Tenant;
 
 /**
@@ -27,9 +26,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTenantTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTenantTracker getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Tenant> getFilteredPersonList();

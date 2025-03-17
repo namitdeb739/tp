@@ -67,12 +67,12 @@ public class EditCommand extends Command {
         Tenant tenantToEdit = lastShownList.get(index.getZeroBased());
         Tenant editedTenant = createEditedPerson(tenantToEdit, editTenantDescriptor);
 
-        if (!tenantToEdit.isSamePerson(editedTenant) && model.hasPerson(editedTenant)) {
+        if (!tenantToEdit.isSamePerson(editedTenant) && model.hasTenant(editedTenant)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(tenantToEdit, editedTenant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTenant)));
     }

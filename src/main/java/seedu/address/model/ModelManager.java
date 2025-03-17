@@ -2,11 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -19,26 +17,26 @@ import seedu.address.model.tenant.Tenant;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TenantTracker tenantTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Tenant> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTenantTracker tenantTracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(tenantTracker, userPrefs);
 
-        logger.fine(
-                "Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with tenant tracker: " + tenantTracker + " and user prefs "
+                + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.tenantTracker = new TenantTracker(tenantTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.tenantTracker.getTenantList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TenantTracker(), new UserPrefs());
     }
 
     // =========== UserPrefs
@@ -67,59 +65,59 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTenantTrackerFilePath() {
+        return userPrefs.getTenantTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTenantTrackerFilePath(Path tenantTrackerFilePath) {
+        requireNonNull(tenantTrackerFilePath);
+        userPrefs.setTenantTrackerFilePath(tenantTrackerFilePath);
     }
 
-    // =========== AddressBook
+    // =========== TenantTracker
     // ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTenantTracker(ReadOnlyTenantTracker tenantTracker) {
+        this.tenantTracker.resetData(tenantTracker);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTenantTracker getTenantTracker() {
+        return tenantTracker;
     }
 
     @Override
-    public boolean hasPerson(Tenant person) {
+    public boolean hasTenant(Tenant person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return tenantTracker.hasTenant(person);
     }
 
     @Override
-    public void deletePerson(Tenant target) {
-        addressBook.removePerson(target);
+    public void deleteTenant(Tenant target) {
+        tenantTracker.removeTenant(target);
     }
 
     @Override
-    public void addPerson(Tenant person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTenant(Tenant person) {
+        tenantTracker.addTenant(person);
+        updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Tenant target, Tenant editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        tenantTracker.setTenant(target, editedPerson);
     }
 
     // =========== Filtered Person List Accessors
     // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Tenant} backed by the internal list of
+     * {@code versionedTenantTracker}
      */
     @Override
     public ObservableList<Tenant> getFilteredPersonList() {
@@ -127,7 +125,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Tenant> predicate) {
+    public void updateFilteredTenantList(Predicate<Tenant> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -144,7 +142,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return tenantTracker.equals(otherModelManager.tenantTracker)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }

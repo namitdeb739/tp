@@ -58,23 +58,23 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setTenant(null, ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setTenant(ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(TenantNotFoundException.class, () -> uniquePersonList.setTenant(ALICE, ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
+        uniquePersonList.setTenant(ALICE, ALICE);
         UniqueTenantList expectedUniquePersonList = new UniqueTenantList();
         expectedUniquePersonList.add(ALICE);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -85,7 +85,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         Tenant editedAlice = new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 /* .withTags(VALID_TAG_HUSBAND) */.build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
+        uniquePersonList.setTenant(ALICE, editedAlice);
         UniqueTenantList expectedUniquePersonList = new UniqueTenantList();
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -94,7 +94,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
+        uniquePersonList.setTenant(ALICE, BOB);
         UniqueTenantList expectedUniquePersonList = new UniqueTenantList();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -104,7 +104,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateTenantException.class, () -> uniquePersonList.setTenant(ALICE, BOB));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Tenant> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class,
+        assertThrows(DuplicateTenantException.class,
                 () -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }
 

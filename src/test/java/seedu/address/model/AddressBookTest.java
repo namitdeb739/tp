@@ -20,11 +20,11 @@ import seedu.address.testutil.TenantBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TenantTracker addressBook = new TenantTracker();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getTenantList());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        TenantTracker newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -52,45 +52,45 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasTenant(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasTenant(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addTenant(ALICE);
+        assertTrue(addressBook.hasTenant(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        addressBook.addTenant(ALICE);
         Tenant editedAlice = new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 /* .withTags(VALID_TAG_HUSBAND) */.build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasTenant(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class,
-                () -> addressBook.getPersonList().remove(0));
+                () -> addressBook.getTenantList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons="
-                + addressBook.getPersonList() + "}";
+        String expected = TenantTracker.class.getCanonicalName() + "{persons="
+                + addressBook.getTenantList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyTenantTracker {
         private final ObservableList<Tenant> persons = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Tenant> persons) {
@@ -98,7 +98,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Tenant> getPersonList() {
+        public ObservableList<Tenant> getTenantList() {
             return persons;
         }
     }

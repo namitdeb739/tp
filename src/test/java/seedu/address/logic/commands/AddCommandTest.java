@@ -15,10 +15,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TenantTracker;
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.TenantBuilder;
 
@@ -107,37 +107,37 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTenantTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTenantTrackerFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Tenant person) {
+        public void addTenant(Tenant person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTenantTracker(ReadOnlyTenantTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTenantTracker getTenantTracker() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Tenant person) {
+        public boolean hasTenant(Tenant person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Tenant target) {
+        public void deleteTenant(Tenant target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Tenant> predicate) {
+        public void updateFilteredTenantList(Predicate<Tenant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -169,7 +169,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Tenant person) {
+        public boolean hasTenant(Tenant person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
@@ -182,20 +182,20 @@ public class AddCommandTest {
         final ArrayList<Tenant> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Tenant person) {
+        public boolean hasTenant(Tenant person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addPerson(Tenant person) {
+        public void addTenant(Tenant person) {
             requireNonNull(person);
             personsAdded.add(person);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTenantTracker getTenantTracker() {
+            return new TenantTracker();
         }
     }
 

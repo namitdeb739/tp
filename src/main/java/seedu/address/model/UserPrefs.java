@@ -1,11 +1,9 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -35,7 +33,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setTenantTrackerFilePath(newUserPrefs.getTenantTrackerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,11 +45,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTenantTrackerFilePath() {
         return addressBookFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setTenantTrackerFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
