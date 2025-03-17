@@ -3,32 +3,39 @@ package seedu.address.model.tenant;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.StringTokenizer;
+
 /**
- * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Person's name in the address book. Guarantees: immutable; is valid as declared in
+ * {@link #isValidName(String)}
  */
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names can contain any characters, and it should not be blank or purely whitespace";
+
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The name can contain any character, and it should not be blank or purely whitespace
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String fullName;
+    public final String givenName;
+
+    public final String familyName;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param given A valid name.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+    public Name(String given, String family) {
+        requireNonNull(given);
+        requireNonNull(family);
+        checkArgument(isValidName(given), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(family), MESSAGE_CONSTRAINTS);
+        givenName = capitaliseName(given);
+        familyName = capitaliseName(family);
     }
 
     /**
@@ -38,10 +45,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
-        return fullName;
+        return givenName + " " + familyName;
     }
 
     @Override
@@ -56,12 +62,28 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        return familyName.equals(otherName.familyName);
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return familyName.hashCode();
+    }
+
+    /**
+     * Capitalizes the first letter of each word in the name.
+     */
+    private String capitaliseName(String name) {
+        StringTokenizer tokenizer = new StringTokenizer(name);
+        StringBuilder capitalizedName = new StringBuilder();
+
+        while (tokenizer.hasMoreTokens()) {
+            String word = tokenizer.nextToken();
+            capitalizedName.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1).toLowerCase()).append(" ");
+        }
+
+        return capitalizedName.toString().trim();
     }
 
 }
