@@ -155,10 +155,11 @@ public class LogicManagerTest {
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
+        // Inject LogicManager with an TenantTrackerStorage that throws the IOException e when saving
         JsonTenantTrackerStorage tenantTrackerStorage = new JsonTenantTrackerStorage(prefPath) {
             @Override
-            public void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
+            public void saveTenantTracker(
+                    ReadOnlyTenantTracker readOnlyTenantTracker, Path filePath) throws IOException {
                 throw e;
             }
         };
@@ -169,7 +170,7 @@ public class LogicManagerTest {
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
+        // Triggers the saveTenantTracker method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
         Tenant expectedPerson = new TenantBuilder(AMY)./* withTags(). */build();
         ModelManager expectedModel = new ModelManager();

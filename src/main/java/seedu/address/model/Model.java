@@ -44,15 +44,15 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setTenantTrackerFilePath(Path addressBookFilePath);
+    void setTenantTrackerFilePath(Path tenantTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces TenantTracker data with the data in {@code tenantTracker}.
      */
-    void setTenantTracker(ReadOnlyTenantTracker addressBook);
+    void setTenantTracker(ReadOnlyTenantTracker tenantTracker);
 
     /**
-     * Returns the AddressBook
+     * Returns the TenantTracker
      */
     ReadOnlyTenantTracker getTenantTracker();
 

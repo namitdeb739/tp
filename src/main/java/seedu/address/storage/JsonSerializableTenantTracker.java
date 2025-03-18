@@ -14,7 +14,7 @@ import seedu.address.model.TenantTracker;
 import seedu.address.model.tenant.Tenant;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TenantTracker that is serializable to JSON format.
  */
 @JsonRootName(value = "tenanttracker")
 class JsonSerializableTenantTracker {
@@ -24,7 +24,7 @@ class JsonSerializableTenantTracker {
     private final List<JsonAdaptedTenant> tenants = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableTenantTracker} with the given persons.
      */
     @JsonCreator
     public JsonSerializableTenantTracker(@JsonProperty("tenants") List<JsonAdaptedTenant> tenants) {
@@ -32,10 +32,10 @@ class JsonSerializableTenantTracker {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTenantTracker} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     *               {@code JsonSerializableAddressBook}.
+     *               {@code JsonSerializableTenantTracker}.
      */
     public JsonSerializableTenantTracker(ReadOnlyTenantTracker source) {
         tenants.addAll(source.getTenantList().stream().map(JsonAdaptedTenant::new).collect(Collectors.toList()));
@@ -47,15 +47,15 @@ class JsonSerializableTenantTracker {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TenantTracker toModelType() throws IllegalValueException {
-        TenantTracker addressBook = new TenantTracker();
+        TenantTracker tenantTracker = new TenantTracker();
         for (JsonAdaptedTenant jsonAdaptedPerson : tenants) {
             Tenant person = jsonAdaptedPerson.toModelType();
             // if (addressBook.hasTenant(person)) {
             // throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             // }
-            addressBook.addTenant(person);
+            tenantTracker.addTenant(person);
         }
-        return addressBook;
+        return tenantTracker;
     }
 
 }

@@ -33,7 +33,7 @@ public class TenantTrackerTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyTenantTracker_replacesData() {
         TenantTracker newData = getTypicalTenantTracker();
         tenantTracker.resetData(newData);
         assertEquals(newData, tenantTracker);
@@ -46,7 +46,7 @@ public class TenantTrackerTest {
     // new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND)
     // */.build();
     // List<Tenant> newPersons = Arrays.asList(ALICE, editedAlice);
-    // AddressBookStub newData = new AddressBookStub(newPersons);
+    // TenantTrackerStub newData = new TenantTrackerStub(newPersons);
 
     // assertThrows(DuplicatePersonException.class, () -> tenantTracker.resetData(newData));
     // }
@@ -57,18 +57,18 @@ public class TenantTrackerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInTenantTracker_returnsFalse() {
         assertFalse(tenantTracker.hasTenant(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInTenantTracker_returnsTrue() {
         tenantTracker.addTenant(ALICE);
         assertTrue(tenantTracker.hasTenant(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInTenantTracker_returnsTrue() {
         tenantTracker.addTenant(ALICE);
         Tenant editedAlice =
                 new TenantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)/* .withTags(VALID_TAG_HUSBAND) */.build();
@@ -87,12 +87,12 @@ public class TenantTrackerTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyTenantTracker whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyTenantTracker {
+    private static class TenantTrackerStub implements ReadOnlyTenantTracker {
         private final ObservableList<Tenant> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Tenant> persons) {
+        TenantTrackerStub(Collection<Tenant> persons) {
             this.persons.setAll(persons);
         }
 

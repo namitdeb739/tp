@@ -18,7 +18,7 @@ public interface TenantTrackerStorage {
     Path getTenantTrackerFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyTenantTracker}. Returns {@code Optional.empty()} if
+     * Returns TenantTracker data as a {@link ReadOnlyTenantTracker}. Returns {@code Optional.empty()} if
      * storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
@@ -33,14 +33,14 @@ public interface TenantTrackerStorage {
     /**
      * Saves the given {@link ReadOnlyTenantTracker} to the storage.
      *
-     * @param addressBook cannot be null.
+     * @param readOnlyTenantTracker cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException;
+    void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker) throws IOException;
 
     /**
      * @see #saveTenantTracker(ReadOnlyTenantTracker)
      */
-    void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException;
+    void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker, Path filePath) throws IOException;
 
 }

@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TenantTracker data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -24,8 +24,8 @@ public class StorageManager implements Storage {
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and
      * {@code UserPrefStorage}.
      */
-    public StorageManager(TenantTrackerStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.tenantTrackerStorage = addressBookStorage;
+    public StorageManager(TenantTrackerStorage tenantTrackerStorage, UserPrefsStorage userPrefsStorage) {
+        this.tenantTrackerStorage = tenantTrackerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TenantTracker methods ==============================
 
     @Override
     public Path getTenantTrackerFilePath() {
@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException {
-        saveTenantTracker(addressBook, tenantTrackerStorage.getTenantTrackerFilePath());
+    public void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker) throws IOException {
+        saveTenantTracker(readOnlyTenantTracker, tenantTrackerStorage.getTenantTrackerFilePath());
     }
 
     @Override
-    public void saveTenantTracker(ReadOnlyTenantTracker addressBook, Path filePath) throws IOException {
+    public void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        tenantTrackerStorage.saveTenantTracker(addressBook, filePath);
+        tenantTrackerStorage.saveTenantTracker(readOnlyTenantTracker, filePath);
     }
 
 }

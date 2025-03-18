@@ -115,7 +115,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTenantTrackerFilePath(Path addressBookFilePath) {
+        public void setTenantTrackerFilePath(Path tenantTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,7 +125,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTenantTracker(ReadOnlyTenantTracker newData) {
+        public void setTenantTracker(ReadOnlyTenantTracker tenantTracker) {
             throw new AssertionError("This method should not be called.");
         }
 

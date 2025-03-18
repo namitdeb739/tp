@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.tenant.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.TenantTrackerBuilder;
 
 public class ModelManagerTest {
 
@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTenantTrackerFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setTenantTrackerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTenantTrackerFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTenantTrackerFilePath(path);
         assertEquals(path, modelManager.getTenantTrackerFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInTenantTracker_returnsFalse() {
         assertFalse(modelManager.hasTenant(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInTenantTracker_returnsTrue() {
         modelManager.addTenant(ALICE);
         assertTrue(modelManager.hasTenant(ALICE));
     }
@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TenantTracker addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        TenantTracker differentAddressBook = new TenantTracker();
+        TenantTracker tenantTracker = new TenantTrackerBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TenantTracker differentTenantTracker = new TenantTracker();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(tenantTracker, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(tenantTracker, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,13 +113,13 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different TenantTracker -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentTenantTracker, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().familyName.split("\\s+");
         modelManager.updateFilteredTenantList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(tenantTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +127,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTenantTrackerFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(tenantTracker, differentUserPrefs)));
     }
 }
