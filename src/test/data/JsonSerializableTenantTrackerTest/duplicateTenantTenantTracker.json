@@ -1,0 +1,14 @@
+{
+  "tenants": [
+    {
+      "givenName": "Alice",
+      "familyName": "Pauline",
+      "address": "123, Jurong West Ave 6, #08-111, 412345"
+    },
+    {
+      "name": "Alice",
+      "familyName": "Pauline",
+      "address": "4th street, 412345"
+    }
+  ]
+}

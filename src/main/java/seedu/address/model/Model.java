@@ -39,42 +39,42 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTenantTrackerFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTenantTrackerFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTenantTracker(ReadOnlyTenantTracker addressBook);
 
     /**
      * Returns the AddressBook
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTenantTracker getTenantTracker();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Tenant person);
+    boolean hasTenant(Tenant tenant);
 
     /**
      * Deletes the given person. The person must exist in the address book.
      */
-    void deletePerson(Tenant target);
+    void deleteTenant(Tenant target);
 
     /**
      * Adds the given person. {@code person} must not already exist in the address book.
      */
-    void addPerson(Tenant person);
+    void addTenant(Tenant tenant);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}. {@code target} must exist
-     * in the address book. The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the address book.
+     * Replaces the given person {@code target} with {@code editedPerson}. {@code target} must exist in
+     * the address book. The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Tenant target, Tenant editedPerson);
 
@@ -88,5 +88,5 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Tenant> predicate);
+    void updateFilteredTenantList(Predicate<Tenant> predicate);
 }
