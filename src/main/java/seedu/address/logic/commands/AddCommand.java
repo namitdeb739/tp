@@ -21,7 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. " + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tenant to TenantTrack. " + "Parameters: "
             + PREFIX_GIVEN_NAME + " GIVEN NAME " + PREFIX_FAMILY_NAME + " FAMILY NAME " + PREFIX_ADDRESS + " ADDRESS "
             + "\nExample: " + COMMAND_WORD + " " + PREFIX_GIVEN_NAME + " John " + PREFIX_FAMILY_NAME + " Doe "
             + PREFIX_ADDRESS + " 21 Lower Kent Ridge Rd, 119077";
