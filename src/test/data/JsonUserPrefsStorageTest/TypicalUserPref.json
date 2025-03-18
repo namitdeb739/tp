@@ -7,5 +7,5 @@
       "y": 100
     }
   },
-  "addressBookFilePath": "tenanttracker.json"
+  "tenantTrackerFilePath": "tenanttracker.json"
 }

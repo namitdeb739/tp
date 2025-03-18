@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing TenantTracker ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TenantTrackerStorage addressBookStorage = new JsonTenantTrackerStorage(userPrefs.getTenantTrackerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TenantTrackerStorage tenantTrackerStorage = new JsonTenantTrackerStorage(userPrefs.getTenantTrackerFilePath());
+        storage = new StorageManager(tenantTrackerStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -77,18 +77,18 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getTenantTrackerFilePath());
 
-        Optional<ReadOnlyTenantTracker> addressBookOptional;
+        Optional<ReadOnlyTenantTracker> tenantTrackOptional;
         ReadOnlyTenantTracker initialData;
         try {
-            addressBookOptional = storage.readTenantTracker();
-            if (!addressBookOptional.isPresent()) {
+            tenantTrackOptional = storage.readTenantTracker();
+            if (!tenantTrackOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getTenantTrackerFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample TenantTracker.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTenantTracker);
+            initialData = tenantTrackOptional.orElseGet(SampleDataUtil::getSampleTenantTracker);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getTenantTrackerFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+                    + " Will be starting with an empty TenantTracker.");
             initialData = new TenantTracker();
         }
 
@@ -171,13 +171,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TenantTracker " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping AddressBook ] =============================");
+        logger.info("============================ [ Stopping TenantTracker ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

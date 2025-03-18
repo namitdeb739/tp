@@ -9,5 +9,5 @@
       "z": 99
     }
   },
-  "addressBookFilePath" : "tenanttracker.json"
+  "tenantTrackerFilePath" : "tenanttracker.json"
 }

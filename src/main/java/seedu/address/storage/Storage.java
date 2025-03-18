@@ -27,6 +27,6 @@ public interface Storage extends TenantTrackerStorage, UserPrefsStorage {
     Optional<ReadOnlyTenantTracker> readTenantTracker() throws DataLoadingException;
 
     @Override
-    void saveTenantTracker(ReadOnlyTenantTracker addressBook) throws IOException;
+    void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker) throws IOException;
 
 }
