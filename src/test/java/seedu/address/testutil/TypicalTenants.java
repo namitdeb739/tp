@@ -50,6 +50,16 @@ public class TypicalTenants {
             /* .withPhone("8482131").withEmail("hans@example.com") */
             .withAddress("chicago ave, 123456").build();
 
+    // Added Manually for FilterCommandTest
+    public static final Tenant JAMES = new TenantBuilder().withName("James", "Smith")
+            .withAddress("21 Lower Kent Ridge Rd, 119077").build();
+
+    public static final Tenant MIKE = new TenantBuilder().withName("Mike", "Johnson")
+            .withAddress("21 Lower Kent Ridge Rd, 119077").build();
+
+    public static final Tenant OLIVER = new TenantBuilder().withName("Oliver", "Jones")
+            .withAddress("21 Lower Kent Ridge Rd, 119077").build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Tenant AMY = new TenantBuilder().withName(VALID_GIVEN_NAME_AMY, VALID_FAMILY_NAME_AMY)
             /* .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY) */
@@ -76,6 +86,6 @@ public class TypicalTenants {
     }
 
     public static List<Tenant> getTypicalTenants() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JAMES, MIKE, OLIVER));
     }
 }

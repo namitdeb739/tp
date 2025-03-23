@@ -35,6 +35,21 @@
       "givenName": "George",
       "familyName": "Best",
       "address": "4th street, 123456"
+    },
+    {
+      "givenName": "James",
+      "familyName": "Smith",
+      "address": "21 Lower Kent Ridge Rd, 119077"
+    },
+    {
+      "givenName": "Mike",
+      "familyName": "Johnson",
+      "address": "21 Lower Kent Ridge Rd, 119077"
+    },
+    {
+      "givenName": "Oliver",
+      "familyName": "Jones",
+      "address": "21 Lower Kent Ridge Rd, 119077"
     }
   ]
 }
