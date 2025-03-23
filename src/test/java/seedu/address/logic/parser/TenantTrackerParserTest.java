@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditTenantDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -25,6 +27,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tenant.AddressContainsKeywordsPredicate;
 import seedu.address.model.tenant.NameContainsKeywordsPredicate;
 import seedu.address.model.tenant.Tenant;
+import seedu.address.testutil.EditTenantDescriptorBuilder;
 import seedu.address.testutil.TenantBuilder;
 import seedu.address.testutil.TenantUtil;
 
@@ -54,12 +57,11 @@ public class TenantTrackerParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        // TODO: Implement edit command
-        // Tenant person = new TenantBuilder().build();
-        // EditTenantDescriptor descriptor = new EditTenantDescriptorBuilder(person).build();
-        // EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-        //         + INDEX_FIRST_PERSON.getOneBased() + " " + TenantUtil.getEditPersonDescriptorDetails(descriptor));
-        // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        Tenant person = new TenantBuilder().build();
+        EditTenantDescriptor descriptor = new EditTenantDescriptorBuilder(person).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + TenantUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

@@ -172,7 +172,7 @@ public class LogicManagerTest {
 
         // Triggers the saveTenantTracker method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
-        Tenant expectedPerson = new TenantBuilder(AMY)./* withTags(). */build();
+        Tenant expectedPerson = new TenantBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTenant(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
