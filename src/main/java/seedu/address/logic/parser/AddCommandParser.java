@@ -28,8 +28,6 @@ import seedu.address.model.tenant.Tenant;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    private static final Prefix[] REQUIRED_PREFIXES =
-        {PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL};
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand and returns an
@@ -38,14 +36,16 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, REQUIRED_PREFIXES);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME,
+                PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
 
-        if (!arePrefixesPresent(argMultimap, REQUIRED_PREFIXES) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-        argMultimap.verifyNoDuplicatePrefixesFor(REQUIRED_PREFIXES);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TAG);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                PREFIX_EMAIL);
 
         String givenName = argMultimap.getValue(PREFIX_GIVEN_NAME).get();
         String familyName = argMultimap.getValue(PREFIX_FAMILY_NAME).get();

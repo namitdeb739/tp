@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GIVEN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -22,9 +23,10 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tenant to TenantTrack. " + "Parameters: "
             + PREFIX_GIVEN_NAME + " GIVEN NAME " + PREFIX_FAMILY_NAME + " FAMILY NAME " + PREFIX_PHONE + " PHONE "
-            + PREFIX_EMAIL + " EMAIL " + PREFIX_ADDRESS + " ADDRESS " + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_GIVEN_NAME + " John " + PREFIX_FAMILY_NAME + " Doe " + PREFIX_PHONE + " 98765432 " + PREFIX_EMAIL
-            + " johndoe@email.com " + PREFIX_ADDRESS + " 21 Lower Kent Ridge Rd, 119077";
+            + PREFIX_EMAIL + " EMAIL " + PREFIX_ADDRESS + " ADDRESS " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: "
+            + COMMAND_WORD + " " + PREFIX_GIVEN_NAME + " John " + PREFIX_FAMILY_NAME + " Doe " + PREFIX_PHONE
+            + " 98765432 " + PREFIX_EMAIL + " johndoe@email.com " + PREFIX_ADDRESS + " 21 Lower Kent Ridge Rd, 119077 "
+            + PREFIX_TAG + "hdb " + PREFIX_TAG + "landed";
 
     public static final String MESSAGE_SUCCESS = "New tenant added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This tenant already exists in the tenant tracker";

@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 // import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 // import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTenants.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -170,9 +173,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveTenantTracker method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
-        Tenant expectedPerson = new TenantBuilder().withName("Daniel", "Meier").withPhone("87652533")
-                .withEmail("cornelia@example.com").withAddress("10th street, 123456").withTags("friends").build();
+        String addCommand =
+                AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+        Tenant expectedPerson = new TenantBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTenant(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
