@@ -65,7 +65,7 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredTenantList());
     }
 
     /**
@@ -79,7 +79,7 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(JAMES, MIKE, OLIVER), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(JAMES, MIKE, OLIVER), model.getFilteredTenantList());
     }
 
     /**
@@ -93,7 +93,7 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(JAMES, MIKE, OLIVER), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(JAMES, MIKE, OLIVER), model.getFilteredTenantList());
     }
 
     /**
@@ -107,7 +107,7 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredTenantList());
     }
 
     /**

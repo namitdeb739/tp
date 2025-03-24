@@ -122,7 +122,7 @@ public class ModelManager implements Model {
      * {@code versionedTenantTracker}
      */
     @Override
-    public ObservableList<Tenant> getFilteredPersonList() {
+    public ObservableList<Tenant> getFilteredTenantList() {
         return filteredPersons;
     }
 
