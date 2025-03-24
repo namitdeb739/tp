@@ -82,3 +82,7 @@ compileTestKotlin {
         jvmTarget = "17"
     }
 }
+
+run {
+    enableAssertions = true
+}
