@@ -21,7 +21,8 @@ public class ModelManager implements Model {
 
     private final TenantTracker tenantTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Tenant> filteredPersons;
+    private final FilteredList<Tenant> filteredTenants;
+    private final FilteredList<Tenant> filteredArchivedTenants;
 
     /**
      * Initializes a ModelManager with the given tenantTracker and userPrefs.
@@ -34,7 +35,8 @@ public class ModelManager implements Model {
 
         this.tenantTracker = new TenantTracker(tenantTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.tenantTracker.getTenantList());
+        filteredTenants = new FilteredList<>(this.tenantTracker.getActiveTenantList());
+        this.filteredArchivedTenants = new FilteredList<>(this.tenantTracker.getArchivedTenantList());
     }
 
     public ModelManager() {
@@ -114,6 +116,14 @@ public class ModelManager implements Model {
         tenantTracker.setTenant(target, editedPerson);
     }
 
+    @Override
+    public void archiveTenant(Tenant tenant) {
+        requireNonNull(tenant);
+        Tenant archived = tenant.archive();
+        tenantTracker.removeTenant(tenant);
+        tenantTracker.addTenant(archived);
+    }
+
     // =========== Filtered Person List Accessors
     // =============================================================
 
@@ -123,13 +133,27 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Tenant> getFilteredTenantList() {
-        return filteredPersons;
+        return filteredTenants;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of archived {@code Tenant} backed by the internal list of the tracker.
+     */
+    @Override
+    public ObservableList<Tenant> getArchivedTenantList() {
+        return filteredArchivedTenants;
+    }
+
+    @Override
+    public void updateFilteredArchivedTenantList(Predicate<Tenant> predicate) {
+        requireNonNull(predicate);
+        filteredArchivedTenants.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredTenantList(Predicate<Tenant> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTenants.setPredicate(predicate);
     }
 
     @Override
@@ -146,7 +170,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return tenantTracker.equals(otherModelManager.tenantTracker)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredTenants.equals(otherModelManager.filteredTenants);
     }
 
 }
