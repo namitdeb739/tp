@@ -83,6 +83,6 @@ compileTestKotlin {
     }
 }
 
-// run {
-//     enableAssertions = true
-// }
+run {
+    enableAssertions = true
+}
