@@ -8,13 +8,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTenants.ALICE;
 import static seedu.address.testutil.TypicalTenants.getTypicalTenantTracker;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.TenantBuilder;
 
@@ -86,20 +83,20 @@ public class TenantTrackerTest {
         assertEquals(expected, tenantTracker.toString());
     }
 
-    /**
-     * A stub ReadOnlyTenantTracker whose persons list can violate interface constraints.
-     */
-    private static class TenantTrackerStub implements ReadOnlyTenantTracker {
-        private final ObservableList<Tenant> persons = FXCollections.observableArrayList();
+    // /**
+    //  * A stub ReadOnlyTenantTracker whose persons list can violate interface constraints.
+    //  */
+    // private static class TenantTrackerStub implements ReadOnlyTenantTracker {
+    //     private final ObservableList<Tenant> persons = FXCollections.observableArrayList();
 
-        TenantTrackerStub(Collection<Tenant> persons) {
-            this.persons.setAll(persons);
-        }
+    //     TenantTrackerStub(Collection<Tenant> persons) {
+    //         this.persons.setAll(persons);
+    //     }
 
-        @Override
-        public ObservableList<Tenant> getTenantList() {
-            return persons;
-        }
-    }
+    //     @Override
+    //     public ObservableList<Tenant> getTenantList() {
+    //         return persons;
+    //     }
+    // }
 
 }

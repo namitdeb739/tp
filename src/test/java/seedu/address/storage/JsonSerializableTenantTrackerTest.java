@@ -18,7 +18,6 @@ public class JsonSerializableTenantTrackerTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTenantTrackerTest");
     private static final Path TYPICAL_TENANTS_FILE = TEST_DATA_FOLDER.resolve("typicalTenantsTenantTracker.json");
     private static final Path INVALID_TENANT_FILE = TEST_DATA_FOLDER.resolve("invalidTenantTenantTracker.json");
-    // private static final Path DUPLICATE_PERSON_FILE =
     // TEST_DATA_FOLDER.resolve("duplicateTenantTenantTracker.json");
 
     @Test
