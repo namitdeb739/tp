@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 // import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTenants.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -158,8 +157,8 @@ public class LogicManagerTest {
         // Inject LogicManager with an TenantTrackerStorage that throws the IOException e when saving
         JsonTenantTrackerStorage tenantTrackerStorage = new JsonTenantTrackerStorage(prefPath) {
             @Override
-            public void saveTenantTracker(
-                    ReadOnlyTenantTracker readOnlyTenantTracker, Path filePath) throws IOException {
+            public void saveTenantTracker(ReadOnlyTenantTracker readOnlyTenantTracker, Path filePath)
+                    throws IOException {
                 throw e;
             }
         };
@@ -172,7 +171,8 @@ public class LogicManagerTest {
 
         // Triggers the saveTenantTracker method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
-        Tenant expectedPerson = new TenantBuilder(AMY).withTags().build();
+        Tenant expectedPerson = new TenantBuilder().withName("Daniel", "Meier").withPhone("87652533")
+                .withEmail("cornelia@example.com").withAddress("10th street, 123456").withTags("friends").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTenant(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
