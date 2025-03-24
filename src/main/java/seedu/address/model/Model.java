@@ -79,9 +79,9 @@ public interface Model {
     void setPerson(Tenant target, Tenant editedPerson);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered tenant list
      */
-    ObservableList<Tenant> getFilteredPersonList();
+    ObservableList<Tenant> getFilteredTenantList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

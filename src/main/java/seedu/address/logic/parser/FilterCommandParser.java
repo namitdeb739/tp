@@ -25,8 +25,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] addressKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FilterCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
     }
 }
