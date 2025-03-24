@@ -58,7 +58,8 @@ public class TenantTrackerParserTest {
         // Tenant person = new TenantBuilder().build();
         // EditTenantDescriptor descriptor = new EditTenantDescriptorBuilder(person).build();
         // EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-        //         + INDEX_FIRST_PERSON.getOneBased() + " " + TenantUtil.getEditPersonDescriptorDetails(descriptor));
+        // + INDEX_FIRST_PERSON.getOneBased() + " " +
+        // TenantUtil.getEditPersonDescriptorDetails(descriptor));
         // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
