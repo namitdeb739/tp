@@ -17,10 +17,12 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tenant.AddressContainsKeywordsPredicate;
 import seedu.address.model.tenant.NameContainsKeywordsPredicate;
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.TenantBuilder;
@@ -56,7 +58,8 @@ public class TenantTrackerParserTest {
         // Tenant person = new TenantBuilder().build();
         // EditTenantDescriptor descriptor = new EditTenantDescriptorBuilder(person).build();
         // EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-        //         + INDEX_FIRST_PERSON.getOneBased() + " " + TenantUtil.getEditPersonDescriptorDetails(descriptor));
+        // + INDEX_FIRST_PERSON.getOneBased() + " " +
+        // TenantUtil.getEditPersonDescriptorDetails(descriptor));
         // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -64,6 +67,14 @@ public class TenantTrackerParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FilterCommand command = (FilterCommand) parser
+                .parseCommand(FilterCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new AddressContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

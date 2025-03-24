@@ -3,6 +3,8 @@
     {
       "givenName": " ",
       "familyName": "Invalid Person",
+      "phone": "94351253",
+      "email": "email@example.com",
       "address": "32 Old Airport Road, #01-01, Old Airport Road Food Centre, 390032"
     }
   ]
