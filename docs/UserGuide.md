@@ -1,42 +1,59 @@
----
-layout: page
-title: User Guide
----
+# TenantTrack User Guide
 
-TenantTrack is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TenantTrack is a tool for landlords managing multiple rental properties. It helps keep track of tenant details efficiently. TenantTrack combines a command-line interface with a graphical interface, making it simple and intuitive to use.
 
-* Table of Contents
-{:toc}
+## Table of Contents
+
+- [TenantTrack User Guide](#tenanttrack-user-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Quick start](#quick-start)
+  - [Features](#features)
+    - [Viewing help : `help`](#viewing-help--help)
+    - [Adding a tenant: `add`](#adding-a-tenant-add)
+    - [Archiving a tenant : `archive`](#archiving-a-tenant--archive)
+    - [Listing all tenants : `list`](#listing-all-tenants--list)
+    - [Editing a tenant: `edit`](#editing-a-tenant-edit)
+    - [Locating tenants by name: `find`](#locating-tenants-by-name-find)
+    - [Locating tenants by address: `filter`](#locating-tenants-by-address-filter)
+    - [Deleting a tenant : `delete`](#deleting-a-tenant--delete)
+    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+    - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  - [FAQ](#faq)
+  - [Known issues](#known-issues)
+  - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+  **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-W12-1/tp/releases/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TenantTrack.
+3. Copy the file to the folder you want to use as the _home folder_ for your `TenantTrack`.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TenantTrack.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TenantTrack.jar` command to run the application.<br>
+  A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+  ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+  Some example commands you can try:
 
-   * `list` : Lists all contacts.
+- `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+- `add givenN/ John familyN/ Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01 123456` : Adds a contact named `John Doe` to `TenantTrack`.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+- `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+- `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+- `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,105 +63,149 @@ TenantTrack is a **desktop app for managing contacts, optimized for use via a Co
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add givenN/NAME`, `NAME` is a parameter which can be used as `add givenN/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items in square brackets are optional.<br>
+  e.g `givenN/GIVEN_NAME[tag/TAG]` can be used as `givenN/John tag/friend` or as `givenN/John`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+- Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[tag/TAG]…​` can be used as `` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- Parameters can be in any order.<br>
+  e.g. if the command specifies `givenN/GIVEN_NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER givenN/GIVEN_NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding a tenant: `add`
 
-### Adding a person: `add`
+Adds a tenant to the Tenant Track.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add givenN/GIVEN_NAME familyN/FAMILY_NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A tenant can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add givenN/ John familyN/ Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01 123456`
+- `add givenN/ Sam familyN/ Wilson phone/87543213 email/samw@example.com address/Sam street, block 321, #02-04 4564231`
 
-### Listing all persons : `list`
+### Archiving a tenant : `archive`
 
-Shows a list of all persons in the address book.
+Archive the specified tenant from the Tenant Track.
+
+Format: `archive INDEX`
+
+- Archive the tenant at the specified `INDEX`.
+- The index refers to the index number shown in the displayed tenant list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+- `list` followed by `archive 2` archives the 2nd tenant in the Tenant Track.
+- `find Betsy` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
+
+### Listing all tenants : `list`
+
+Shows a list of all tenants in the Tenant Track
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a tenant: `edit`
 
-Edits an existing person in the address book.
+Updates the details of an existing tenant in the list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format:
+`edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Details:
+
+INDEX refers to the number shown in the currently displayed tenant list. It must be a positive integer (e.g., 1, 2, 3, ...).
+
+You must specify at least one field to update.
+
+Specified fields will replace the tenant’s existing values.
+
+When editing tags:
+
+All existing tags will be cleared and replaced with the new ones.
+
+To remove all tags, type tag/ without specifying any tag after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+`edit 1 phone/91234567 email/johndoe@example.com`
+Updates the phone number and email of the first tenant.
 
-Finds persons whose names contain any of the given keywords.
+`edit 2 givenN/Betsy familyN/Crower tag/`
+Updates the name of the second tenant and clears all tags.
+
+### Locating tenants by name: `find`
+
+Finds tenants whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Only the name is searched.
+- Only full words will be matched e.g. `Han` will not match `Hans`
+- Tenants matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+- `find John` returns `john` and `John Doe`
+- `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Locating tenants by address: `filter`
 
-Deletes the specified person from the address book.
+Filters the list for tenants whose address contains any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g `Lower Kent Ridge` will match `lower kent ridge`
+- The order of the keywords does not matter. e.g. `Kent Ridge Lower` will match `Lower Kent Ridge`
+- Only the address is searched.
+- Only full words or postal codes will be matched e.g. `Kent` will not match `Ken` and ‘229’ will not match ‘229220’
+- Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Lower Kent Ridge` will return `Lower Arab Street,`Kent Ridge`
+
+Examples:
+- `filter Kent Ridge` returns `Lower Kent Ridge` and `Upper Kent Ridge`
+- `filter kent ridge` returns `Kent Road`, `Ridge View<br>
+  ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
+
+### Deleting a tenant : `delete`
+
+Deletes the specified tenant from the Tenant Track.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the tenant at the specified `INDEX`.
+- The index refers to the index number shown in the displayed tenant list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
+- `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the Tenant Track.
 
 Format: `clear`
 
@@ -156,11 +217,11 @@ Format: `exit`
 
 ### Saving the data
 
-TenantTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TenantTrack data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-TenantTrack data are saved automatically as a JSON file `[JAR file location]/data/tenanttracker.json`. Advanced users are welcome to update data directly by editing that data file.
+TenantTrack data is saved automatically as a JSON file `[JAR file location]/data/tenanttracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TenantTrack will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
@@ -189,12 +250,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+Action | Format | Examples
+--------|--------|---------
+**Add** | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL` | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com`
+**Archive** | `archive INDEX` | `archive 1`
+**Clear** | `clear` |
+**Delete** | `delete INDEX` | `delete 3`
+**Edit** | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/James familyN/ Lee email/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake`
+**Filter** | `filter KEYWORD [MORE_KEYWORDS]` | `filter Lower Kent Ridge`
+**List** | `list` |
+**Help** | `help` |
