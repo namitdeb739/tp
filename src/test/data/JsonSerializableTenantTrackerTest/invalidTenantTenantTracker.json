@@ -2,6 +2,8 @@
   "tenants": [ {
     "givenName": "Alice",
     "familyName": " ",
+    "phone": "94351253",
+    "email": "alice@example.com",
     "address": "29, Jurong West Ave 6, #08"
   } ]
 }
