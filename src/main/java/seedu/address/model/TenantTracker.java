@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tenant.Tenant;
@@ -15,6 +16,8 @@ import seedu.address.model.tenant.UniqueTenantList;
 public class TenantTracker implements ReadOnlyTenantTracker {
 
     private final UniqueTenantList tenants;
+    private final ObservableList<Tenant> activeTenants = FXCollections.observableArrayList();
+    private final ObservableList<Tenant> archivedTenants = FXCollections.observableArrayList();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid
@@ -45,6 +48,7 @@ public class TenantTracker implements ReadOnlyTenantTracker {
      */
     public void setPersons(List<Tenant> persons) {
         this.tenants.setPersons(persons);
+        splitTenants();
     }
 
     /**
@@ -52,7 +56,6 @@ public class TenantTracker implements ReadOnlyTenantTracker {
      */
     public void resetData(ReadOnlyTenantTracker newData) {
         requireNonNull(newData);
-
         setPersons(newData.getTenantList());
     }
 
@@ -71,6 +74,11 @@ public class TenantTracker implements ReadOnlyTenantTracker {
      */
     public void addTenant(Tenant p) {
         tenants.add(p);
+        if (p.isArchived()) {
+            archivedTenants.add(p);
+        } else {
+            activeTenants.add(p);
+        }
     }
 
     /**
@@ -80,8 +88,8 @@ public class TenantTracker implements ReadOnlyTenantTracker {
      */
     public void setTenant(Tenant target, Tenant editedTenant) {
         requireNonNull(editedTenant);
-
         tenants.setTenant(target, editedTenant);
+        splitTenants();
     }
 
     /**
@@ -90,9 +98,16 @@ public class TenantTracker implements ReadOnlyTenantTracker {
      */
     public void removeTenant(Tenant key) {
         tenants.remove(key);
+        activeTenants.remove(key);
+        archivedTenants.remove(key);
     }
 
     //// util methods
+
+    private void splitTenants() {
+        activeTenants.setAll(tenants.asUnmodifiableObservableList().filtered(t -> !t.isArchived()));
+        archivedTenants.setAll(tenants.asUnmodifiableObservableList().filtered(Tenant::isArchived));
+    }
 
     @Override
     public String toString() {
@@ -102,6 +117,14 @@ public class TenantTracker implements ReadOnlyTenantTracker {
     @Override
     public ObservableList<Tenant> getTenantList() {
         return tenants.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Tenant> getActiveTenantList() {
+        return FXCollections.unmodifiableObservableList(activeTenants);
+    }
+
+    public ObservableList<Tenant> getArchivedTenantList() {
+        return FXCollections.unmodifiableObservableList(archivedTenants);
     }
 
     @Override
