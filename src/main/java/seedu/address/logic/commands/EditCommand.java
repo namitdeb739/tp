@@ -69,11 +69,16 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Tenant> lastShownList = model.getFilteredTenantList();
 
+        assert lastShownList != null : "Filtered tenant list should not be null";
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Tenant tenantToEdit = lastShownList.get(index.getZeroBased());
+
+        assert tenantToEdit != null : "Tenant to edit should not be null";
+
         Tenant editedTenant = createEditedPerson(tenantToEdit, editTenantDescriptor);
 
         if (!tenantToEdit.isSamePerson(editedTenant) && model.hasTenant(editedTenant)) {
@@ -91,6 +96,7 @@ public class EditCommand extends Command {
      */
     private static Tenant createEditedPerson(Tenant personToEdit, EditTenantDescriptor editPersonDescriptor) {
         assert personToEdit != null;
+        assert editPersonDescriptor != null : "EditTenantDescriptor should not be null";
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
