@@ -68,7 +68,7 @@ public class EditCommand extends Command {
         List<Tenant> lastShownList = model.getFilteredTenantList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
         }
 
         Tenant tenantToEdit = lastShownList.get(index.getZeroBased());

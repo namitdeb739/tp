@@ -30,7 +30,7 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTenantList(predicate);
-        return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+        return new CommandResult(String.format(Messages.MESSAGE_TENANTS_LISTED_OVERVIEW,
                 model.getFilteredTenantList().size()));
     }
 

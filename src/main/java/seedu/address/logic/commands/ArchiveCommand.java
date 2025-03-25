@@ -36,7 +36,7 @@ public class ArchiveCommand extends Command {
         List<Tenant> lastShownList = model.getFilteredTenantList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException("The tenant index provided is invalid");
+            throw new CommandException(Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
         }
 
         Tenant tenantToArchive = lastShownList.get(targetIndex.getZeroBased());
@@ -51,9 +51,17 @@ public class ArchiveCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ArchiveCommand // instanceof handles nulls
-                && targetIndex.equals(((ArchiveCommand) other).targetIndex));
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ArchiveCommand)) {
+            return false;
+        }
+
+        ArchiveCommand otherArchiveCommand = (ArchiveCommand) other;
+        return targetIndex.equals(otherArchiveCommand.targetIndex);
     }
 
     @Override

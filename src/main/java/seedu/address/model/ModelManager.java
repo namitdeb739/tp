@@ -170,7 +170,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return tenantTracker.equals(otherModelManager.tenantTracker)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredTenants.equals(otherModelManager.filteredTenants);
+                && filteredTenants.equals(otherModelManager.filteredTenants)
+                && filteredArchivedTenants.equals(otherModelManager.filteredArchivedTenants);
     }
 
 }

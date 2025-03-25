@@ -31,13 +31,15 @@ public class ArchiveCommandTest {
         Tenant tenantToArchive = model.getFilteredTenantList().get(INDEX_FIRST_PERSON.getZeroBased());
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
+        Tenant archivedTenant = tenantToArchive.archive();
         String expectedMessage = String.format(
-                "You have successfully archived a tenant! Tenant: %s",
-                Messages.format(tenantToArchive));
+                ArchiveCommand.MESSAGE_ARCHIVE_TENANT_SUCCESS,
+                Messages.format(archivedTenant));
 
         Model expectedModel = new ModelManager(model.getTenantTracker(), new UserPrefs());
-        Tenant archivedTenant = tenantToArchive.archive();
-        expectedModel.setPerson(tenantToArchive, archivedTenant);
+        expectedModel.archiveTenant(tenantToArchive); // <-- Fix here
+        expectedModel.updateFilteredTenantList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredArchivedTenantList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
@@ -47,7 +49,7 @@ public class ArchiveCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTenantList().size() + 1);
         ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -57,13 +59,13 @@ public class ArchiveCommandTest {
         Tenant tenantToArchive = model.getFilteredTenantList().get(INDEX_FIRST_PERSON.getZeroBased());
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
+        Tenant archivedTenant = tenantToArchive.archive();
         String expectedMessage = String.format(
-                "You have successfully archived a tenant! Tenant: %s",
-                Messages.format(tenantToArchive));
+                ArchiveCommand.MESSAGE_ARCHIVE_TENANT_SUCCESS,
+                Messages.format(archivedTenant));
 
         Model expectedModel = new ModelManager(model.getTenantTracker(), new UserPrefs());
-        Tenant archivedTenant = tenantToArchive.archive();
-        expectedModel.setPerson(tenantToArchive, archivedTenant);
+        expectedModel.archiveTenant(tenantToArchive); // <-- Fix here
         showNoPerson(expectedModel);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
@@ -78,7 +80,7 @@ public class ArchiveCommandTest {
 
         ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
     }
 
     @Test
