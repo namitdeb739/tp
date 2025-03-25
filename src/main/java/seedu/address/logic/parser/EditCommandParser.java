@@ -49,6 +49,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditTenantDescriptor editPersonDescriptor = new EditTenantDescriptor();
 
+
         if (argMultimap.getValue(PREFIX_GIVEN_NAME).isPresent()
             || argMultimap.getValue(PREFIX_FAMILY_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_GIVEN_NAME).get(),

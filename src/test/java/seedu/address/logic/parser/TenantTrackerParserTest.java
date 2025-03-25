@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GIVEN_NAME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -16,6 +18,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditTenantDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -25,6 +29,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tenant.AddressContainsKeywordsPredicate;
 import seedu.address.model.tenant.NameContainsKeywordsPredicate;
 import seedu.address.model.tenant.Tenant;
+import seedu.address.testutil.EditTenantDescriptorBuilder;
 import seedu.address.testutil.TenantBuilder;
 import seedu.address.testutil.TenantUtil;
 
@@ -48,19 +53,22 @@ public class TenantTrackerParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser
-                .parseCommand(DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+            .parseCommand(DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         // TODO: Implement edit command
-        // Tenant person = new TenantBuilder().build();
-        // EditTenantDescriptor descriptor = new EditTenantDescriptorBuilder(person).build();
-        // EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-        // + INDEX_FIRST_PERSON.getOneBased() + " " +
-        // TenantUtil.getEditPersonDescriptorDetails(descriptor));
-        // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        Tenant person = new TenantBuilder().build();
+        EditTenantDescriptor descriptor = new EditTenantDescriptorBuilder(person)
+            .withName(VALID_GIVEN_NAME_BOB, VALID_FAMILY_NAME_BOB).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD
+            + " "
+            + INDEX_FIRST_PERSON.getOneBased()
+            + " "
+            + TenantUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -73,7 +81,7 @@ public class TenantTrackerParserTest {
     public void parseCommand_filter() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterCommand command = (FilterCommand) parser
-                .parseCommand(FilterCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            .parseCommand(FilterCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterCommand(new AddressContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -81,7 +89,7 @@ public class TenantTrackerParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser
-                .parseCommand(FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            .parseCommand(FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -100,7 +108,7 @@ public class TenantTrackerParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, /* Placeholder comment because checkstyle is a bitch */ String
-                .format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
+            .format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
