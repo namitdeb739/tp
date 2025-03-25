@@ -1,0 +1,18 @@
+{
+  "tenants": [
+    {
+      "givenName": "Alice",
+      "familyName": "Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111, 412345"
+    },
+    {
+      "name": "Alice",
+      "familyName": "Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "4th street, 412345"
+    }
+  ]
+}

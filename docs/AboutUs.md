@@ -39,25 +39,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Integration
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/QiAn)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/QiAn)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Huan Kiat
 
 <img src="images/huan-kiat.png" width="200px">
