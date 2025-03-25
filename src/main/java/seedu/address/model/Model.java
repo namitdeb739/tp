@@ -84,9 +84,26 @@ public interface Model {
     ObservableList<Tenant> getFilteredTenantList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of archived tenants.
+     */
+    ObservableList<Tenant> getArchivedTenantList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTenantList(Predicate<Tenant> predicate);
+
+    /**
+     * Updates the filter of the archived tenant list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null
+     */
+    void updateFilteredArchivedTenantList(Predicate<Tenant> predicate);
+
+    /**
+     * Marks a tenant as archived and moves them to the archived list.
+     */
+    void archiveTenant(Tenant tenant);
+
 }

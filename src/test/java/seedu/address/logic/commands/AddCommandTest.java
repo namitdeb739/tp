@@ -158,6 +158,21 @@ public class AddCommandTest {
         public void updateFilteredTenantList(Predicate<Tenant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredArchivedTenantList(Predicate<Tenant> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tenant> getArchivedTenantList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archiveTenant(Tenant tenant) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     // /**

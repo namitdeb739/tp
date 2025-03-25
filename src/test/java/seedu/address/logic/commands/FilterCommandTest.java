@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.Messages.MESSAGE_TENANTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTenants.JAMES;
 import static seedu.address.testutil.TypicalTenants.MIKE;
@@ -60,7 +60,7 @@ public class FilterCommandTest {
      */
     @Test
     public void execute_zeroKeywords_noTenantFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_TENANTS_LISTED_OVERVIEW, 0);
         AddressContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
@@ -74,7 +74,7 @@ public class FilterCommandTest {
      */
     @Test
     public void execute_multipleKeywords_multipleTenantsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TENANTS_LISTED_OVERVIEW, 3);
         AddressContainsKeywordsPredicate predicate = preparePredicate("Lower Kent Ridge Rd");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
@@ -88,7 +88,7 @@ public class FilterCommandTest {
      */
     @Test
     public void execute_partialKeyword_tenantsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TENANTS_LISTED_OVERVIEW, 3);
         AddressContainsKeywordsPredicate predicate = preparePredicate("Kent");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);
@@ -102,7 +102,7 @@ public class FilterCommandTest {
      */
     @Test
     public void execute_nonMatchingKeyword_noTenantFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_TENANTS_LISTED_OVERVIEW, 0);
         AddressContainsKeywordsPredicate predicate = preparePredicate("NonMatchingAddress");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredTenantList(predicate);

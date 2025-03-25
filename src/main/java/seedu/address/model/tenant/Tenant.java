@@ -24,17 +24,26 @@ public class Tenant {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final boolean isArchived;
 
     /**
      * Every field must be present and not null.
      */
-    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isArchived) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.isArchived = isArchived;
+    }
+
+    /**
+     * Constructs a Tenant with default archive status (false).
+     */
+    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(name, phone, email, address, tags, false);
     }
 
     public Name getName() {
@@ -69,6 +78,24 @@ public class Tenant {
         return Collections.unmodifiableSet(tags);
     }
 
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    /**
+     * Returns a copy of this tenant marked as archived.
+     */
+    public Tenant archive() {
+        return new Tenant(name, phone, email, address, tags, true);
+    }
+
+    /**
+     * Returns a copy of this tenant marked as active.
+     */
+    public Tenant unarchive() {
+        return new Tenant(name, phone, email, address, tags, false);
+    }
+
     /**
      * Returns true if both persons have the same name. This defines a weaker notion of equality between
      * two persons.
@@ -98,19 +125,21 @@ public class Tenant {
 
         Tenant otherPerson = (Tenant) other;
         return name.equals(otherPerson.name) && address.equals(otherPerson.address) && tags.equals(otherPerson.tags)
-                && phone.equals(otherPerson.phone) && email.equals(otherPerson.email);
+                && phone.equals(otherPerson.phone) && email.equals(otherPerson.email)
+                && isArchived == otherPerson.isArchived;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, isArchived);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("name", name).add("phone", phone).add("email", email)
-                .add("address", address).add("tags", tags).toString();
+                .add("address", address).add("tags", tags)
+                .add("archived", isArchived).toString();
     }
 
 }
