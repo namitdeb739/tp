@@ -132,7 +132,7 @@ public class EditCommandTest {
                 new EditTenantDescriptorBuilder().withName(VALID_GIVEN_NAME_BOB, VALID_FAMILY_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
     }
 
     /**
@@ -149,7 +149,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditTenantDescriptorBuilder().withName(VALID_GIVEN_NAME_BOB, VALID_FAMILY_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TENANT_DISPLAYED_INDEX);
     }
 
     @Test
