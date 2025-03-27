@@ -9,7 +9,7 @@ Class XYZCommand
 
 package "Parser classes"{
 Class "<<interface>>\nParser" as Parser
-Class AddressBookParser
+Class TenantTrackParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -21,10 +21,10 @@ Class Prefix
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> AddressBookParser
 
-AddressBookParser .down.> XYZCommandParser: <<create>>
+TenantTrackParser .down.> XYZCommandParser: <<create>>
 
 XYZCommandParser ..> XYZCommand : <<create>>
-AddressBookParser ..> Command : <<use>>
+TenantTrackParser ..> Command : <<use>>
 XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
