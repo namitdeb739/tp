@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -45,14 +45,15 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS);
+            PREFIX_ADDRESS);
 
         EditTenantDescriptor editPersonDescriptor = new EditTenantDescriptor();
 
+
         if (argMultimap.getValue(PREFIX_GIVEN_NAME).isPresent()
-                || argMultimap.getValue(PREFIX_FAMILY_NAME).isPresent()) {
+            || argMultimap.getValue(PREFIX_FAMILY_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_GIVEN_NAME).get(),
-                    argMultimap.getValue(PREFIX_FAMILY_NAME).get()));
+                argMultimap.getValue(PREFIX_FAMILY_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
