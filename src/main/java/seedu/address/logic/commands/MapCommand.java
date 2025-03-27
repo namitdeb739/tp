@@ -75,8 +75,11 @@ public class MapCommand extends Command {
 
         Tenant tenant = lastShownList.get(index.getZeroBased());
         Address address = tenant.getAddress();
+        assert address != null : "Tenant address should not be null";
         String encodedAddress = URLEncoder.encode(address.toString(), StandardCharsets.UTF_8);
+        assert encodedAddress != null : "Encoded address should not be null";
         String uriLink = GOOGLE_URL + encodedAddress;
+        assert uriLink.startsWith(GOOGLE_URL) : "URI link should start with Google Maps base URL";
 
         openUri(uriLink);
 
