@@ -4,18 +4,18 @@ skinparam ArrowFontStyle plain
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedTenantTrack" as VersionedTenantTrack MODEL_COLOR
 end box
 
-[-> Model : undoAddressBook()
+[-> Model : undoTenantTrack()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedTenantTrack : undo()
+activate VersionedTenantTrack
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedTenantTrack -> VersionedTenantTrack :resetData(ReadOnlyTenantTrack)
+VersionedTenantTrack --> Model :
+deactivate VersionedTenantTrack
 
 [<-- Model
 deactivate Model
