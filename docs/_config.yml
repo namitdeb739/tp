@@ -1,5 +1,5 @@
 title: "TenantTrack"
-theme: minima
+theme: merlot
 
 header_pages:
   - UserGuide.md
