@@ -50,7 +50,7 @@ public class AddCommand extends Command {
         // }
 
         model.addTenant(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return buildCommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

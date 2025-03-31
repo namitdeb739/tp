@@ -1,29 +1,12 @@
-# TenantTrack User Guide
+---
+layout: page
+title: User Guide
+---
 
 TenantTrack is a tool for landlords managing multiple rental properties. It helps keep track of tenant details efficiently. TenantTrack combines a command-line interface with a graphical interface, making it simple and intuitive to use.
 
-## Table of Contents
-
-- [TenantTrack User Guide](#tenanttrack-user-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Quick start](#quick-start)
-  - [Features](#features)
-    - [Viewing help : `help`](#viewing-help--help)
-    - [Adding a tenant: `add`](#adding-a-tenant-add)
-    - [Archiving a tenant : `archive`](#archiving-a-tenant--archive)
-    - [Listing all tenants : `list`](#listing-all-tenants--list)
-    - [Editing a tenant: `edit`](#editing-a-tenant-edit)
-    - [Locating tenants by name: `find`](#locating-tenants-by-name-find)
-    - [Locating tenants by address: `filter`](#locating-tenants-by-address-filter)
-    - [Deleting a tenant : `delete`](#deleting-a-tenant--delete)
-    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
-  - [FAQ](#faq)
-  - [Known issues](#known-issues)
-  - [Command summary](#command-summary)
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -32,28 +15,28 @@ TenantTrack is a tool for landlords managing multiple rental properties. It help
 1. Ensure you have Java `17` or above installed in your Computer.<br>
   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-W12-1/tp/releases/).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-W12-1/tp/releases/).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your `TenantTrack`.
+1. Copy the file to the folder you want to use as the _home folder_ for your `TenantTrack`.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TenantTrack.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TenantTrack.jar` command to run the application.<br>
   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
   ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press **`Enter`** to execute it. e.g. typing `help` and pressing **`Enter`** will open the help window.<br>
   Some example commands you can try:
 
-- `list` : Lists all contacts.
+* `list` : Lists all tenants.
 
-- `add givenN/ John familyN/ Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01 123456` : Adds a contact named `John Doe` to `TenantTrack`.
+* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456` : Adds a tenant named `John Doe`.
 
-- `delete 3` : Deletes the 3rd contact shown in the current list.
+* `delete 3` : Deletes the 3rd tenant shown in the current list.
 
-- `clear` : Deletes all contacts.
+* `clear` : Deletes all tenants.
 
-- `exit` : Exits the app.
+* `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,22 +46,29 @@ TenantTrack is a tool for landlords managing multiple rental properties. It help
 
 **:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add givenN/NAME`, `NAME` is a parameter which can be used as `add givenN/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  For example, `add givenN/ GIVEN_NAME familyN/ FAMILY_NAME` can be used as `add givenN/ John familyN/ Doe`.
 
-- Items in square brackets are optional.<br>
-  e.g `givenN/GIVEN_NAME[tag/TAG]` can be used as `givenN/John tag/friend` or as `givenN/John`.
+* Items in square brackets are optional.<br>
+  For example, `givenN/ GIVEN_NAME [tag/TAG]` can be used as<br>
+  * `givenN/ John tag/ friend`, OR
+  * `givenN/ John`.
 
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as `` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  For example, `[tag/TAG]…​` can be used as<br>
+  * `` (i.e. 0 times), OR
+  * `tag/friend`, OR
+  * `tag/friend tag/family`,
+  * Etc.
 
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `givenN/GIVEN_NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER givenN/GIVEN_NAME` is also acceptable.
+* Parameters can be in any order.<br>
+  For example, if the command specifies: `givenN/GIVEN_NAME phone/PHONE_NUMBER`,<br>
+  it will also accept: `phone/PHONE_NUMBER givenN/GIVEN_NAME`.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Unnecessary parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  For example, if the command specifies `help 123`, it will be interpreted as `help`.
 
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </div>
 
@@ -88,136 +78,188 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format:
+
+```txt
+help
+```
 
 ### Adding a tenant: `add`
 
 Adds a tenant to the Tenant Track.
 
-Format: `add givenN/GIVEN_NAME familyN/FAMILY_NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG]…​`
+Format:
+
+```txt
+add givenN/GIVEN_NAME familyN/FAMILY_NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG]…​
+```
+
+Details:
+
+* Phone number must be a valid Singaporean 8-digit number.
+* Emails must be a valid email, for example `address@domain.com`.
+* Address must contain a 6-digit postcode.
+* Arguments/Prefixes should adhere to the specified order and format above
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A tenant can have any number of tags (including 0)
 </div>
 
 Examples:
-- `add givenN/ John familyN/ Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01 123456`
-- `add givenN/ Sam familyN/ Wilson phone/87543213 email/samw@example.com address/Sam street, block 321, #02-04 4564231`
+
+* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
+* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 456423`
 
 ### Archiving a tenant : `archive`
 
 Archive the specified tenant from the Tenant Track.
 
-Format: `archive INDEX`
+Format:
 
-- Archive the tenant at the specified `INDEX`.
-- The index refers to the index number shown in the displayed tenant list.
-- The index **must be a positive integer** 1, 2, 3, …​
+```txt
+archive INDEX`
+```
+
+Details:
+
+* Archive the tenant at the specified `INDEX`.
+* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-- `list` followed by `archive 2` archives the 2nd tenant in the Tenant Track.
-- `find Betsy` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
+
+* `list` followed by `archive 2` archives the 2nd tenant in the Tenant Track.
+* `find Betsy` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
 
 ### Listing all tenants : `list`
 
 Shows a list of all tenants in the Tenant Track
 
-Format: `list`
+Format:
+
+```txt
+list
+```
 
 ### Editing a tenant: `edit`
 
 Updates the details of an existing tenant in the list.
 
 Format:
-`edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...`
+
+```txt
+edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...
+```
 
 Details:
 
-INDEX refers to the number shown in the currently displayed tenant list. It must be a positive integer (e.g., 1, 2, 3, ...).
+* Edit the tenant at the specified `INDEX`.
+* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* You must specify at least one field to update.
+* Specified fields will replace the tenant’s existing values.
 
-You must specify at least one field to update.
-
-Specified fields will replace the tenant’s existing values.
-
-When editing tags:
-
-All existing tags will be cleared and replaced with the new ones.
-
-To remove all tags, type tag/ without specifying any tag after it.
+<div markdown="span" class="alert alert-primary">:bulb: **On editing tags:**
+* All existing tags will be cleared and replaced with the new ones.
+* To remove all tags, type tag/ without specifying any tag after it.
+</div>
 
 Examples:
 
-`edit 1 phone/91234567 email/johndoe@example.com`
-Updates the phone number and email of the first tenant.
-
-`edit 2 givenN/Betsy familyN/Crower tag/`
-Updates the name of the second tenant and clears all tags.
+* `edit 1 phone/ 91234567 email/ johndoe@example.com` updates the phone number and email of the first tenant.
+* `edit 2 givenN/ Betsy familyN/ Crower tag/` updates the name of the second tenant and clears all tags.
 
 ### Locating tenants by name: `find`
 
-Finds tenants whose names contain any of the given keywords.
+Finds tenants whose names contain **ANY** of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format:
 
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Tenants matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+```txt
+find KEYWORD [MORE_KEYWORDS]
+```
+
+Details:
+
+* The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
+* The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
+* Only the **name** is searched.
+* Only full words will be matched. For example, `Han` will not match `Hans`
+* Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Locating tenants by address: `filter`
 
 Filters the list for tenants whose address contains any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format:
 
-- The search is case-insensitive. e.g `Lower Kent Ridge` will match `lower kent ridge`
-- The order of the keywords does not matter. e.g. `Kent Ridge Lower` will match `Lower Kent Ridge`
-- Only the address is searched.
-- Only full words or postal codes will be matched e.g. `Kent` will not match `Ken` and ‘229’ will not match ‘229220’
-- Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Lower Kent Ridge` will return `Lower Arab Street,`Kent Ridge`
+```txt
+filter KEYWORD [MORE_KEYWORDS]
+```
+
+Details:
+
+* The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
+* The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
+* Only the **address** is searched.
+* Only full words or postal codes will be matched. For example, `Kent` will not match `Ken` and `229` will not match `229220`.
+* Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
 Examples:
-- `filter Kent Ridge` returns `Lower Kent Ridge` and `Upper Kent Ridge`
-- `filter kent ridge` returns `Kent Road`, `Ridge View<br>
+
+* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
 ### Deleting a tenant : `delete`
 
 Deletes the specified tenant from the Tenant Track.
 
-Format: `delete INDEX`
+Format:
 
-- Deletes the tenant at the specified `INDEX`.
-- The index refers to the index number shown in the displayed tenant list.
-- The index **must be a positive integer** 1, 2, 3, …​
+```txt
+delete INDEX
+```
+
+Details:
+
+* Deletes the tenant at the specified `INDEX`.
+* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-- `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
-- `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
+
+* `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
+* `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the Tenant Track.
 
-Format: `clear`
+Format:
+
+```txt
+clear
+```
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Format:
+
+```txt
+exit
+```
 
 ### Saving the data
 
-TenantTrack data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TenantTrack data is saved in the hard disk **automatically** after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -238,6 +280,21 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TenantTrack home folder.
+
+**Q**: What should I do if I encounter an error while running the application?<br>
+**A**: Ensure that you have the correct version of Java installed. If the issue persists, check the error message for details and refer to the [GitHub Issues page](https://github.com/AY2425S2-CS2103T-W12-1/tp/issues) to see if it has already been reported. You can also create a new issue with a detailed description of the problem.
+
+**Q**: Can I use TenantTrack on operating systems other than macOS?<br>
+**A**: Yes, TenantTrack is compatible with Windows, macOS, and Linux, as long as Java 17 or above is installed.
+
+**Q**: Is there a way to recover deleted tenants?<br>
+**A**: No, once a tenant is deleted, the action cannot be undone. It is recommended to double-check before executing the `delete` command. However, you can re-add the removed tenant using an `add` command.
+
+**Q**: Why does the application start with sample data?<br>
+**A**: The sample data is included to help new users understand how the application works. You can clear the sample data using the `clear` command.
+
+**Q**: Can I run multiple instances of TenantTrack simultaneously?<br>
+**A**: It is not recommended to run multiple instances of TenantTrack using the same data file, as this may lead to data corruption.
 
 --------------------------------------------------------------------------------------------------------------------
 
