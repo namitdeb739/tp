@@ -99,10 +99,10 @@ Details:
 * Phone number must be a valid Singaporean 8-digit number.
 * Emails must be a valid email, for example `address@domain.com`.
 * Address must contain a 6-digit postcode.
-* Arguments/Prefixes should adhere to the specified order and format above
+* Arguments/Prefixes should adhere to the specified order and format above.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A tenant can have any number of tags (including 0)
+A tenant can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -154,12 +154,12 @@ delete INDEX
 Details:
 
 * Deletes the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the displayed tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
+* `list` followed by `delete 2` deletes the 2nd tenant in Tenant Track.
 * `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 ### Editing a tenant: `edit`
@@ -175,7 +175,7 @@ edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL]
 Details:
 
 * Edit the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the displayed tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You must specify at least one field to update.
 * Specified fields will replace the tenant’s existing values.
@@ -209,13 +209,13 @@ Details:
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** is searched.
-* Only full words will be matched. For example, `Han` will not match `Hans`
+* **Prefixes** of words will be matched. For example, `Han` will match `Hans`. However, `ans` will **NOT** match `Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `john` and `John Doe`.
+* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Locating tenants by address: `filter`
@@ -233,23 +233,44 @@ Details:
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
-* Only full words or postal codes will be matched. For example, `Kent` will not match `Ken` and `229` will not match `229220`.
+* **Prefixes** of words or postal codes will be matched. For example, `Kent` will match `Ken` and `229` will match `229220`. However, `ent` will **NOT** match `Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
 Examples:
 
-* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`<br>
+* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`.<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
 ### Listing all tenants: `list`
 
-Shows a list of all tenants in the Tenant Track
+Shows a list of all tenants in the Tenant Track.
 
 Format:
 
 <pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 list
 </pre>
+
+### Viewing address in Google Maps: `map`
+
+Opens the specified tenant's address in Google Maps.
+
+Format:
+
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+map INDEX
+</pre>
+
+Details:
+
+* Searches the tenant at the specified `INDEX`'s address.
+* `INDEX` index refers to the index number shown in the displayed tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `map 2` searches the 2nd tenant in Tenant Track's address in Google Maps.
+* `find Betsy` followed by `map 1` searches the  1st tenant in the results of the `find` command's address in Google Maps.
 
 ### Exiting the program: `exit`
 
