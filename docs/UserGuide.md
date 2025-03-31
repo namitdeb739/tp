@@ -97,8 +97,9 @@ add givenN/GIVEN_NAME familyN/FAMILY_NAME phone/PHONE_NUMBER email/EMAIL address
 Details:
 
 * Phone number must be a valid Singaporean 8-digit number.
-* Emails must be a vaild email, for example `address@domain.com`.
+* Emails must be a valid email, for example `address@domain.com`.
 * Address must contain a 6-digit postcode.
+* Arguments/Prefixes should adhere to the specified order and format above
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A tenant can have any number of tags (including 0)
@@ -107,7 +108,7 @@ A tenant can have any number of tags (including 0)
 Examples:
 
 * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
-* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 4564231`
+* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 456423`
 
 ### Archiving a tenant : `archive`
 
@@ -212,8 +213,7 @@ Details:
 
 Examples:
 
-* `filter Kent Ridge` returns `Lower Kent Ridge` and `Upper Kent Ridge`
-* `filter kent ridge` returns `Kent Road`, `Ridge View`<br>
+* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
 ### Deleting a tenant : `delete`
