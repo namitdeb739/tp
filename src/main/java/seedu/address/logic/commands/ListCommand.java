@@ -28,12 +28,13 @@ public class ListCommand extends Command {
         assert model.getFilteredTenantList() != null : "Filtered tenant list should not be null";
 
         model.updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
+
         if (model.getFilteredTenantList().isEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_LIST);
         }
 
         logger.info("Tenant list displayed successfully with " + model.getFilteredTenantList().size() + " tenants.");
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return buildCommandResult(MESSAGE_SUCCESS);
     }
 }

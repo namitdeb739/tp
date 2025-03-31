@@ -31,7 +31,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTenantList(predicate);
-        return new CommandResult(String.format(Messages.MESSAGE_TENANTS_LISTED_OVERVIEW,
+        return buildCommandResult(String.format(Messages.MESSAGE_TENANTS_LISTED_OVERVIEW,
                 model.getFilteredTenantList().size()));
     }
 

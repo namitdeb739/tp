@@ -97,8 +97,9 @@ add givenN/GIVEN_NAME familyN/FAMILY_NAME phone/PHONE_NUMBER email/EMAIL address
 Details:
 
 * Phone number must be a valid Singaporean 8-digit number.
-* Emails must be a vaild email, for example `address@domain.com`.
+* Emails must be a valid email, for example `address@domain.com`.
 * Address must contain a 6-digit postcode.
+* Arguments/Prefixes should adhere to the specified order and format above
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A tenant can have any number of tags (including 0)
