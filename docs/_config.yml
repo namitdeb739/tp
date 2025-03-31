@@ -1,46 +1,15 @@
-title: TenantTrack
-description: A landlord assistant tool for managing tenants
-theme: just-the-docs
+title: "TenantTrack"
+theme: minima
 
-# URL setup
-baseurl: "" # leave empty if deploying to root (e.g., GitHub Pages)
-url: "https://AY2425S2-CS2103T-W12-1.github.io/tp" # your GitHub Pages URL
+header_pages:
+  - UserGuide.md
+  - DeveloperGuide.md
+  - AboutUs.md
 
-# Navigation structure
-nav_sort: case_insensitive
+markdown: kramdown
 
-# Define nav links
-nav:
-  - title: "User Guide"
-    url: /UserGuide
-  - title: "Developer Guide"
-    url: /DeveloperGuide
-  - title: "About Us"
-    url: /AboutUs
+repository: "nus-cs2103-AY2425S2/tp"
+github_icon: "images/github-icon.png"
 
-# Repository link (shows GitHub icon in top right)
-repository_url: "https://github.com/AY2425S2-CS2103T-W12-1/tp"
-repository_label: "View on GitHub"
-
-# Enable floating table of contents
-just_the_docs:
-  logo: "/images/app-icon.png" # optional
-  aux_links:
-    GitHub Repo: https://github.com/AY2425S2-CS2103T-W12-1/tp
-  aux_links_new_tab: true
-
-  search_enabled: true
-
-  # Table of contents settings
-  toc:
-    min_level: 2
-    max_level: 4
-
-  # Enable sticky (floating) TOC
-  toc_sticky: true
-
-  # Optional: sidebar order
-  collections:
-    docs:
-      output: true
-      permalink: /:path/
+plugins:
+  - jemoji
