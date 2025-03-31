@@ -31,6 +31,8 @@ class JsonAdaptedTenant {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final boolean isArchived;
 
+    private final boolean isPaid;
+
     @JsonCreator
     public JsonAdaptedTenant(@JsonProperty("givenName") String givenName,
                              @JsonProperty("familyName") String familyName,
@@ -38,13 +40,15 @@ class JsonAdaptedTenant {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("isArchived") boolean isArchived) {
+                             @JsonProperty("isArchived") boolean isArchived,
+                             @JsonProperty("isAPaid") boolean isPaid) {
         this.givenName = givenName;
         this.familyName = familyName;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.isArchived = isArchived;
+        this.isPaid = isPaid;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,6 +62,7 @@ class JsonAdaptedTenant {
         address = source.getAddress().value;
         isArchived = source.isArchived();
         tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        isPaid = source.isPaid();
     }
 
     public Tenant toModelType() throws IllegalValueException {
@@ -100,7 +105,8 @@ class JsonAdaptedTenant {
                 new Email(email),
                 new Address(address),
                 new HashSet<>(personTags),
-                isArchived
+                isArchived,
+                isPaid
         );
     }
 }
