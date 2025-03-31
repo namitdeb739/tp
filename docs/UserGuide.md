@@ -56,7 +56,7 @@ TenantTrack is a tool for landlords managing multiple rental properties. It help
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   For example, `[tag/TAG]…​` can be used as<br>
-  * `` (i.e. 0 times), OR
+  * ` ` (i.e. 0 times), OR
   * `tag/friend`, OR
   * `tag/friend tag/family`,
   * Etc.
