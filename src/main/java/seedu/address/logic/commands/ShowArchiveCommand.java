@@ -6,19 +6,16 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the TenantTracker to the user.
+ * Lists all persons in the archived TenantTracker to the user.
  */
-public class ListCommand extends Command {
-
-    public static final String COMMAND_WORD = "list";
-
-    public static final String MESSAGE_SUCCESS = "Here is the list of tenants!";
-
+public class ShowArchiveCommand extends Command {
+    public static final String COMMAND_WORD = "showarchive";
+    public static final String MESSAGE_SUCCESS = "Listed all archived tenants";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredArchivedTenantList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

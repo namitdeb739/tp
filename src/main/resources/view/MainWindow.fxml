@@ -31,6 +31,10 @@
                     <Menu mnemonicParsing="false" text="Help">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
+                    <Menu  mnemonicParsing="false" text="Archived">
+                        <MenuItem fx:id="toggleArchiveMenu" mnemonicParsing="false" onAction="#handleToggleArchiveView"
+                                  text="Toggle Archived View"/>
+                    </Menu>
                 </MenuBar>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
@@ -52,9 +56,11 @@
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
                     <StackPane fx:id="tenantListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <StackPane fx:id="archivedTenantListPanelPlaceholder" VBox.vgrow="ALWAYS" visible="false" managed="false"/>
                 </VBox>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+
             </VBox>
         </Scene>
     </scene>

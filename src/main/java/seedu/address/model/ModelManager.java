@@ -120,9 +120,20 @@ public class ModelManager implements Model {
     public void archiveTenant(Tenant tenant) {
         requireNonNull(tenant);
         Tenant archived = tenant.archive();
-        tenantTracker.removeTenant(tenant);
-        tenantTracker.addTenant(archived);
+        tenantTracker.setTenant(tenant, archived);
+        updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredArchivedTenantList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public void unarchiveTenant(Tenant tenant) {
+        requireNonNull(tenant);
+        Tenant unarchived = tenant.unarchive();
+        tenantTracker.setTenant(tenant, unarchived);
+        updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredArchivedTenantList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
 
     // =========== Filtered Person List Accessors
     // =============================================================

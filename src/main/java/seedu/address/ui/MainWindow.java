@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TenantListPanel tenantListPanel;
+    private TenantListPanel archivedListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +46,18 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane tenantListPanelPlaceholder;
 
     @FXML
+    private StackPane archivedTenantListPanelPlaceholder;
+
+    @FXML private
+    MenuItem toggleArchiveMenu;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    private boolean isShowingArchived = false;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,6 +119,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         tenantListPanel = new TenantListPanel(logic.getFilteredTenantList());
         tenantListPanelPlaceholder.getChildren().add(tenantListPanel.getRoot());
+
+        archivedListPanel = new TenantListPanel(logic.getFilteredArchivedTenantList());
+        archivedTenantListPanelPlaceholder.getChildren().add(archivedListPanel.getRoot());
+
+        archivedTenantListPanelPlaceholder.setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -190,5 +204,19 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Toggles the archive list
+     */
+    @FXML
+    private void handleToggleArchiveView() {
+        isShowingArchived = !isShowingArchived;
+
+        tenantListPanelPlaceholder.setVisible(!isShowingArchived);
+        tenantListPanelPlaceholder.setManaged(!isShowingArchived);
+
+        archivedTenantListPanelPlaceholder.setVisible(isShowingArchived);
+        archivedTenantListPanelPlaceholder.setManaged(isShowingArchived);
     }
 }
