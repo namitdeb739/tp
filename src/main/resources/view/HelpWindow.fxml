@@ -57,7 +57,7 @@
 
                             <!-- 📦 Add Command -->
                             <Label text="📦 Add Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="AddHelp" editable="false" wrapText="true"
+                            <TextArea fx:id="addHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px;
                                         -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="9">
@@ -65,7 +65,7 @@
 
                             <!-- 📁 Archive Command -->
                             <Label text="📁 Archive Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="ArchiveHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
+                            <TextArea fx:id="archiveHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
                             -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="6">
                             </TextArea>
@@ -81,7 +81,7 @@
 
                             <!-- 🛠️ Delete Command -->
                             <Label text="🛠️ Delete Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="DeleteHelp" editable="false" wrapText="true"
+                            <TextArea fx:id="deleteHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
                                       -fx-min-height: 180;"
                                       prefRowCount="6">
@@ -89,7 +89,7 @@
 
                             <!-- 📝 Edit Command -->
                             <Label text="📝 Edit Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="EditHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
+                            <TextArea fx:id="editHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
                             -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="9">
                             </TextArea>
@@ -105,7 +105,7 @@
 
                             <!-- 🧲 Filter Command -->
                             <Label text="🧲 Filter Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="FilterHelp" editable="false" wrapText="true"
+                            <TextArea fx:id="filterHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
                                       -fx-min-height: 180;"
                                       prefRowCount="7">
@@ -113,7 +113,7 @@
 
                             <!-- 🔎 Find Command -->
                             <Label text="🔎 Find Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="FindHelp" editable="false" wrapText="true"
+                            <TextArea fx:id="findHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px;
                                             -fx-min-height: 180"
                                       prefRowCount="7">
@@ -138,7 +138,7 @@
 
                             <!-- 🗺️ Map Command -->
                             <Label text="🗺️ Map Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="MapHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
+                            <TextArea fx:id="mapHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
                             -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="6">
                             </TextArea>

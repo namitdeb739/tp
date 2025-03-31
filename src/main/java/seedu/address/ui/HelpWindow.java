@@ -33,25 +33,25 @@ public class HelpWindow extends UiPart<Stage> {
     private TitledPane commandExamplesPane;
 
     @FXML
-    private TextArea AddHelp;
+    private TextArea addHelp;
 
     @FXML
-    private TextArea ArchiveHelp;
+    private TextArea archiveHelp;
 
     @FXML
-    private TextArea DeleteHelp;
+    private TextArea deleteHelp;
 
     @FXML
-    private TextArea EditHelp;
+    private TextArea editHelp;
 
     @FXML
-    private TextArea FilterHelp;
+    private TextArea filterHelp;
 
     @FXML
-    private TextArea FindHelp;
+    private TextArea findHelp;
 
     @FXML
-    private TextArea MapHelp;
+    private TextArea mapHelp;
 
     /**
      * Creates a new HelpWindow.
@@ -61,75 +61,75 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        AddHelp.setText("""
+        addHelp.setText("""
             add: Adds a tenant to TenantTrack.
-                        
-            Parameters: g/ GIVEN NAME f/ FAMILY NAME p/ PHONE e/ EMAIL a/ ADDRESS [t/TAG]...
-                        
+
+            Parameters: givenN/ GIVEN_NAME familyN/ FAMILY_NAME phone/ PHONE email/ EMAIL address/ ADDRESS [tag/TAG]...
+
             Example:
-            add g/ John f/ Doe p/ 98765432 e/ johndoe@email.com
-            a/ 21 Lower Kent Ridge Rd, 119077 t/ hdb t/ landed
+            add givenN/ John familyN/ Doe phone/ 98765432 email/ johndoe@email.com
+            address/ 21 Lower Kent Ridge Rd, 119077 tag/ hdb tag/ landed
             """);
 
-        ArchiveHelp.setText("""
+        archiveHelp.setText("""
             archive: Archives the tenant identified by the index number
             used in the displayed tenant list.
-                        
+
             Parameters:
             INDEX (must be a positive integer).
-                        
+
             Example:
             archive 1
             """);
 
-        DeleteHelp.setText("""
+        deleteHelp.setText("""
             delete: Deletes the tenant identified by the index number
             used in the displayed tenant list.
-                       
+
             Parameters:
             INDEX (must be a positive integer)
-                       
+
             Example:
             delete 1
             """);
 
-        EditHelp.setText("""
+        editHelp.setText("""
             edit: Edits the details of the tenant identified by the index number
             used in the displayed tenant list.
-                        
+
             Parameters:
-            INDEX (must be a positive integer) [g/ GIVEN NAME] [f/ FAMILY NAME] [p/ PHONE] [e/ EMAIL] [a/ ADDRESS] [t/ TAG]...
-                        
+            INDEX (must be a positive integer) [givenN/ GIVEN NAME] [familyN/ FAMILY NAME] [phone/ PHONE] [email/ EMAIL] [address/ ADDRESS] [tag/ TAG]...
+
             Example:
-            edit 1 p/91234567 e/johndoe@example.com
+            edit 1 phone/91234567 email/johndoe@example.com
             """);
 
-        FilterHelp.setText("""
+        filterHelp.setText("""
             filter: Filters all tenants whose addresses contain any of the specified
             keywords (case-insensitive). Displays them in a list.
-                        
+
             Parameters:
             KEYWORD [MORE_KEYWORDS]...
-                        
+
             Example:
             filter Kent Ridge
             """);
 
-        FindHelp.setText("""
+        findHelp.setText("""
             find: Finds all tenants whose names contain any of the specified keywords (case-insensitive). Displays them in a list.
-                        
+
             Parameters: KEYWORD [MORE_KEYWORDS]...
-                        
+
             Example:
             find alice bob charlie
             """);
 
-        MapHelp.setText("""
+        mapHelp.setText("""
             map: Launches Google Maps for the tenant’s address at the given index.
-                        
+
             Parameters:
             INDEX (must be a positive integer)
-                        
+
             Example:
             map 1
             """);
