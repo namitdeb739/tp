@@ -1,8 +1,6 @@
 ---
 layout: page
 title: User Guide
-toc_float: true
-toc_collapsed: true
 ---
 
 TenantTrack is a tool for landlords managing multiple rental properties. It helps keep track of tenant details
@@ -359,14 +357,14 @@ corruption.
 
 ## Command summary
 
- Action      | Format                                                                                                                  | Examples                                                                                                         
+ Action      | Format                                                                                                                  | Examples
 -------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
- **Add**     | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com` 
- **Archive** | `archive INDEX`                                                                                                         | `archive 1`                                                                                                      
+ **Add**     | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com`
+ **Archive** | `archive INDEX`                                                                                                         | `archive 1`
  **Clear**   | `clear`                                                                                                                 |
- **Delete**  | `delete INDEX`                                                                                                          | `delete 3`                                                                                                       
- **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`                                                  
- **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`                                                                                                
- **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`                                                                                        
+ **Delete**  | `delete INDEX`                                                                                                          | `delete 3`
+ **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
+ **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`
+ **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
  **List**    | `list`                                                                                                                  |
  **Help**    | `help`                                                                                                                  |
