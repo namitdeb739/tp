@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -31,6 +32,27 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private TitledPane commandExamplesPane;
 
+    @FXML
+    private TextArea AddHelp;
+
+    @FXML
+    private TextArea ArchiveHelp;
+
+    @FXML
+    private TextArea DeleteHelp;
+
+    @FXML
+    private TextArea EditHelp;
+
+    @FXML
+    private TextArea FilterHelp;
+
+    @FXML
+    private TextArea FindHelp;
+
+    @FXML
+    private TextArea MapHelp;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -39,6 +61,78 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        AddHelp.setText("""
+            add: Adds a tenant to TenantTrack.
+                        
+            Parameters: g/ GIVEN NAME f/ FAMILY NAME p/ PHONE e/ EMAIL a/ ADDRESS [t/TAG]...
+                        
+            Example:
+            add g/ John f/ Doe p/ 98765432 e/ johndoe@email.com
+            a/ 21 Lower Kent Ridge Rd, 119077 t/ hdb t/ landed
+            """);
+
+        ArchiveHelp.setText("""
+            archive: Archives the tenant identified by the index number
+            used in the displayed tenant list.
+                        
+            Parameters:
+            INDEX (must be a positive integer).
+                        
+            Example:
+            archive 1
+            """);
+
+        DeleteHelp.setText("""
+            delete: Deletes the tenant identified by the index number
+            used in the displayed tenant list.
+                       
+            Parameters:
+            INDEX (must be a positive integer)
+                       
+            Example:
+            delete 1
+            """);
+
+        EditHelp.setText("""
+            edit: Edits the details of the tenant identified by the index number
+            used in the displayed tenant list.
+                        
+            Parameters:
+            INDEX (must be a positive integer) [g/ GIVEN NAME] [f/ FAMILY NAME] [p/ PHONE] [e/ EMAIL] [a/ ADDRESS] [t/ TAG]...
+                        
+            Example:
+            edit 1 p/91234567 e/johndoe@example.com
+            """);
+
+        FilterHelp.setText("""
+            filter: Filters all tenants whose addresses contain any of the specified
+            keywords (case-insensitive). Displays them in a list.
+                        
+            Parameters:
+            KEYWORD [MORE_KEYWORDS]...
+                        
+            Example:
+            filter Kent Ridge
+            """);
+
+        FindHelp.setText("""
+            find: Finds all tenants whose names contain any of the specified keywords (case-insensitive). Displays them in a list.
+                        
+            Parameters: KEYWORD [MORE_KEYWORDS]...
+                        
+            Example:
+            find alice bob charlie
+            """);
+
+        MapHelp.setText("""
+            map: Launches Google Maps for the tenant’s address at the given index.
+                        
+            Parameters:
+            INDEX (must be a positive integer)
+                        
+            Example:
+            map 1
+            """);
 
         root.setMinWidth(600);
         root.setMinHeight(100);
