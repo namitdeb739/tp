@@ -26,15 +26,15 @@ TenantTrack is a tool for landlords managing multiple rental properties. It help
 1. Type the command in the command box and press **`Enter`** to execute it. e.g. typing `help` and pressing **`Enter`** will open the help window.<br>
   Some example commands you can try:
 
-   * `list` : Lists all tenants.
+   * `list`: Lists all tenants.
 
-   * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456` : Adds a tenant named `John Doe`.
+   * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`: Adds a tenant named `John Doe`.
 
-   * `delete 3` : Deletes the 3rd tenant shown in the current list.
+   * `delete 3`: Deletes the 3rd tenant shown in the current list.
 
-   * `clear` : Deletes all tenants.
+   * `clear`: Deletes all tenants.
 
-   * `exit` : Exits the app.
+   * `exit`: Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -80,9 +80,9 @@ Shows a message explaining how to access the help page.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 help
-```
+</pre>
 
 ### Adding a tenant: `add`
 
@@ -90,7 +90,7 @@ Adds a tenant to the Tenant Track.
 
 Format:
 
-<pre style="background-color: #dddddd; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456
 </pre>
 
@@ -99,10 +99,10 @@ Details:
 * Phone number must be a valid Singaporean 8-digit number.
 * Emails must be a valid email, for example `address@domain.com`.
 * Address must contain a 6-digit postcode.
-* Arguments/Prefixes should adhere to the specified order and format above
+* Arguments/Prefixes should adhere to the specified order and format above.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A tenant can have any number of tags (including 0)
+A tenant can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -116,9 +116,9 @@ Archive the specified tenant from the Tenant Track.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 archive INDEX
-```
+</pre>
 
 Details:
 
@@ -137,9 +137,9 @@ Clears all entries from the Tenant Track.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 clear
-```
+</pre>
 
 ### Deleting a tenant: `delete`
 
@@ -147,19 +147,19 @@ Deletes the specified tenant from the Tenant Track.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 delete INDEX
-```
+</pre>
 
 Details:
 
 * Deletes the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the displayed tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
+* `list` followed by `delete 2` deletes the 2nd tenant in Tenant Track.
 * `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 ### Editing a tenant: `edit`
@@ -168,24 +168,24 @@ Updates the details of an existing tenant in the list.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...
-```
+</pre>
 
 Details:
 
 * Edit the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the displayed tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You must specify at least one field to update.
 * Specified fields will replace the tenant’s existing values.
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **On editing tags:**<br/>
+<div markdown="block" class="alert alert-primary">
+:bulb: **On editing tags:**<br>
 
-* All existing tags will be cleared and replaced with the new ones.<br/>
+* All existing tags will be cleared and replaced with the new ones.<br>
 
-* To remove all tags, type tag/ without specifying any tag after it.<br/>
+* To remove all tags, type tag/ without specifying any tag after it.<br>
 
 </div>
 
@@ -200,22 +200,22 @@ Finds tenants whose names contain **ANY** of the given keywords.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 find KEYWORD [MORE_KEYWORDS]
-```
+</pre>
 
 Details:
 
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** is searched.
-* Only full words will be matched. For example, `Han` will not match `Hans`
+* **Prefixes** of words will be matched. For example, `Han` will match `Hans`. However, `ans` will **NOT** match `Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `john` and `John Doe`.
+* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Locating tenants by address: `filter`
@@ -224,32 +224,53 @@ Filters the list for tenants whose address contains any of the given keywords.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 filter KEYWORD [MORE_KEYWORDS]
-```
+</pre>
 
 Details:
 
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
-* Only full words or postal codes will be matched. For example, `Kent` will not match `Ken` and `229` will not match `229220`.
+* **Prefixes** of words or postal codes will be matched. For example, `Kent` will match `Ken` and `229` will match `229220`. However, `ent` will **NOT** match `Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
 Examples:
 
-* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`<br>
+* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`.<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
 ### Listing all tenants: `list`
 
-Shows a list of all tenants in the Tenant Track
+Shows a list of all tenants in the Tenant Track.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 list
-```
+</pre>
+
+### Viewing address in Google Maps: `map`
+
+Opens the specified tenant's address in Google Maps.
+
+Format:
+
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+map INDEX
+</pre>
+
+Details:
+
+* Searches the tenant at the specified `INDEX`'s address.
+* `INDEX` index refers to the index number shown in the displayed tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `map 2` searches the 2nd tenant in Tenant Track's address in Google Maps.
+* `find Betsy` followed by `map 1` searches the  1st tenant in the results of the `find` command's address in Google Maps.
 
 ### Exiting the program: `exit`
 
@@ -257,9 +278,9 @@ Exits the program.
 
 Format:
 
-```txt
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
 exit
-```
+</pre>
 
 ### Saving the data
 
@@ -305,7 +326,7 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut **`F1`**) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,7 +338,7 @@ Action | Format | Examples
 **Archive** | `archive INDEX` | `archive 1`
 **Clear** | `clear` |
 **Delete** | `delete INDEX` | `delete 3`
-**Edit** | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/James familyN/ Lee email/jameslee@example.com`
+**Edit** | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake`
 **Filter** | `filter KEYWORD [MORE_KEYWORDS]` | `filter Lower Kent Ridge`
 **List** | `list` |
