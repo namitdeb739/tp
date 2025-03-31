@@ -81,4 +81,8 @@ public class TypicalTenants {
     public static List<Tenant> getTypicalTenants() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JAMES, MIKE, OLIVER));
     }
+
+    public static TenantTracker getEmptyTenantTracker() {
+        return new TenantTracker();
+    }
 }
