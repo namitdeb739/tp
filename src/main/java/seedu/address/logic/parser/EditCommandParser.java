@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTenantDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,29 +32,30 @@ public class EditCommandParser implements Parser<EditCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditCommand parse(String args, String userInput) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME,
-            PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.lastUserInput(userInput) + MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_ADDRESS);
+                PREFIX_ADDRESS);
 
         EditTenantDescriptor editPersonDescriptor = new EditTenantDescriptor();
 
 
         if (argMultimap.getValue(PREFIX_GIVEN_NAME).isPresent()
-            || argMultimap.getValue(PREFIX_FAMILY_NAME).isPresent()) {
+                || argMultimap.getValue(PREFIX_FAMILY_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_GIVEN_NAME).get(),
-                argMultimap.getValue(PREFIX_FAMILY_NAME).get()));
+                    argMultimap.getValue(PREFIX_FAMILY_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
@@ -67,7 +69,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(Messages.lastUserInput(userInput) + EditCommand.MESSAGE_NOT_EDITED));
         }
 
         return new EditCommand(index, editPersonDescriptor);

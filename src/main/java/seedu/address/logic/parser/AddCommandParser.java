@@ -14,6 +14,7 @@ import java.util.Set;
 // import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.stream.Stream;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
@@ -35,14 +36,15 @@ public class AddCommandParser implements Parser<AddCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand parse(String args, String userInput) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME,
                 PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Messages.lastUserInput(userInput) + MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GIVEN_NAME, PREFIX_FAMILY_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_EMAIL);

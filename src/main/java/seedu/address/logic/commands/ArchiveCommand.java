@@ -45,7 +45,7 @@ public class ArchiveCommand extends Command {
         }
 
         model.archiveTenant(tenantToArchive);
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_TENANT_SUCCESS,
+        return buildCommandResult(String.format(MESSAGE_ARCHIVE_TENANT_SUCCESS,
                 Messages.format(tenantToArchive)));
     }
 
