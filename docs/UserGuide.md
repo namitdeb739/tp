@@ -1,16 +1,16 @@
 ---
-layout: default
+layout: page
 title: User Guide
-nav_order: 1
-has_toc: true
-toc_label: "On this page"
-toc_icon: list
-toc_sticky: true
+toc_float: true
+toc_collapsed: true
 ---
 
 TenantTrack is a tool for landlords managing multiple rental properties. It helps keep track of tenant details
 efficiently. TenantTrack combines a command-line interface with a graphical interface, making it simple and intuitive to
 use.
+
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
