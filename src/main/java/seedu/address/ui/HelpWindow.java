@@ -98,7 +98,8 @@ public class HelpWindow extends UiPart<Stage> {
             used in the displayed tenant list.
 
             Parameters:
-            INDEX (must be a positive integer) [givenN/ GIVEN NAME] [familyN/ FAMILY NAME] [phone/ PHONE] [email/ EMAIL] [address/ ADDRESS] [tag/ TAG]...
+            INDEX (must be a positive integer) [givenN/ GIVEN NAME] [familyN/ FAMILY NAME]
+            [phone/ PHONE] [email/ EMAIL] [address/ ADDRESS] [tag/ TAG]...
 
             Example:
             edit 1 phone/91234567 email/johndoe@example.com
@@ -116,7 +117,8 @@ public class HelpWindow extends UiPart<Stage> {
             """);
 
         findHelp.setText("""
-            find: Finds all tenants whose names contain any of the specified keywords (case-insensitive). Displays them in a list.
+            find: Finds all tenants whose names contain any of the specified keywords (case-insensitive).
+            Displays them in a list.
 
             Parameters: KEYWORD [MORE_KEYWORDS]...
 
