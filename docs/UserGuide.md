@@ -26,15 +26,15 @@ TenantTrack is a tool for landlords managing multiple rental properties. It help
 1. Type the command in the command box and press **`Enter`** to execute it. e.g. typing `help` and pressing **`Enter`** will open the help window.<br>
   Some example commands you can try:
 
-* `list` : Lists all tenants.
+   * `list` : Lists all tenants.
 
-* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456` : Adds a tenant named `John Doe`.
+   * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456` : Adds a tenant named `John Doe`.
 
-* `delete 3` : Deletes the 3rd tenant shown in the current list.
+   * `delete 3` : Deletes the 3rd tenant shown in the current list.
 
-* `clear` : Deletes all tenants.
+   * `clear` : Deletes all tenants.
 
-* `exit` : Exits the app.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -72,7 +72,7 @@ TenantTrack is a tool for landlords managing multiple rental properties. It help
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -90,9 +90,9 @@ Adds a tenant to the Tenant Track.
 
 Format:
 
-```txt
-add givenN/GIVEN_NAME familyN/FAMILY_NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG]…​
-```
+<pre style="background-color: #dddddd; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456
+</pre>
 
 Details:
 
@@ -110,14 +110,14 @@ Examples:
 * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
 * `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 456423`
 
-### Archiving a tenant : `archive`
+### Archiving a tenant: `archive`
 
 Archive the specified tenant from the Tenant Track.
 
 Format:
 
 ```txt
-archive INDEX`
+archive INDEX
 ```
 
 Details:
@@ -131,15 +131,36 @@ Examples:
 * `list` followed by `archive 2` archives the 2nd tenant in the Tenant Track.
 * `find Betsy` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
 
-### Listing all tenants : `list`
+### Clearing all entries: `clear`
 
-Shows a list of all tenants in the Tenant Track
+Clears all entries from the Tenant Track.
 
 Format:
 
 ```txt
-list
+clear
 ```
+
+### Deleting a tenant: `delete`
+
+Deletes the specified tenant from the Tenant Track.
+
+Format:
+
+```txt
+delete INDEX
+```
+
+Details:
+
+* Deletes the tenant at the specified `INDEX`.
+* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
+* `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
 
 ### Editing a tenant: `edit`
 
@@ -159,9 +180,13 @@ Details:
 * You must specify at least one field to update.
 * Specified fields will replace the tenant’s existing values.
 
-<div markdown="span" class="alert alert-primary">:bulb: **On editing tags:**
-* All existing tags will be cleared and replaced with the new ones.
-* To remove all tags, type tag/ without specifying any tag after it.
+<div markdown="span" class="alert alert-primary">
+:bulb: **On editing tags:**<br/>
+
+* All existing tags will be cleared and replaced with the new ones.<br/>
+
+* To remove all tags, type tag/ without specifying any tag after it.<br/>
+
 </div>
 
 Examples:
@@ -216,38 +241,17 @@ Examples:
 * `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
-### Deleting a tenant : `delete`
+### Listing all tenants: `list`
 
-Deletes the specified tenant from the Tenant Track.
-
-Format:
-
-```txt
-delete INDEX
-```
-
-Details:
-
-* Deletes the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed tenant list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd tenant in the Tenant Track.
-* `find Betsy` followed by `delete 1` deletes the 1st tenant in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the Tenant Track.
+Shows a list of all tenants in the Tenant Track
 
 Format:
 
 ```txt
-clear
+list
 ```
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -278,22 +282,22 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: **How do I transfer my data to another Computer?**<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TenantTrack home folder.
 
-**Q**: What should I do if I encounter an error while running the application?<br>
+**Q**: **What should I do if I encounter an error while running the application?**<br>
 **A**: Ensure that you have the correct version of Java installed. If the issue persists, check the error message for details and refer to the [GitHub Issues page](https://github.com/AY2425S2-CS2103T-W12-1/tp/issues) to see if it has already been reported. You can also create a new issue with a detailed description of the problem.
 
-**Q**: Can I use TenantTrack on operating systems other than macOS?<br>
+**Q**: **Can I use TenantTrack on operating systems other than macOS?**<br>
 **A**: Yes, TenantTrack is compatible with Windows, macOS, and Linux, as long as Java 17 or above is installed.
 
-**Q**: Is there a way to recover deleted tenants?<br>
+**Q**: **Is there a way to recover deleted tenants?**<br>
 **A**: No, once a tenant is deleted, the action cannot be undone. It is recommended to double-check before executing the `delete` command. However, you can re-add the removed tenant using an `add` command.
 
-**Q**: Why does the application start with sample data?<br>
+**Q**: **Why does the application start with sample data?**<br>
 **A**: The sample data is included to help new users understand how the application works. You can clear the sample data using the `clear` command.
 
-**Q**: Can I run multiple instances of TenantTrack simultaneously?<br>
+**Q**: **Can I run multiple instances of TenantTrack simultaneously?**<br>
 **A**: It is not recommended to run multiple instances of TenantTrack using the same data file, as this may lead to data corruption.
 
 --------------------------------------------------------------------------------------------------------------------
