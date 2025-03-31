@@ -212,8 +212,7 @@ Details:
 
 Examples:
 
-* `filter Kent Ridge` returns `Lower Kent Ridge` and `Upper Kent Ridge`
-* `filter kent ridge` returns `Kent Road`, `Ridge View`<br>
+* `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road` and `Ridge View`<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
 ### Deleting a tenant : `delete`
