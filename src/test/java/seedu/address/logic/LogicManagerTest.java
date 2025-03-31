@@ -69,6 +69,10 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_EMPTY_LIST, model);
+
+        Tenant tenant = new TenantBuilder().build();
+        model.addTenant(tenant);
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
@@ -99,7 +103,8 @@ public class LogicManagerTest {
     private void assertCommandSuccess(String inputCommand, String expectedMessage, Model expectedModel)
             throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
+        assertEquals(expectedMessage,
+                result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 

@@ -20,7 +20,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Tenant> {
     public boolean test(Tenant person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().familyName, keyword)
-                        || StringUtil.containsWordIgnoreCase(person.getName().givenName, keyword));
+                        || StringUtil.containsWordIgnoreCase(person.getName().givenName, keyword)
+                        || person.getName().familyName.toLowerCase().startsWith(keyword.toLowerCase())
+                        || person.getName().givenName.toLowerCase().startsWith(keyword.toLowerCase()));
     }
 
     @Override

@@ -14,8 +14,7 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_TENANT_DISPLAYED_INDEX =
-            "The tenant index provided is invalid";
+    public static final String MESSAGE_INVALID_TENANT_DISPLAYED_INDEX = "The tenant index provided is invalid";
     public static final String MESSAGE_TENANTS_LISTED_OVERVIEW = "%1$d tenants listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
@@ -26,8 +25,7 @@ public class Messages {
     public static String getErrorMessageForDuplicatePrefixes(Prefix... duplicatePrefixes) {
         assert duplicatePrefixes.length > 0;
 
-        Set<String> duplicateFields =
-                Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
+        Set<String> duplicateFields = Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
 
         return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
     }
@@ -37,13 +35,14 @@ public class Messages {
      */
     public static String format(Tenant tenant) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(tenant.getName())/*
-                                         * .append("; Phone: ").append(person.getPhone())
-                                         * .append("; Email: ").append(person.getEmail())
-                                         */.append("; Address: ")
-                .append(tenant.getAddress())/* .append("; Tags: ") */;
-        // person.getTags().forEach(builder::append);
+        builder.append(tenant.getName()).append("; Phone: ").append(tenant.getPhone()).append("; Email: ")
+                .append(tenant.getEmail()).append("; Address: ").append(tenant.getAddress()).append("; Tags: ");
+        tenant.getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    public static String lastUserInput(String userInput) {
+        return String.format("You input: %s\n", userInput);
     }
 
 }

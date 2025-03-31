@@ -60,37 +60,37 @@ public class TenantTrackerParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddCommandParser().parse(arguments, userInput);
 
         case ArchiveCommand.COMMAND_WORD:
-            return new ArchiveCommandParser().parse(arguments);
+            return new ArchiveCommandParser().parse(arguments, userInput);
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditCommandParser().parse(arguments, userInput);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteCommandParser().parse(arguments, userInput);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommand().withUserInput(userInput);
 
         case FilterCommand.COMMAND_WORD:
-            return new FilterCommandParser().parse(arguments);
+            return new FilterCommandParser().parse(arguments, userInput);
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindCommandParser().parse(arguments, userInput);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommand().withUserInput(userInput);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return new ExitCommand().withUserInput(userInput);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommand().withUserInput(userInput);
 
         case MapCommand.COMMAND_WORD:
-            return new MapCommandParser().parse(arguments);
+            return new MapCommandParser().parse(arguments, userInput);
 
         case ShowArchiveCommand.COMMAND_WORD:
             return new ShowArchiveCommand();

@@ -83,7 +83,7 @@ public class MapCommand extends Command {
 
         openUri(uriLink);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return buildCommandResult(MESSAGE_SUCCESS);
     }
 
     /**

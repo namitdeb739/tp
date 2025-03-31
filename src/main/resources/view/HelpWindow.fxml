@@ -57,204 +57,91 @@
 
                             <!-- 📦 Add Command -->
                             <Label text="📦 Add Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true"
+                            <TextArea fx:id="addHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px;
                                         -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="9">
-                                <text>
-                                    <![CDATA[
-add: Adds a tenant to TenantTrack.
-
-Parameters:
-g/ GIVEN NAME
-f/ FAMILY NAME
-p/ PHONE
-e/ EMAIL
-a/ ADDRESS
-[t/TAG]...
-
-Example:
-add g/ John f/ Doe p/ 98765432 e/ johndoe@email.com
-a/ 21 Lower Kent Ridge Rd, 119077 t/ hdb t/ landed
-                    ]]>
-                                </text>
                             </TextArea>
 
                             <!-- 📁 Archive Command -->
                             <Label text="📁 Archive Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true" style="-fx-font-family: monospace;
+                            <TextArea fx:id="archiveHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
                             -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="6">
-                                <text>
-                                    <![CDATA[
-archive: Archives the tenant identified by the index number
-used in the displayed tenant list.
-
-Parameters:
-INDEX (must be a positive integer)
-
-Example:
-archive 1
-                    ]]>
-                                </text>
                             </TextArea>
 
                             <!-- 🧹 Clear Command -->
                             <Label text="🧹 Clear Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
-                                       -fx-min-height: 180;"
+                                       -fx-min-height: 30;"
                                       prefRowCount="2">
-                                <text>
-                                    <![CDATA[
-clear: Clears all tenants from the address book.
-                    ]]>
-                                </text>
+                                clear: Clears all tenants from the address book.
                             </TextArea>
 
                             <!-- 🛠️ Delete Command -->
                             <Label text="🛠️ Delete Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true"
+                            <TextArea fx:id="deleteHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
                                       -fx-min-height: 180;"
                                       prefRowCount="6">
-                                <text>
-                                    <![CDATA[
-delete: Deletes the tenant identified by the index number
-used in the displayed tenant list.
-
-Parameters:
-INDEX (must be a positive integer)
-
-Example:
-delete 1
-                    ]]>
-                                </text>
                             </TextArea>
 
                             <!-- 📝 Edit Command -->
                             <Label text="📝 Edit Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true" style="-fx-font-family: monospace;
+                            <TextArea fx:id="editHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
                             -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="9">
-                                <text>
-                                    <![CDATA[
-edit: Edits the details of the tenant identified by the index number
-used in the displayed tenant list.
-
-Parameters:
-INDEX (must be a positive integer)
-[g/ GIVEN NAME]
-[f/ FAMILY NAME]
-[p/ PHONE]
-[e/ EMAIL]
-[a/ ADDRESS]
-[t/ TAG]...
-
-Example:
-edit 1 p/91234567 e/johndoe@example.com
-                    ]]>
-                                </text>
                             </TextArea>
 
                             <!-- 🛑 Exit Command -->
                             <Label text="🛑 Exit Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
-                                      -fx-min-height: 180;"
+                                      -fx-min-height: 30;"
                                       prefRowCount="2">
-                                <text>
-                                    <![CDATA[
-exit: Exits the application.
-                    ]]>
-                                </text>
+                                exit: Exits the application.
                             </TextArea>
 
                             <!-- 🧲 Filter Command -->
                             <Label text="🧲 Filter Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true"
+                            <TextArea fx:id="filterHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
                                       -fx-min-height: 180;"
                                       prefRowCount="7">
-                                <text>
-                                    <![CDATA[
-filter: Filters all tenants whose addresses contain any of the specified
-keywords (case-insensitive). Displays them in a list.
-
-Parameters:
-KEYWORD [MORE_KEYWORDS]...
-
-Example:
-filter Kent Ridge
-                    ]]>
-                                </text>
                             </TextArea>
 
                             <!-- 🔎 Find Command -->
                             <Label text="🔎 Find Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true"
+                            <TextArea fx:id="findHelp" editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px;
                                             -fx-min-height: 180"
                                       prefRowCount="7">
-                                <text>
-                                    <![CDATA[
-                                    find: Finds all tenants whose names contain any of the specified keywords
-                                    (case-insensitive). Displays them in a list.
-                                    Parameters:
-                                    KEYWORD [MORE_KEYWORDS]...
-                                    Example:
-                                    find alice bob charlie
-                                    ]]>
-                                </text>
                             </TextArea>
-
 
                             <!-- 📖 Help Command -->
                             <Label text="📖 Help Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true"
                                       style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
-                                      -fx-min-height: 180;"
+                                      -fx-min-height: 30;"
                                       prefRowCount="3">
-                                <text>
-                                    <![CDATA[
-help: Shows program usage instructions.
-
-Example:
-help
-                    ]]>
-                                </text>
+                                help: Shows program usage instructions.
                             </TextArea>
 
                             <!-- 📋 List Command -->
                             <Label text="📋 List Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true" style="-fx-font-family: monospace;
-                            -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
+                            -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 30;"
                                       prefRowCount="2">
-                                <text>
-                                    <![CDATA[
-list: Lists all tenants in the address book.
-                    ]]>
-                                </text>
+                                list: Lists all tenants in the address book.
                             </TextArea>
 
                             <!-- 🗺️ Map Command -->
                             <Label text="🗺️ Map Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true" style="-fx-font-family: monospace;
+                            <TextArea fx:id="mapHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
                             -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="6">
-                                <text>
-                                    <![CDATA[
-map: Launches Google Maps for the tenant’s address at the given index.
-
-Parameters:
-INDEX (must be a positive integer)
-
-Example:
-map 1
-                    ]]>
-                                </text>
                             </TextArea>
-
                         </VBox>
                     </ScrollPane>
                 </TitledPane>
