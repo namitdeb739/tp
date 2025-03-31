@@ -18,8 +18,11 @@ public class AddressContainsKeywordsPredicate implements Predicate<Tenant> {
 
     @Override
     public boolean test(Tenant tenant) {
-        return keywords.stream().anyMatch(keyword -> StringUtil
-                .containsWordIgnoreCase(tenant.getAddress().value.replaceAll("[^a-zA-Z0-9\\s]", ""), keyword));
+        return keywords.stream().anyMatch(keyword -> {
+            String sanitizedAddress = tenant.getAddress().value.replaceAll("[^a-zA-Z0-9\\s]", "");
+            return StringUtil.containsWordIgnoreCase(sanitizedAddress, keyword)
+                    || sanitizedAddress.toLowerCase().matches(".*\\b" + keyword.toLowerCase() + ".*");
+        });
     }
 
     @Override
