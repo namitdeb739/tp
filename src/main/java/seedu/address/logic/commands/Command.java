@@ -11,6 +11,11 @@ public abstract class Command {
 
     private String lastUserInput;
 
+    /**
+     * Sets the user input for the command.
+     *
+     * @return CommandType of the command.
+     */
     public Command withUserInput(String userInput) {
         this.lastUserInput = userInput;
         return this;
@@ -21,7 +26,7 @@ public abstract class Command {
     }
 
     public CommandResult buildCommandResult(String feedbackToUser) {
-        return new CommandResult(String.format(this.getLastUserInput(), feedbackToUser));
+        return new CommandResult(String.format(this.getLastUserInput() + feedbackToUser));
     }
 
     /**

@@ -25,7 +25,7 @@ public class MapCommandParser implements Parser<MapCommand> {
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(userInput, argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.lastUserInput(userInput) + MESSAGE_INVALID_COMMAND_FORMAT,
                     MapCommand.MESSAGE_USAGE), pe);
