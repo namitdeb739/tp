@@ -173,6 +173,21 @@ public class AddCommandTest {
         public void archiveTenant(Tenant tenant) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void unarchiveTenant(Tenant tenant) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void toggleArchiveView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isShowingArchived() {
+            return false;
+        }
     }
 
     // /**

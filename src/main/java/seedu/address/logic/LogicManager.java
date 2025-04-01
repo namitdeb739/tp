@@ -90,4 +90,15 @@ public class LogicManager implements Logic {
     public ObservableList<Tenant> getFilteredArchivedTenantList() {
         return model.getArchivedTenantList();
     }
+
+    @Override
+    public boolean isShowingArchived() {
+        return model.isShowingArchived();
+    }
+
+    @Override
+    public void toggleArchiveView() {
+        model.toggleArchiveView();
+    }
+
 }

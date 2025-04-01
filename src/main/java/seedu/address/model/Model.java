@@ -111,4 +111,14 @@ public interface Model {
      */
     void unarchiveTenant(Tenant tenant);
 
+    /**
+     * Toggles between archived list and unarchived list.
+     */
+    void toggleArchiveView();
+
+    /**
+     * Shows true if the current displayed list is archived
+     */
+    boolean isShowingArchived();
+
 }

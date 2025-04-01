@@ -53,4 +53,14 @@ public interface Logic {
      * Returns the archived tenant list
      */
     ObservableList<Tenant> getFilteredArchivedTenantList();
+
+    /**
+     * Toggles between archived list and unarchived list.
+     */
+    void toggleArchiveView();
+
+    /**
+     * Shows true if the current displayed list is archived
+     */
+    boolean isShowingArchived();
 }

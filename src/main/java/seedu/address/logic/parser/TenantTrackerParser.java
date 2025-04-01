@@ -20,7 +20,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MapCommand;
-import seedu.address.logic.commands.ShowArchiveCommand;
+import seedu.address.logic.commands.ToggleArchiveCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -92,11 +92,11 @@ public class TenantTrackerParser {
         case MapCommand.COMMAND_WORD:
             return new MapCommandParser().parse(arguments, userInput);
 
-        case ShowArchiveCommand.COMMAND_WORD:
-            return new ShowArchiveCommand();
+        case ToggleArchiveCommand.COMMAND_WORD:
+            return new ToggleArchiveCommand();
 
         case UnarchiveCommand.COMMAND_WORD:
-            return new UnarchiveCommandParser().parse(arguments);
+            return new UnarchiveCommandParser().parse(arguments, userInput);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

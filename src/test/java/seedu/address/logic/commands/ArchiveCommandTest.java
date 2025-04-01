@@ -65,8 +65,11 @@ public class ArchiveCommandTest {
                 Messages.format(archivedTenant));
 
         Model expectedModel = new ModelManager(model.getTenantTracker(), new UserPrefs());
-        expectedModel.archiveTenant(tenantToArchive); // <-- Fix here
-        showNoPerson(expectedModel);
+        expectedModel.archiveTenant(tenantToArchive);
+
+        model.updateFilteredTenantList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredTenantList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredArchivedTenantList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }

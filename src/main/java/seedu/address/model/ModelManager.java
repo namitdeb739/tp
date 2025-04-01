@@ -24,6 +24,8 @@ public class ModelManager implements Model {
     private final FilteredList<Tenant> filteredTenants;
     private final FilteredList<Tenant> filteredArchivedTenants;
 
+    private boolean isShowingArchived = false;
+
     /**
      * Initializes a ModelManager with the given tenantTracker and userPrefs.
      */
@@ -132,6 +134,21 @@ public class ModelManager implements Model {
         tenantTracker.setTenant(tenant, unarchived);
         updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
         updateFilteredArchivedTenantList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void toggleArchiveView() {
+        isShowingArchived = !isShowingArchived;
+        if (isShowingArchived) {
+            updateFilteredArchivedTenantList(PREDICATE_SHOW_ALL_PERSONS);
+        } else {
+            updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
+        }
+    }
+
+    @Override
+    public boolean isShowingArchived() {
+        return isShowingArchived;
     }
 
 
