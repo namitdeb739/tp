@@ -171,6 +171,7 @@ public class ModelManager implements Model {
 
         if (tenantToMarkAsPaid != null) {
             tenantToMarkAsPaid.markAsPaid(); // Mark tenant as paid
+            setPerson(tenantToMarkAsPaid, tenantToMarkAsPaid);
         } else {
             throw new IllegalArgumentException("Tenant with the phone number " + phone + " not found.");
         }

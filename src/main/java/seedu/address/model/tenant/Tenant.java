@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
@@ -22,7 +24,7 @@ public class Tenant {
     private final Email email;
 
     // Data fields
-    private boolean isPaid;
+    private BooleanProperty isPaid = new SimpleBooleanProperty();
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isArchived;
@@ -39,7 +41,7 @@ public class Tenant {
         this.address = address;
         this.tags.addAll(tags);
         this.isArchived = isArchived;
-        this.isPaid = isPaid;
+        this.isPaid.set(isPaid);
     }
 
     /**
@@ -89,14 +91,14 @@ public class Tenant {
      * Returns a copy of this tenant marked as archived.
      */
     public Tenant archive() {
-        return new Tenant(name, phone, email, address, tags, true, isPaid);
+        return new Tenant(name, phone, email, address, tags, true, isPaid.get());
     }
 
     /**
      * Returns a copy of this tenant marked as active.
      */
     public Tenant unarchive() {
-        return new Tenant(name, phone, email, address, tags, false, isPaid);
+        return new Tenant(name, phone, email, address, tags, false, isPaid.get());
     }
 
     /**
@@ -111,22 +113,26 @@ public class Tenant {
         return otherPerson != null && otherPerson.getName().equals(getName());
     }
 
+    public BooleanProperty isPaidProperty() {
+        return isPaid;
+    }
+
     public void markAsPaid() {
-        this.isPaid = true;
+        this.isPaid.set(true);
     }
 
     /**
      * Returns true if the tenant is marked as paid.
      */
     public boolean isPaid() {
-        return this.isPaid;
+        return isPaid.get();
     }
 
     /**
      * Marks the tenant as paid or not
      */
     public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
+        this.isPaid.set(isPaid);
     }
 
 
