@@ -285,6 +285,26 @@ Examples:
 * `find Betsy` followed by `map 1` searches the 1st tenant in the results of the `find` command's address in Google
   Maps.
 
+### Marking a tenant as paid: `paid`
+
+Marks a tenant as paid with a paid icon based on phone number.
+
+Format:
+
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+paid PHONE
+</pre>
+
+Details:
+
+* Searches the tenant with the specified phone number.
+* The phone number should be exactly 8 digits long.
+* If the phone number does not belong to any tenant, an error message is returned.
+
+Examples:
+
+* `paid` followed by `87654321` marks the tenant with the 87654321 phone number with a paid icon.
+
 ### Exiting the program: `exit`
 
 Exits the program.
