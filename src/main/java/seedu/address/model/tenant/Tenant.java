@@ -39,7 +39,7 @@ public class Tenant {
         this.address = address;
         this.tags.addAll(tags);
         this.isArchived = isArchived;
-        this.isPaid = false;
+        this.isPaid = isPaid;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Tenant {
      * Returns true if the tenant is marked as paid.
      */
     public boolean isPaid() {
-        return isPaid;
+        return this.isPaid;
     }
 
     /**
