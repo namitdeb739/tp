@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTenantTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TenantTracker;
+import seedu.address.model.tenant.Phone;
 import seedu.address.model.tenant.Tenant;
 import seedu.address.testutil.TenantBuilder;
 
@@ -173,6 +174,16 @@ public class AddCommandTest {
         public void archiveTenant(Tenant tenant) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markTenantAsPaid(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Tenant findTenantByPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     // /**
@@ -214,6 +225,16 @@ public class AddCommandTest {
         @Override
         public ReadOnlyTenantTracker getTenantTracker() {
             return new TenantTracker();
+        }
+
+        @Override
+        public void markTenantAsPaid(Phone phone) {
+            for (Tenant tenant : personsAdded) {
+                if (tenant.getPhone().equals(phone)) {
+                    tenant.markAsPaid();
+                    return;
+                }
+            }
         }
     }
 
