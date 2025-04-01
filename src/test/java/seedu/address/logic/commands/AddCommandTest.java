@@ -184,6 +184,11 @@ public class AddCommandTest {
         public Tenant findTenantByPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void unmarkTenantAsPaid(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     // /**

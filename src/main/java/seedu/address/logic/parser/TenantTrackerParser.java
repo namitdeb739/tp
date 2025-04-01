@@ -21,6 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MapCommand;
 import seedu.address.logic.commands.PaidCommand;
+import seedu.address.logic.commands.UnpaidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -93,6 +94,10 @@ public class TenantTrackerParser {
 
         case PaidCommand.COMMAND_WORD:
             return new PaidCommandParser().parse(arguments, userInput);
+
+        case UnpaidCommand.COMMAND_WORD:
+            return new UnpaidCommandParser().parse(arguments, userInput);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

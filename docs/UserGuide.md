@@ -303,7 +303,27 @@ Details:
 
 Examples:
 
-* `paid` followed by `87654321` marks the tenant with the 87654321 phone number with a paid icon.
+* `paid` followed by `87654321` adds a paid icon to the tenant with the phone number: `87654321`.
+
+### Marking a tenant as not paid: `unpaid`
+
+Marks a tenant as not paid based on phone number. The paid icon is removed from the tenant details.
+
+Format:
+
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+unpaid PHONE
+</pre>
+
+Details:
+
+* Searches the tenant with the specified phone number.
+* The phone number should be exactly 8 digits long.
+* The phone number should belong to a tenant that has paid.
+
+Examples:
+
+* `unpaid` followed by `87654321` removes the paid icon from the tenant with the phone number: `87654321`.
 
 ### Exiting the program: `exit`
 
@@ -386,5 +406,7 @@ corruption.
  **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
  **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`
  **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
- **List**    | `list`                                                                                                                  |
+ **List**    | `list`                                                                                                                  
+ **Paid**    | `paid phone/PHONE`                                                                                                      | `paid 87654321`
+ **UnPaid**  | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`
  **Help**    | `help`                                                                                                                  |
