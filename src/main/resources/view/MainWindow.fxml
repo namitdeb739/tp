@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.CheckMenuItem?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="TenantTrack" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -30,6 +31,10 @@
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
+                    </Menu>
+                    <Menu  mnemonicParsing="false" text="Archive">
+                        <CheckMenuItem fx:id="toggleArchiveMenu" mnemonicParsing="false" onAction="#handleToggleArchiveView"
+                                       text="Toggle Archive/Active List"/>
                     </Menu>
                 </MenuBar>
 
@@ -52,9 +57,11 @@
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
                     <StackPane fx:id="tenantListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <StackPane fx:id="archivedTenantListPanelPlaceholder" VBox.vgrow="ALWAYS" visible="false" managed="false"/>
                 </VBox>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+
             </VBox>
         </Scene>
     </scene>

@@ -85,4 +85,20 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public ObservableList<Tenant> getFilteredArchivedTenantList() {
+        return model.getArchivedTenantList();
+    }
+
+    @Override
+    public boolean isShowingArchived() {
+        return model.isShowingArchived();
+    }
+
+    @Override
+    public void toggleArchiveView() {
+        model.toggleArchiveView();
+    }
+
 }
