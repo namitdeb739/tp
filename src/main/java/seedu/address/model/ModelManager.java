@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.tenant.Phone;
 import seedu.address.model.tenant.Tenant;
 
 /**
@@ -154,6 +155,38 @@ public class ModelManager implements Model {
     public void updateFilteredTenantList(Predicate<Tenant> predicate) {
         requireNonNull(predicate);
         filteredTenants.setPredicate(predicate);
+    }
+
+    /**
+     * Marks a tenant as paid based on their phone number.
+     *
+     * @param phone the phone number of the tenant to mark as paid
+     */
+    @Override
+    public void markTenantAsPaid(Phone phone) {
+        requireNonNull(phone);
+
+        // Find tenant by phone number
+        Tenant tenantToMarkAsPaid = findTenantByPhone(phone);
+
+        if (tenantToMarkAsPaid != null) {
+            tenantToMarkAsPaid.markAsPaid(); // Mark tenant as paid
+            setPerson(tenantToMarkAsPaid, tenantToMarkAsPaid);
+        } else {
+            throw new IllegalArgumentException("Tenant with the phone number " + phone + " not found.");
+        }
+    }
+
+    /**
+     * Returns the tenant with the specified phone number.
+     */
+    public Tenant findTenantByPhone(Phone phone) {
+        for (Tenant tenant : tenantTracker.getActiveTenantList()) {
+            if (tenant.getPhone().equals(phone)) {
+                return tenant;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -25,7 +27,7 @@ public class TenantCard extends UiPart<Region> {
      *      level 4</a>
      */
 
-    public final Tenant person;
+    public final Tenant tenant;
 
     @FXML
     private HBox cardPane;
@@ -40,20 +42,24 @@ public class TenantCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private ImageView paidIcon;
+    @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code TenantCode} with the given {@code Tenant} and index to display.
      */
-    public TenantCard(Tenant person, int displayedIndex) {
+    public TenantCard(Tenant tenant, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.tenant = tenant;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().toString());
-        phone.setText("Phone: " + person.getPhone().value);
-        address.setText("Address: " + person.getAddress().value);
-        email.setText("Email: " + person.getEmail().value);
-        person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+        name.setText(tenant.getName().toString() + "  ");
+        phone.setText("Phone: " + tenant.getPhone().value);
+        address.setText("Address: " + tenant.getAddress().value);
+        email.setText("Email: " + tenant.getEmail().value);
+        tenant.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        paidIcon.setImage(new Image("/images/PaidIcon.png"));
+        paidIcon.visibleProperty().bind(tenant.isPaidProperty());
     }
 }
