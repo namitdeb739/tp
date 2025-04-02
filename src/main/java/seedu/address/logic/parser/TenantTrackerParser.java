@@ -20,9 +20,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MapCommand;
+import seedu.address.logic.commands.PaidCommand;
 import seedu.address.logic.commands.ToggleArchiveCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
-import seedu.address.logic.commands.PaidCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
