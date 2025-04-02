@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
@@ -22,6 +24,7 @@ public class Tenant {
     private final Email email;
 
     // Data fields
+    private BooleanProperty isPaid = new SimpleBooleanProperty();
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isArchived;
@@ -29,7 +32,8 @@ public class Tenant {
     /**
      * Every field must be present and not null.
      */
-    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isArchived) {
+    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  boolean isArchived, boolean isPaid) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -37,13 +41,14 @@ public class Tenant {
         this.address = address;
         this.tags.addAll(tags);
         this.isArchived = isArchived;
+        this.isPaid.set(isPaid);
     }
 
     /**
-     * Constructs a Tenant with default archive status (false).
+     * Constructs a Tenant with default archive status (false) and default isPaid status (false).
      */
     public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, false);
+        this(name, phone, email, address, tags, false, false);
     }
 
     public Name getName() {
@@ -86,14 +91,14 @@ public class Tenant {
      * Returns a copy of this tenant marked as archived.
      */
     public Tenant archive() {
-        return new Tenant(name, phone, email, address, tags, true);
+        return new Tenant(name, phone, email, address, tags, true, isPaid.get());
     }
 
     /**
      * Returns a copy of this tenant marked as active.
      */
     public Tenant unarchive() {
-        return new Tenant(name, phone, email, address, tags, false);
+        return new Tenant(name, phone, email, address, tags, false, isPaid.get());
     }
 
     /**
@@ -107,6 +112,29 @@ public class Tenant {
 
         return otherPerson != null && otherPerson.getName().equals(getName());
     }
+
+    public BooleanProperty isPaidProperty() {
+        return isPaid;
+    }
+
+    public void markAsPaid() {
+        this.isPaid.set(true);
+    }
+
+    /**
+     * Returns true if the tenant is marked as paid.
+     */
+    public boolean isPaid() {
+        return isPaid.get();
+    }
+
+    /**
+     * Marks the tenant as paid or not
+     */
+    public void setPaid(boolean isPaid) {
+        this.isPaid.set(isPaid);
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields. This defines a stronger

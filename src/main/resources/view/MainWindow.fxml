@@ -33,7 +33,7 @@
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
                     <Menu  mnemonicParsing="false" text="Archive">
-                        <Check MenuItem fx:id="toggleArchiveMenu" mnemonicParsing="false" onAction="#handleToggleArchiveView"
+                        <CheckMenuItem fx:id="toggleArchiveMenu" mnemonicParsing="false" onAction="#handleToggleArchiveView"
                                        text="Toggle Archive/Active List"/>
                     </Menu>
                 </MenuBar>

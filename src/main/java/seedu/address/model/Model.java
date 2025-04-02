@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.tenant.Phone;
 import seedu.address.model.tenant.Tenant;
 
 /**
@@ -121,4 +122,13 @@ public interface Model {
      */
     boolean isShowingArchived();
 
+    /**
+     * Marks the tenant as paid based on their phone number.
+     */
+    void markTenantAsPaid(Phone phone);
+
+    /**
+     * Finds a tenant based on their phone number.
+     */
+    Tenant findTenantByPhone(Phone phone);
 }
