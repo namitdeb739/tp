@@ -108,6 +108,21 @@ public interface Model {
     void archiveTenant(Tenant tenant);
 
     /**
+     * Marks a tenant as unarchived and moves them to the tenant list.
+     */
+    void unarchiveTenant(Tenant tenant);
+
+    /**
+     * Toggles between archived list and unarchived list.
+     */
+    void toggleArchiveView();
+
+    /**
+     * Shows true if the current displayed list is archived
+     */
+    boolean isShowingArchived();
+
+    /**
      * Marks the tenant as paid based on their phone number.
      */
     void markTenantAsPaid(Phone phone);

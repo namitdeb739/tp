@@ -24,6 +24,11 @@ public class CommandResult {
     private final boolean exit;
 
     /**
+     * Archive list and active list should be toggled
+     */
+    private boolean isToggleArchiveView;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
@@ -40,6 +45,15 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and isarchived value,
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean isToggleArchiveView) {
+        this(feedbackToUser, false, false);
+        this.isToggleArchiveView = isToggleArchiveView;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser.substring(feedbackToUser.indexOf('\n') + 1);
     }
@@ -50,6 +64,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isToggleArchiveView() {
+        return isToggleArchiveView;
     }
 
     @Override
