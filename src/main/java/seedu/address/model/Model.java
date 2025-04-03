@@ -131,4 +131,9 @@ public interface Model {
      * Finds a tenant based on their phone number.
      */
     Tenant findTenantByPhone(Phone phone);
+
+    /**
+     * Marks the tenant as not paid based on their phone number.
+     */
+    void unmarkTenantAsPaid(Phone phone);
 }
