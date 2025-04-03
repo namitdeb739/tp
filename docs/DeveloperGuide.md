@@ -32,7 +32,8 @@ title: Developer Guide
 * **`unarchive`**: Unarchive a previously archived tenant.
 * **`togglearchive`**: Toggle the archive status of a tenant.
 * **`paid`**: Mark a tenant as having paid their rent.
-* **`filter`**: Filter tenants based on multiple fields such as occupancy status.
+* **`unpaid`**: Mark a tenant as not having paid their rent.
+* **`filter`**: Filter tenants based on multiple fields such as address.
 * **`map`**: View tenants or properties on a map UI (implementation inferred from `MapCommand`).
 
 Each of these has corresponding command classes and parsers in `logic.commands` and `logic.parser` respectively.
@@ -232,6 +233,532 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Archive/Unarchive/Toggle Archive Tenants
+
+#### Implementation
+
+The `ArchiveCommand`, `UnarchiveCommand`, and `ToggleArchiveCommand` allow users to manage the archive status of tenants. These commands are useful for landlords who want to retain historical records of tenants without cluttering the active tenant list.
+
+* The `ArchiveCommand` marks a tenant as archived.
+* The `UnarchiveCommand` restores a previously archived tenant to the active list.
+* The `ToggleArchiveCommand` switches between displaying archived and active tenants in the tenant list.
+
+These commands are implemented as part of the `Command` hierarchy. They interact with the `Model` component to update or retrieve the `Tenant`'s `isArchived` property.
+
+#### Key Classes and Methods
+
+* **`ArchiveCommand`**:
+  * Executes the archive operation.
+  * Implements the `Command` interface.
+  * Contains the tenant index to be archived.
+
+* **`UnarchiveCommand`**:
+  * Executes the unarchive operation.
+  * Implements the `Command` interface.
+  * Contains the tenant index to be unarchived.
+
+* **`ToggleArchiveCommand`**:
+  * Toggles the display between archived and active tenants.
+  * Implements the `Command` interface.
+
+* **`ArchiveCommandParser`**:
+  * Parses user input to create an `ArchiveCommand` object.
+
+* **`UnarchiveCommandParser`**:
+  * Parses user input to create an `UnarchiveCommand` object.
+
+* **`Model`**:
+  * Provides the `archiveTenant()`, `unarchiveTenant()`, and `toggleArchiveView()` methods to update or retrieve the `Tenant`'s `isArchived` property.
+
+* **`Tenant`**:
+  * Contains the `BooleanProperty isArchived` field, which is updated when a tenant is archived or unarchived.
+
+---
+
+#### How It Works
+
+1. **User Input**:
+   * For `ArchiveCommand`: The user enters a command like `archive 3` to archive the 3rd tenant in the displayed list.
+   * For `UnarchiveCommand`: The user enters a command like `unarchive 2` to unarchive the 2nd tenant in the archived list.
+   * For `ToggleArchiveCommand`: The user enters a command like `togglearchive` to switch between viewing archived and active tenants.
+
+1. **Parsing**:
+   * The `ArchiveCommandParser` parses the input and creates an `ArchiveCommand` object with the specified tenant index.
+   * The `UnarchiveCommandParser` parses the input and creates an `UnarchiveCommand` object with the specified tenant index.
+   * The `ToggleArchiveCommand` does not require arguments and is created directly.
+
+1. **Execution**:
+   * The `ArchiveCommand` retrieves the tenant from the `Model` using the index and updates the `isArchived` property to `true` by calling `Model#archiveTenant()`.
+   * The `UnarchiveCommand` retrieves the tenant from the archived list in the `Model` using the index and updates the `isArchived` property to `false` by calling `Model#unarchiveTenant()`.
+   * The `ToggleArchiveCommand` switches the view between archived and active tenants by calling `Model#toggleArchiveView()`.
+
+1. **Feedback**:
+   * A success message is displayed to the user, confirming the operation.
+
+---
+
+#### Example Usage Scenarios
+
+1. **ArchiveCommand**:
+   * The user enters the command `archive 3`.
+   * The `Logic` component passes the command to the `TenantTrackerParser`, which uses the `ArchiveCommandParser` to parse the input.
+   * The `ArchiveCommand` is created with the index `3` and executed by the `LogicManager`.
+   * The `ArchiveCommand` calls `Model#archiveTenant()` to update the `isArchived` property of the 3rd tenant.
+   * The UI updates to reflect the change, and a success message is displayed.
+
+1. **UnarchiveCommand**:
+   * The user enters the command `unarchive 2`.
+   * The `Logic` component passes the command to the `TenantTrackerParser`, which uses the `UnarchiveCommandParser` to parse the input.
+   * The `UnarchiveCommand` is created with the index `2` and executed by the `LogicManager`.
+   * The `UnarchiveCommand` calls `Model#unarchiveTenant()` to update the `isArchived` property of the 2nd tenant.
+   * The UI updates to reflect the change, and a success message is displayed.
+
+1. **ToggleArchiveCommand**:
+   * The user enters the command `togglearchive`.
+   * The `Logic` component directly creates the `ToggleArchiveCommand` and executes it.
+   * The `ToggleArchiveCommand` calls `Model#toggleArchiveView()` to switch the view between archived and active tenants.
+   * The UI updates to reflect the change.
+
+---
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the `archive` command is executed:
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+The following sequence diagram shows how the `unarchive` command is executed:
+
+![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
+
+The following sequence diagram shows how the `togglearchive` command is executed:
+
+![ToggleArchiveSequenceDiagram](images/ToggleArchiveSequenceDiagram.png)
+
+---
+
+#### Design Considerations
+
+**Aspect: How the archive/unarchive/toggle operations are implemented**
+
+* **Alternative 1 (current choice)**: Use a `BooleanProperty isArchived` in the `Tenant` class.
+  * **Pros**: Simple to implement and integrates well with the existing `Tenant` model.
+  * **Cons**: Requires filtering logic in the UI to hide archived tenants.
+
+* **Alternative 2**: Move archived tenants to a separate list.
+  * **Pros**: Clearly separates active and archived tenants.
+  * **Cons**: Increases complexity in managing multiple lists and commands.
+
+---
+
+#### Command Formats
+
+```txt
+archive INDEX
+```
+
+* **INDEX**: The index of the tenant in the displayed list to be archived.
+
+```txt
+unarchive INDEX
+```
+
+* **INDEX**: The index of the tenant in the displayed list to be unarchived.
+
+```txt
+togglearchive
+```
+
+* Toggles the view between archived and active tenants.
+
+**Examples**
+
+```txt
+archive 3
+```
+
+* Archives the 3rd tenant in the displayed list.
+
+```txt
+unarchive 2
+```
+
+* Unarchives the 2nd tenant in the archived list.
+
+```txt
+togglearchive
+```
+
+* Switches the view between archived and active tenants.
+
+**Notes**
+
+* Archived tenants are hidden from the default tenant list but can be accessed using the `togglearchive` command.
+* The `isArchived` property ensures that the tenant's data is retained for future reference.
+* The `togglearchive` command does not modify any tenant data; it only changes the view.
+
+### Paid/Unpaid Tenants
+
+#### Implementation
+
+The `PaidCommand` and `UnpaidCommand` allow users to manage the payment status of tenants. These commands are useful for landlords who want to track which tenants have paid their rent and which have not.
+
+* The `PaidCommand` marks a tenant as paid.
+* The `UnpaidCommand` marks a tenant as unpaid.
+
+These commands are implemented as part of the `Command` hierarchy. They interact with the `Model` component to update or retrieve the `Tenant`'s `isPaid` property.
+
+#### Key Classes and Methods
+
+* **`PaidCommand`**:
+  * Executes the operation to mark a tenant as paid.
+  * Implements the `Command` interface.
+  * Contains the tenant's phone number to identify the tenant.
+
+* **`UnpaidCommand`**:
+  * Executes the operation to mark a tenant as unpaid.
+  * Implements the `Command` interface.
+  * Contains the tenant's phone number to identify the tenant.
+
+* **`PaidCommandParser`**:
+  * Parses user input to create a `PaidCommand` object.
+
+* **`UnpaidCommandParser`**:
+  * Parses user input to create an `UnpaidCommand` object.
+
+* **`Model`**:
+  * Provides the `markTenantAsPaid()` and `unmarkTenantAsPaid()` methods to update the `Tenant`'s `isPaid` property.
+
+* **`Tenant`**:
+  * Contains the `BooleanProperty isPaid` field, which is updated when a tenant is marked as paid or unpaid.
+
+---
+
+#### How It Works
+
+1. **User Input**:
+   * For `PaidCommand`: The user enters a command like `paid 98765432` to mark the tenant with the phone number `98765432` as paid.
+   * For `UnpaidCommand`: The user enters a command like `unpaid 98765432` to mark the tenant with the phone number `98765432` as unpaid.
+
+1. **Parsing**:
+   * The `PaidCommandParser` parses the input and creates a `PaidCommand` object with the specified phone number.
+   * The `UnpaidCommandParser` parses the input and creates an `UnpaidCommand` object with the specified phone number.
+
+1. **Execution**:
+   * The `PaidCommand` retrieves the tenant from the `Model` using the phone number and updates the `isPaid` property to `true` by calling `Model#markTenantAsPaid()`.
+   * The `UnpaidCommand` retrieves the tenant from the `Model` using the phone number and updates the `isPaid` property to `false` by calling `Model#unmarkTenantAsPaid()`.
+
+1. **Feedback**:
+   * A success message is displayed to the user, confirming the operation.
+
+---
+
+#### Example Usage Scenarios
+
+1. **PaidCommand**:
+   * The user enters the command `paid 98765432`.
+   * The `Logic` component passes the command to the `TenantTrackerParser`, which uses the `PaidCommandParser` to parse the input.
+   * The `PaidCommand` is created with the phone number `98765432` and executed by the `LogicManager`.
+   * The `PaidCommand` calls `Model#markTenantAsPaid()` to update the `isPaid` property of the tenant.
+   * The UI updates to reflect the change, and a success message is displayed.
+
+1. **UnpaidCommand**:
+   * The user enters the command `unpaid 98765432`.
+   * The `Logic` component passes the command to the `TenantTrackerParser`, which uses the `UnpaidCommandParser` to parse the input.
+   * The `UnpaidCommand` is created with the phone number `98765432` and executed by the `LogicManager`.
+   * The `UnpaidCommand` calls `Model#unmarkTenantAsPaid()` to update the `isPaid` property of the tenant.
+   * The UI updates to reflect the change, and a success message is displayed.
+
+---
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the `paid` command is executed:
+
+![PaidSequenceDiagram](images/PaidSequenceDiagram.png)
+
+The following sequence diagram shows how the `unpaid` command is executed:
+
+![UnpaidSequenceDiagram](images/UnpaidSequenceDiagram.png)
+
+---
+
+#### Design Considerations
+
+**Aspect: How the paid/unpaid operations are implemented**
+
+* **Alternative 1 (current choice)**: Use a `BooleanProperty isPaid` in the `Tenant` class.
+  * **Pros**: Simple to implement and integrates well with the existing `Tenant` model.
+  * **Cons**: Requires filtering logic in the UI to display tenants based on payment status.
+
+* **Alternative 2**: Maintain separate lists for paid and unpaid tenants.
+  * **Pros**: Clearly separates paid and unpaid tenants.
+  * **Cons**: Increases complexity in managing multiple lists and commands.
+
+---
+
+#### Command Formats
+
+```plaintext
+paid PHONE
+```
+
+* **PHONE**: The phone number of the tenant to be marked as paid.
+
+```plaintext
+unpaid PHONE
+```
+
+* **PHONE**: The phone number of the tenant to be marked as unpaid.
+
+**Examples**
+
+```plaintext
+paid 98765432
+```
+
+* Marks the tenant with the phone number `98765432` as paid.
+
+```plaintext
+unpaid 98765432
+```
+
+* Marks the tenant with the phone number `98765432` as unpaid.
+
+**Notes**
+
+* The phone number must belong to an existing tenant.
+* If the tenant is already marked as paid or unpaid, an appropriate error message is displayed.
+* The `isPaid` property ensures that the tenant's payment status is tracked accurately.
+
+### Filter Tenants
+
+#### Implementation
+
+The `FilterCommand` allows users to filter tenants based on their address. This feature is useful for landlords who want to quickly identify tenants residing at specific locations.
+
+* The `FilterCommand` filters tenants whose addresses contain the specified keywords.
+* The `FilterCommandParser` parses the user input to create a `FilterCommand` object.
+* The `Model` component provides the `updateFilteredTenantList()` method to apply the filtering logic.
+
+#### Key Classes and Methods
+
+* **`FilterCommand`**:
+  * Executes the filtering operation.
+  * Implements the `Command` interface.
+  * Contains the filtering predicate.
+
+* **`FilterCommandParser`**:
+  * Parses user input to create a `FilterCommand` object.
+
+* **`Model`**:
+  * Provides the `updateFilteredTenantList()` method to apply the filtering logic.
+
+* **`AddressContainsKeywordsPredicate`**:
+  * Evaluates whether a tenant's address contains the specified keywords.
+
+---
+
+#### How It Works
+
+1. **User Input**:
+   * The user enters a command like `filter Kent Ridge` to filter tenants whose addresses contain the keywords "Kent" and "Ridge".
+
+1. **Parsing**:
+   * The `FilterCommandParser` parses the input and creates a `FilterCommand` object with an `AddressContainsKeywordsPredicate` containing the specified keywords.
+
+1. **Execution**:
+   * The `FilterCommand` calls `Model#updateFilteredTenantList()` with the predicate to filter tenants based on their addresses.
+
+1. **Feedback**:
+   * The filtered list of tenants is displayed to the user.
+
+---
+
+#### Search Details
+
+* The search is **not case-sensitive**. For example, `Lower Kent Ridge` will match `lower kent ridge`.
+* The **order of the keywords does not matter**. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
+* Only the **address** is searched.
+* **Prefixes of words or postal codes will be matched**:
+  * For example, `Kent` will match `Ken` and `229` will match `229220`.
+  * However, `ent` will **not** match `Kent`.
+* Tenants with addresses matching **at least one keyword** will be returned (i.e., **OR search**):
+  * For example, `Lower Kent Ridge` will return tenants with addresses like `Lower Arab Street`, `Kent Ridge`.
+
+---
+
+#### Example Usage Scenarios
+
+1. **FilterCommand**:
+   * The user enters the command `filter Kent Ridge`.
+   * The `Logic` component passes the command to the `TenantTrackerParser`, which uses the `FilterCommandParser` to parse the input.
+   * The `FilterCommand` is created with the keywords `Kent` and `Ridge` and executed by the `LogicManager`.
+   * The `FilterCommand` calls `Model#updateFilteredTenantList()` to filter tenants whose addresses contain the keywords.
+   * The UI updates to display the filtered list of tenants.
+
+---
+
+#### Examples
+
+* `filter Kent Ridge`:
+  * Returns tenants with addresses like `Lower Kent Ridge`, `Upper Kent Ridge`, `Kent Road`, and `Ridge View`.
+
+* `filter 229`:
+  * Returns tenants with addresses containing postal codes like `229220`.
+
+---
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the `filter` command is executed:
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+---
+
+#### Design Considerations
+
+**Aspect: How the filtering operation is implemented**
+
+* **Alternative 1 (current choice)**: Use predicates to filter the tenant list.
+  * **Pros**: Simple to implement and integrates well with the existing `Model` component.
+  * **Cons**: Requires careful handling of multiple keywords to ensure accurate filtering.
+
+* **Alternative 2**: Create separate filtered lists for each keyword.
+  * **Pros**: Simplifies the filtering logic for individual keywords.
+  * **Cons**: Increases complexity in managing multiple lists and combining results.
+
+---
+
+#### Command Formats
+
+```plaintext
+filter KEYWORD [MORE_KEYWORDS]...
+```
+
+* **KEYWORD**: A keyword to match against tenant addresses.
+
+**Examples**
+
+```plaintext
+filter Kent Ridge
+```
+
+* Filters tenants whose addresses contain the keywords "Kent" and "Ridge".
+
+```plaintext
+filter 119077
+```
+
+* Filters tenants whose addresses contain the postal code "119077".
+
+**Notes**
+
+* Keywords are case-insensitive.
+* If no tenants match the criteria, an appropriate message is displayed.
+
+### Map Tenants
+
+#### Implementation
+
+The `MapCommand` allows users to view the location of a tenant's address on Google Maps. This feature is useful for landlords who want to quickly locate a tenant's property.
+
+* The `MapCommand` generates a Google Maps URL based on the tenant's address.
+* The `MapCommandParser` parses the user input to create a `MapCommand` object.
+* The `Model` component provides access to the tenant's address.
+
+#### Key Classes and Methods
+
+* **`MapCommand`**:
+  * Executes the operation to generate and open the Google Maps URL.
+  * Implements the `Command` interface.
+  * Contains the tenant's index to identify the tenant.
+
+* **`MapCommandParser`**:
+  * Parses user input to create a `MapCommand` object.
+
+* **`Model`**:
+  * Provides access to the tenant's address using the tenant's index.
+
+* **`Address`**:
+  * Represents the tenant's address, which is encoded into a URL-friendly format.
+
+---
+
+#### How It Works
+
+1. **User Input**:
+   * The user enters a command like `map 3` to view the location of the 3rd tenant's address on Google Maps.
+
+1. **Parsing**:
+   * The `MapCommandParser` parses the input and creates a `MapCommand` object with the specified tenant index.
+
+1. **Execution**:
+   * The `MapCommand` retrieves the tenant's address from the `Model` using the index.
+   * The address is URL-encoded and appended to the Google Maps base URL.
+   * The generated URL is opened in the user's default web browser.
+
+1. **Feedback**:
+   * A success message is displayed to the user, confirming the operation.
+
+---
+
+#### Example Usage Scenarios
+
+1. **MapCommand**:
+   * The user enters the command `map 3`.
+   * The `Logic` component passes the command to the `TenantTrackerParser`, which uses the `MapCommandParser` to parse the input.
+   * The `MapCommand` is created with the index `3` and executed by the `LogicManager`.
+   * The `MapCommand` retrieves the address of the 3rd tenant from the `Model`.
+   * The address is URL-encoded, and the Google Maps URL is generated and opened in the browser.
+   * A success message is displayed to the user.
+
+---
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the `map` command is executed:
+
+![MapSequenceDiagram](images/MapSequenceDiagram.png)
+
+---
+
+#### Design Considerations
+
+**Aspect: How the map operation is implemented**
+
+* **Alternative 1 (current choice)**: Use the tenant's address to generate a Google Maps URL.
+  * **Pros**: Simple to implement and integrates well with the existing `Tenant` model.
+  * **Cons**: Requires the tenant's address to be accurate and complete.
+
+* **Alternative 2**: Use a third-party geocoding API to validate and fetch coordinates.
+  * **Pros**: Ensures the address is valid and provides precise location data.
+  * **Cons**: Increases complexity and introduces dependency on an external API.
+
+---
+
+#### Command Formats
+
+```plaintext
+map INDEX
+```
+
+* **INDEX**: The index of the tenant in the displayed list whose address will be mapped.
+
+**Examples**
+
+```plaintext
+map 3
+```
+
+* Opens the Google Maps location of the 3rd tenant's address.
+
+**Notes**
+
+* The tenant's address must be valid and complete for the Google Maps URL to work.
+* If the tenant's index is invalid, an appropriate error message is displayed.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -332,8 +859,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the tenant being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -516,7 +1041,129 @@ otherwise)
 
       Use case ends.
 
-_{More to be added}_
+---
+
+**Use case: Archive a tenant**
+
+**MSS**
+
+1. Landlord requests to archive a tenant.
+2. System archives the tenant and updates the tenant list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tenant does not exist.
+  * 1a1. System shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: Unarchive a tenant**
+
+**MSS**
+
+1. Landlord requests to unarchive a tenant.
+2. System unarchives the tenant and updates the tenant list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tenant does not exist.
+  * 1a1. System shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: Toggle between archived and active tenants**
+
+**MSS**
+
+1. Landlord requests to toggle the view between archived and active tenants.
+2. System switches the view.
+
+   Use case ends.
+
+---
+
+**Use case: Mark a tenant as paid**
+
+**MSS**
+
+1. Landlord requests to mark a tenant as paid.
+2. System updates the tenant's payment status to "paid".
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tenant does not exist.
+  * 1a1. System shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: Mark a tenant as unpaid**
+
+**MSS**
+
+1. Landlord requests to mark a tenant as unpaid.
+2. System updates the tenant's payment status to "unpaid".
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tenant does not exist.
+  * 1a1. System shows an error message.
+
+      Use case ends.
+
+---
+
+**Use case: Filter tenants by address**
+
+**MSS**
+
+1. Landlord requests to filter tenants by address keywords.
+2. System displays tenants whose addresses match the keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No tenants match the filter criteria.
+  * 1a1. System shows a message indicating no matches.
+
+      Use case ends.
+
+---
+
+**Use case: View a tenant's address on a map**
+
+**MSS**
+
+1. Landlord requests to view a tenant's address on a map.
+2. System generates a Google Maps URL for the tenant's address and opens it in the browser.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tenant does not exist.
+  * 1a1. System shows an error message.
+
+      Use case ends.
+
+* 1b. The tenant's address is invalid.
+  * 1b1. System shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -554,11 +1201,38 @@ _{More to be added}_
    target users while allowing visual feedback through a GUI.
 1. The product should maintain realistic use cases, targeting scenarios where a standalone desktop application is a
    viable solution.
+1. The system should ensure data integrity by validating inputs and preventing invalid data from being saved.
+1. The application should include automated tests to ensure high code quality and prevent regressions.
+1. The software should be modular to facilitate future enhancements and maintenance.
+1. The application should provide clear error messages for invalid user inputs to ensure a smooth user experience.
+1. The system should recover gracefully from unexpected crashes or corrupted data files.
+1. The application should include logging functionality to assist in debugging and tracking user actions.
+1. The software should minimize memory usage and avoid memory leaks.
+1. The application should support localization to allow easy adaptation for different languages and regions.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Address**: A tenant's location, which must include a valid 6-digit postal code.
+* **Archive**: The process of marking a tenant as inactive while retaining their data for future reference.
+* **CLI (Command-Line Interface)**: A text-based interface where users interact with the application by typing commands.
+* **Command Box**: The input field in the GUI where users type commands to interact with the application.
+* **Command Parser**: A component responsible for interpreting user input and creating corresponding command objects.
+* **Filter**: A command used to narrow down the list of tenants based on specific criteria, such as address keywords.
+* **GUI (Graphical User Interface)**: A visual interface that allows users to interact with the application using graphical elements like buttons and menus.
+* **Human-editable file**: A text file that can be directly modified by users without requiring specialized tools.
+* **Index**: A positive integer representing the position of an item in a displayed list, starting from 1.
+* **JavaFX**: A software platform used to create and deliver desktop applications with a graphical user interface.
+* **JSON (JavaScript Object Notation)**: A lightweight data-interchange format used to store application data.
+* **Landlord**: The primary user of TenantTrack, responsible for managing multiple rental properties and tenant details.
+* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **ObservableList**: A list that allows listeners to track changes to its elements, commonly used in the UI.
+* **Paid Icon**: A visual indicator used to mark tenants who have paid their rent.
+* **PlantUML**: A tool used to create UML diagrams for documentation purposes.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
+* **Property**: A rental unit or building managed by the landlord and associated with one or more tenants.
+* **Rental Payment**: The periodic payment made by a tenant to the landlord for occupying a property.
+* **Tag**: A label assigned to a tenant for categorization purposes.
+* **Tenant**: An individual renting a property from a landlord. Each tenant has associated details such as name, phone number, email, and address.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -575,19 +1249,24 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder.
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    1. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location are retained.
 
-1. _{ more test cases …​ }_
+1. Launching with missing dependencies
+
+    1. Remove Java from the system or install an incompatible version of Java.
+
+    1. Attempt to launch the application.<br>
+       Expected: The application does not start, and an error message is displayed.
 
 ### Deleting a tenant
 
@@ -596,21 +1275,114 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all tenants using the `list` command. Multiple tenants in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First tenants is deleted from the list. Details of the deleted tenants shown in the status message.
+       Expected: First tenant is deleted from the list. Details of the deleted tenant are shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No tenants is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No tenant is deleted. Error details are shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a tenant
+
+1. Adding a tenant with valid details
+
+    1. Test case: `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
+       Expected: A new tenant named John Doe is added to the list. A success message is displayed.
+
+    1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
+       Expected: No tenant is added. Error details are shown in the status message.
+
+### Editing a tenant
+
+1. Editing a tenant's details
+
+    1. Prerequisites: List all tenants using the `list` command. Multiple tenants in the list.
+
+    1. Test case: `edit 1 phone/91234567 email/johndoe@example.com`<br>
+       Expected: First tenant's phone number and email are updated. Details of the updated tenant are shown in the status message.
+
+    1. Test case: `edit 1 tag/`<br>
+       Expected: All tags for the first tenant are cleared. Details of the updated tenant are shown in the status message.
+
+### Filtering tenants by address
+
+1. Filtering tenants by address keywords
+
+    1. Prerequisites: List all tenants using the `list` command. Multiple tenants with different addresses.
+
+    1. Test case: `filter Kent Ridge`<br>
+       Expected: Displays a list of tenants whose addresses contain "Kent Ridge".
+
+    1. Test case: `filter 123`<br>
+       Expected: Displays a list of tenants whose addresses contain "123".
+
+### Marking a tenant as paid
+
+1. Marking a tenant as paid
+
+    1. Prerequisites: List all tenants using the `list` command. Ensure at least one tenant has a valid phone number.
+
+    1. Test case: `paid 98765432`<br>
+       Expected: The tenant with the phone number `98765432` is marked as paid. A success message is displayed.
+
+    1. Test case: `paid 12345678`<br>
+       Expected: No tenant is marked as paid. Error details are shown in the status message.
+
+### Marking a tenant as unpaid
+
+1. Marking a tenant as unpaid
+
+    1. Prerequisites: List all tenants using the `list` command. Ensure at least one tenant is marked as paid.
+
+    1. Test case: `unpaid 98765432`<br>
+       Expected: The tenant with the phone number `98765432` is marked as unpaid. A success message is displayed.
+
+    1. Test case: `unpaid 12345678`<br>
+       Expected: No tenant is marked as unpaid. Error details are shown in the status message.
+
+### Viewing a tenant's address on Google Maps
+
+1. Viewing a tenant's address on Google Maps
+
+    1. Prerequisites: List all tenants using the `list` command. Ensure at least one tenant has a valid address.
+
+    1. Test case: `map 1`<br>
+       Expected: The address of the first tenant is opened in Google Maps. A success message is displayed.
+
+    1. Test case: `map 0`<br>
+       Expected: No address is opened. Error details are shown in the status message.
+
+### Listing all tenants
+
+1. Listing all tenants
+
+    1. Test case: `list`<br>
+       Expected: Displays a list of all tenants in the Tenant Track.
+
+### Clearing all tenants
+
+1. Clearing all tenants
+
+    1. Test case: `clear`<br>
+       Expected: All tenants are removed from the list. A success message is displayed.
 
 ### Saving data
 
+1. Verifying data is saved automatically
+
+    1. Prerequisites: Add a new tenant using the `add` command.
+
+    1. Close the application and re-launch it.<br>
+       Expected: The newly added tenant is still present in the list.
+
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: Locate the `tenanttracker.json` file in the `data` folder.
 
-1. _{ more test cases …​ }_
+    1. Delete the file and re-launch the application.<br>
+       Expected: The application starts with an empty list.
+
+    1. Corrupt the file by adding invalid JSON content and re-launch the application.<br>
+       Expected: The application starts with an empty list and creates a new valid `tenanttracker.json` file.

@@ -13,8 +13,7 @@ import seedu.address.model.tenant.Phone;
 import seedu.address.model.tenant.Tenant;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code UnpaidCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code UnpaidCommand}.
  */
 public class UnpaidCommandTest {
 
@@ -32,11 +31,10 @@ public class UnpaidCommandTest {
         String expectedMessage = String.format(UnpaidCommand.MESSAGE_SUCCESS, tenantToUnpay.getName());
 
         ModelManager expectedModel = new ModelManager(model.getTenantTracker(), new UserPrefs());
-        Tenant expectedTenant = new Tenant(tenantToUnpay.getName(), tenantToUnpay.getPhone(),
-                tenantToUnpay.getEmail(), tenantToUnpay.getAddress(), tenantToUnpay.getTags(),
-                tenantToUnpay.isArchived(), false);
+        Tenant expectedTenant = new Tenant(tenantToUnpay.getName(), tenantToUnpay.getPhone(), tenantToUnpay.getEmail(),
+                tenantToUnpay.getAddress(), tenantToUnpay.getTags(), tenantToUnpay.isArchived(), false);
 
-        expectedModel.setPerson(tenantToUnpay, expectedTenant);
+        expectedModel.setTenant(tenantToUnpay, expectedTenant);
 
         assertCommandSuccess(unpaidCommand, model, expectedMessage, expectedModel);
     }
