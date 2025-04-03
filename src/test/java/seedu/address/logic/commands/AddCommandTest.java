@@ -176,6 +176,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void unarchiveTenant(Tenant tenant) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void toggleArchiveView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isShowingArchived() {
+            return false;
+        }
+
+        @Override
         public void markTenantAsPaid(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
