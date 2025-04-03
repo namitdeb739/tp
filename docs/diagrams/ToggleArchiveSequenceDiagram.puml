@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TenantTrackerParser" as TenantTrackerParser LOGIC_COLOR
+participant "t:ToggleArchiveCommand" as ToggleArchiveCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("togglearchive")
+activate LogicManager
+
+LogicManager -> TenantTrackerParser : parseCommand("togglearchive")
+activate TenantTrackerParser
+
+create ToggleArchiveCommand
+TenantTrackerParser -> ToggleArchiveCommand
+activate ToggleArchiveCommand
+
+ToggleArchiveCommand --> TenantTrackerParser
+deactivate ToggleArchiveCommand
+
+TenantTrackerParser --> LogicManager : t
+deactivate TenantTrackerParser
+
+LogicManager -> ToggleArchiveCommand : execute(m)
+activate ToggleArchiveCommand
+
+ToggleArchiveCommand -> Model : toggleArchiveView()
+activate Model
+
+Model --> ToggleArchiveCommand
+deactivate Model
+
+create CommandResult
+ToggleArchiveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ToggleArchiveCommand
+deactivate CommandResult
+
+ToggleArchiveCommand --> LogicManager : r
+deactivate ToggleArchiveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

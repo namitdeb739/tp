@@ -51,6 +51,6 @@ deactivate Model
 FilterCommand --> LogicManager
 deactivate FilterCommand
 
-LogicManager --> [ : Filtered list displayed
+[<--LogicManager
 deactivate LogicManager
 @enduml
