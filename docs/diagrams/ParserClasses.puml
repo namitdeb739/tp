@@ -19,7 +19,7 @@ Class Prefix
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> AddressBookParser
+HiddenOutside ..> TenantTrackParser
 
 TenantTrackParser .down.> XYZCommandParser: <<create>>
 
