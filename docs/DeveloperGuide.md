@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -56,7 +56,9 @@ and edit diagrams.
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<div style="text-align: center;">
+    <img src="images/ArchitectureDiagram.png" width="280" />
+</div>
 
 The _**Architecture Diagram**_ given above explains the high-level design of the App.
 
@@ -86,7 +88,9 @@ The bulk of the app's work is done by the following four components:
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div style="text-align: center;">
+    <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+</div>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -99,27 +103,29 @@ the `LogicManager.java` class which follows the `Logic` interface. Other compone
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<div style="text-align: center;">
+    <img src="images/ComponentManagers.png" width="300" />
+</div>
 
 The sections below give more details of each component.
 
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2425S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
+e.g.`CommandBox`, `ResultDisplay`, `TenantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
 inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
 visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2425S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-W12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -130,14 +136,15 @@ The `UI` component,
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<div style="text-align: center;">
+    <img src="images/LogicClassDiagram.png" width="550"/>
+</div>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API.
 call as an example.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -147,7 +154,7 @@ call as an example.
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates
+1. When `Logic` is called upon to execute a command, it is passed to an `TenantTrackerParser` object which in turn creates
    a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
    is executed by the `LogicManager`.
@@ -158,53 +165,59 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<div style="text-align: center;">
+    <img src="images/ParserClasses.png" width="600"/>
+</div>
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `TenantTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TenantTrackerParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<div style="text-align: center;">
+    <img src="images/ModelClassDiagram.png" width="450" />
+</div>
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+* stores the tenant tracker data i.e., all `Tenant` objects (which are contained in a `UniqueTenantList` object).
+* stores the currently 'selected' `Tenant` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Tenant>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TenantTracker`, which `Tenant` references. This allows `TenantTracker` to only require one `Tag` object per unique tag, instead of each `Tenant` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<div style="text-align: center;">
+    <img src="images/BetterModelClassDiagram.png" width="450" />
+</div>
 
 </div>
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<div style="text-align: center;">
+    <img src="images/StorageClassDiagram.png" width="550" />
+</div>
 
 The `Storage` component,
 
-* can save both address book data and user preference data in JSON format, and read them back into corresponding
+* can save both tenant tracker data and user preference data in JSON format, and read them back into corresponding
   objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TenantTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
@@ -221,52 +234,50 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Undo/redo feature
 
-f
-
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+The proposed undo/redo mechanism is facilitated by `VersionedTenantTracker`. It extends `TenantTracker` with an undo/redo
+history, stored internally as an `tenantTrackerStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
+* `VersionedTenantTracker#commit()`— Saves the current tenant tracker state in its history.
+* `VersionedTenantTracker#undo()`— Restores the previous tenant tracker state from its history.
+* `VersionedTenantTracker#redo()`— Restores a previously undone tenant tracker state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitTenantTracker()`, `Model#undoTenantTracker()`
+and `Model#redoTenantTracker()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedTenantTracker` will be initialized with the
+initial tenant tracker state, and the `currentStatePointer` pointing to that single tenant tracker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
+Step 2. The user executes `delete 5` command to delete the 5th person in the tenant tracker. The `delete` command
+calls `Model#commitTenantTracker()`, causing the modified state of the tenant tracker after the `delete 5` command executes
+to be saved in the `tenantTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted tenant tracker
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
-calls `Model#commitAddressBook()`, causing another modified address book state to be saved into
-the `addressBookStateList`.
+Step 3. The user executes `add givenN/David …​` to add a new person. The `add` command also
+calls `Model#commitTenantTracker()`, causing another modified tenant tracker state to be saved into
+the `tenantTrackerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTenantTracker()`, so the tenant tracker state will not be saved into the `tenantTrackerStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
+the `undo` command. The `undo` command will call `Model#undoTenantTracker()`, which will shift the `currentStatePointer`
+once to the left, pointing it to the previous tenant tracker state, and restores the tenant tracker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `TenantTracker` state, then there are no previous `TenantTracker` states to restore. The `undo` command uses `Model#canUndoTenantTracker()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -283,48 +294,46 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoTenantTracker()`, which shifts the `currentStatePointer` once
+to the right, pointing to the previously undone state, and restores the tenant tracker to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `tenantTrackerStateList.size() - 1`, pointing to the latest tenant tracker state, then there are no undone `TenantTracker` states to restore. The `redo` command uses `Model#canRedoTenantTracker()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the tenant tracker, such
+as `list`, will usually not call `Model#commitTenantTracker()`, `Model#undoTenantTracker()` or `Model#redoTenantTracker()`.
+Thus, the `tenantTrackerStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+Step 6. The user executes `clear`, which calls `Model#commitTenantTracker()`. Since the `currentStatePointer` is not
+pointing at the end of the `tenantTrackerStateList`, all tenant tracker states after the `currentStatePointer` will be
+purged. Reason: It no longer makes sense to redo the `add givenN/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<div style="text-align: center;">
+    <img src="images/CommitActivityDiagram.png" width="250" />
+</div>
 
 #### Design considerations
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Saves the entire tenant tracker.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the tenant being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -342,9 +351,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-Our target users are landlords who list their multiple properties to rent on a platform like Airbnb.
+**Target user profile**: Our target users are landlords who list their multiple properties to rent on a platform like Airbnb.
 
 **Value proposition**: TenantTrack provides fast and efficient contact management for landlords handling multiple rental
 properties. Optimized for power users who prefer a CLI, it enables quick access, organization, and retrieval of tenant
@@ -395,8 +402,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Landlord                                         | add a new tenant email                                             | record tenant's email.                                                           |
 | `*`      | Landlord                                         | add a new tenant property                                          | record tenant's property.                                                        |
 
-_{More to be added}_
-
 ### Use cases
 
 (For all use cases below, the **System** is the `TenantTrack` and the **Actor** is the `user`, unless specified
@@ -416,12 +421,12 @@ otherwise)
 **Extensions**
 
 * 2a. Required fields are missing.
-    * 2a1. System shows an error message.
+  * 2a1. System shows an error message.
 
       Use case resumes at step 2.
 
 * 3a. The tenant already exists.
-    * 3a1. System shows a warning and asks for confirmation.
+  * 3a1. System shows a warning and asks for confirmation.
 
       Use case resumes at step 2.
 
@@ -439,7 +444,7 @@ otherwise)
 **Extensions**
 
 * 2a. No matching tenant is found.
-    * 2a1. System shows an error message.
+  * 2a1. System shows an error message.
 
       Use case ends.
 
@@ -459,12 +464,12 @@ otherwise)
 **Extensions**
 
 * 2a. The tenant does not exist.
-    * 2a1. System shows an error message.
+  * 2a1. System shows an error message.
 
       Use case ends.
 
 * 3a. The new contact details are in an invalid format.
-    * 3a1. System shows an error message.
+  * 3a1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -484,12 +489,12 @@ otherwise)
 **Extensions**
 
 * 2a. The tenant does not exist.
-    * 2a1. System shows an error message.
+  * 2a1. System shows an error message.
 
       Use case ends.
 
 * 3a. The tenant has active lease agreements.
-    * 3a1. System prevents deletion and notifies the landlord.
+  * 3a1. System prevents deletion and notifies the landlord.
 
       Use case ends.
 
@@ -507,7 +512,7 @@ otherwise)
 **Extensions**
 
 * 2a. No tenants have overdue or upcoming rent.
-    * 2a1. System shows a message indicating no upcoming payments.
+  * 2a1. System shows a message indicating no upcoming payments.
 
       Use case ends.
 
@@ -550,8 +555,6 @@ _{More to be added}_
 1. The product should maintain realistic use cases, targeting scenarios where a standalone desktop application is a
    viable solution.
 
-_{More to be added}_
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
@@ -586,18 +589,18 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a tenant
 
-1. Deleting a person while all persons are being shown
+1. Deleting a tenant while all tenants are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all tenants using the `list` command. Multiple tenants in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: First tenants is deleted from the list. Details of the deleted tenants shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No tenants is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
