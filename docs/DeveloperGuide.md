@@ -199,10 +199,9 @@ The `Model` component,
   should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TenantTracker`, which `Tenant` references. This allows `TenantTracker` to only require one `Tag` object per unique tag, instead of each `Tenant` needing their own `Tag` objects.<br>
-
-<div style="text-align: center;">
-    <img src="images/BetterModelClassDiagram.png" width="450" />
-</div>
+<!-- <div style="text-align: center;"> -->
+<img src="images/BetterModelClassDiagram.png" width="450" />
+<!-- </div> -->
 
 </div>
 
