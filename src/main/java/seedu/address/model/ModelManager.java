@@ -217,6 +217,21 @@ public class ModelManager implements Model {
         return null;
     }
 
+    /**
+     * Marks a tenant as not paid based on their phone number.
+     *
+     * @param phone the phone number of the tenant to mark as not paid
+     */
+    @Override
+    public void unmarkTenantAsPaid(Phone phone) {
+        requireNonNull(phone);
+        Tenant tenant = findTenantByPhone(phone);
+        if (tenant != null && tenant.isPaid()) {
+            tenant.setPaid(false);
+            updateFilteredTenantList(PREDICATE_SHOW_ALL_PERSONS);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
