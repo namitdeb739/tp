@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor User
+
+box "Logic" LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TenantTrackerParser" as TenantTrackerParser LOGIC_COLOR
+participant ":MapCommandParser" as MapCommandParser LOGIC_COLOR
+participant "a:MapCommand" as MapCommand LOGIC_COLOR
+end box
+
+box "Model" MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+User -> LogicManager: execute("map 3")
+activate LogicManager
+
+LogicManager -> TenantTrackerParser: parseCommand("map 3")
+activate TenantTrackerParser
+
+TenantTrackerParser -> MapCommandParser: parse("3")
+activate MapCommandParser
+
+MapCommandParser -> MapCommand: new MapCommand(Index 3)
+activate MapCommand
+return MapCommand
+deactivate MapCommandParser
+
+return MapCommand
+deactivate TenantTrackerParser
+
+LogicManager -> MapCommand: execute(Model)
+activate MapCommand
+
+MapCommand -> Model: getFilteredTenantList().get(3).getAddress()
+activate Model
+return Address
+deactivate Model
+
+MapCommand -> MapCommand: encode address
+MapCommand -> MapCommand: generate Google Maps URL
+MapCommand -> User: open URL in browser
+deactivate MapCommand
+
+return CommandResult
+deactivate LogicManager
+@enduml

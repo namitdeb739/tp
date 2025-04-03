@@ -77,7 +77,7 @@ public interface Model {
      * the address book. The person identity of {@code editedPerson} must not be the same as another
      * existing person in the address book.
      */
-    void setPerson(Tenant target, Tenant editedPerson);
+    void setTenant(Tenant target, Tenant editedTenant);
 
     /**
      * Returns an unmodifiable view of the filtered tenant list
@@ -98,6 +98,7 @@ public interface Model {
 
     /**
      * Updates the filter of the archived tenant list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null
      */
     void updateFilteredArchivedTenantList(Predicate<Tenant> predicate);
