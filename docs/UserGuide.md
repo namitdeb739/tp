@@ -217,7 +217,8 @@ Details:
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** is searched.
-* **Prefixes** of words will be matched. For example, `Han` will match `Hans`. However, `ans` will **NOT** match `Hans`.
+* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command 
+`find Hans`. However, a tenant with `ans` in his name will **NOT** satisfy the command `find Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.
 
@@ -242,8 +243,9 @@ Details:
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
-* **Prefixes** of words or postal codes will be matched. For example, `Kent` will match `Ken` and `229` will
-  match `229220`. However, `ent` will **NOT** match `Kent`.
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the 
+command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`. 
+However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
