@@ -31,9 +31,9 @@ title: Developer Guide
 * **`archive`**: Archive a tenant record.
 * **`unarchive`**: Unarchive a previously archived tenant.
 * **`togglearchive`**: Toggle the archive status of a tenant.
-* **`paid`**: Mark a tenant as having paid their rent.
-* **`unpaid`**: Mark a tenant as not having paid their rent.
-* **`filter`**: Filter tenants based on multiple fields such as address.
+* **`paid`**: Mark a tenant as having paid their rent with an icon.
+* **`unpaid`**: Mark a tenant as not having paid their rent by removing the paid icon.
+* **`filter`**: Filter tenants based on address.
 * **`map`**: View tenants or properties on a map UI (implementation inferred from `MapCommand`).
 
 Each of these has corresponding command classes and parsers in `logic.commands` and `logic.parser` respectively.
@@ -576,14 +576,14 @@ The `FilterCommand` allows users to filter tenants based on their address. This 
 
 #### Search Details
 
-* The search is **not case-sensitive**. For example, `Lower Kent Ridge` will match `lower kent ridge`.
-* The **order of the keywords does not matter**. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
+* The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
+* The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
-* **Prefixes of words or postal codes will be matched**:
-  * For example, `Kent` will match `Ken` and `229` will match `229220`.
-  * However, `ent` will **not** match `Kent`.
-* Tenants with addresses matching **at least one keyword** will be returned (i.e., **OR search**):
-  * For example, `Lower Kent Ridge` will return tenants with addresses like `Lower Arab Street`, `Kent Ridge`.
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the
+  command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`.
+  However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
+* Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
+  example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
 ---
 
