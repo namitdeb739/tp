@@ -8,7 +8,7 @@ efficiently. TenantTrack combines a command-line interface with a graphical inte
 use.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ Updates the details of an existing tenant in the list.
 Format:
 
 <pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
-edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...
+edit INDEX [givenN/GIVEN_NAME familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...
 </pre>
 
 Details:
@@ -187,6 +187,7 @@ Details:
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You must specify at least one field to update.
 * Specified fields will replace the tenant’s existing values.
+* `givenN/` and `familyN/` must both be present if editing name
 
 <div markdown="block" class="alert alert-primary">
 :bulb: **On editing tags:**<br>
@@ -427,18 +428,18 @@ corruption.
 
 ## Command summary
 
- Action      | Format                                                                                                                  | Examples
--------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
- **Add**     | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com`
- **Archive** | `archive INDEX`                                                                                                         | `archive 1`
- **Clear**   | `clear`                                                                                                                 |
- **Delete**  | `delete INDEX`                                                                                                          | `delete 3`
- **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
- **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`
- **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
- **List**    | `list`                                                                                                                  
- **Paid**    | `paid phone/PHONE`                                                                                                      | `paid 87654321`
- **ToggleArchive**  | `togglearchive`                                                                                                         | 
- **Unarchive**  | `unarchive INDEX`                                                                                                       | `unarchive 1`
- **UnPaid**  | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`
- **Help**    | `help`                                                                                                                  |
+ Action            | Format                                                                                                                  | Examples                                                                                                         
+-------------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
+ **Add**           | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com` 
+ **Archive**       | `archive INDEX`                                                                                                         | `archive 1`                                                                                                      
+ **Clear**         | `clear`                                                                                                                 |
+ **Delete**        | `delete INDEX`                                                                                                          | `delete 3`                                                                                                       
+ **Edit**          | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`                                                  
+ **Find**          | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`                                                                                                
+ **Filter**        | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`                                                                                        
+ **List**          | `list`                                                                                                                  
+ **Paid**          | `paid phone/PHONE`                                                                                                      | `paid 87654321`                                                                                                  
+ **ToggleArchive** | `togglearchive`                                                                                                         |
+ **Unarchive**     | `unarchive INDEX`                                                                                                       | `unarchive 1`                                                                                                    
+ **UnPaid**        | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`                                                                                                
+ **Help**          | `help`                                                                                                                  |
