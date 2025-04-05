@@ -305,6 +305,36 @@ Examples:
 
 * `paid` followed by `87654321` adds a paid icon to the tenant with the phone number: `87654321`.
 
+### Toggling between active and archive list: `togglearchive`
+
+Changes the current list to either the active list or the list of archived tenants.
+
+Format:
+
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+togglearchive
+</pre>
+
+### Unarchiving a tenant: `unarchive`
+
+Unarchive the specified tenant from the archive list of Tenant Track.
+
+Format:
+
+<pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
+unarchive INDEX
+</pre>
+
+Details:
+
+* Unarchive the tenant at the specified `INDEX`.
+* `INDEX`index refers to the index number shown in the displayed archived tenant list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `togglearchive` from the active list, followed by `unarchive 2` archives the 2nd tenant in the archived Tenant Track.
+
 ### Marking a tenant as not paid: `unpaid`
 
 Marks a tenant as not paid based on phone number. The paid icon is removed from the tenant details.
@@ -408,5 +438,7 @@ corruption.
  **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
  **List**    | `list`                                                                                                                  
  **Paid**    | `paid phone/PHONE`                                                                                                      | `paid 87654321`
+ **ToggleArchive**  | `togglearchive`                                                                                                         | 
+ **Unarchive**  | `unarchive INDEX`                                                                                                       | `unarchive 1`
  **UnPaid**  | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`
  **Help**    | `help`                                                                                                                  |

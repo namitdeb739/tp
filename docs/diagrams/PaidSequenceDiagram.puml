@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TenantTrackerParser" as TenantTrackerParser LOGIC_COLOR
+participant ":PaidCommandParser" as PaidCommandParser LOGIC_COLOR
+participant "p:PaidCommand" as PaidCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("paid 98765432")
+activate LogicManager
+
+LogicManager -> TenantTrackerParser : parseCommand("paid 98765432")
+activate TenantTrackerParser
+
+create PaidCommandParser
+TenantTrackerParser -> PaidCommandParser
+activate PaidCommandParser
+
+PaidCommandParser --> TenantTrackerParser
+deactivate PaidCommandParser
+
+TenantTrackerParser -> PaidCommandParser : parse("98765432")
+activate PaidCommandParser
+
+create PaidCommand
+PaidCommandParser -> PaidCommand
+activate PaidCommand
+
+PaidCommand --> PaidCommandParser :
+deactivate PaidCommand
+
+PaidCommandParser --> TenantTrackerParser : p
+deactivate PaidCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PaidCommandParser -[hidden]-> TenantTrackerParser
+destroy PaidCommandParser
+
+TenantTrackerParser --> LogicManager : p
+deactivate TenantTrackerParser
+
+LogicManager -> PaidCommand : execute(m)
+activate PaidCommand
+
+PaidCommand -> Model : markTenantAsPaid(98765432)
+activate Model
+
+Model --> PaidCommand
+deactivate Model
+
+create CommandResult
+PaidCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PaidCommand
+deactivate CommandResult
+
+PaidCommand --> LogicManager : r
+deactivate PaidCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

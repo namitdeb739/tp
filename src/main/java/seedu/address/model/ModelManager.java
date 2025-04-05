@@ -33,8 +33,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTenantTracker tenantTracker, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(tenantTracker, userPrefs);
 
-        logger.fine("Initializing with tenant tracker: " + tenantTracker + " and user prefs "
-                + userPrefs);
+        logger.fine("Initializing with tenant tracker: " + tenantTracker + " and user prefs " + userPrefs);
 
         this.tenantTracker = new TenantTracker(tenantTracker);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -113,7 +112,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Tenant target, Tenant editedPerson) {
+    public void setTenant(Tenant target, Tenant editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         tenantTracker.setTenant(target, editedPerson);
@@ -166,7 +165,8 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of archived {@code Tenant} backed by the internal list of the tracker.
+     * Returns an unmodifiable view of the list of archived {@code Tenant} backed by the internal list
+     * of the tracker.
      */
     @Override
     public ObservableList<Tenant> getArchivedTenantList() {
@@ -199,7 +199,7 @@ public class ModelManager implements Model {
 
         if (tenantToMarkAsPaid != null) {
             tenantToMarkAsPaid.markAsPaid(); // Mark tenant as paid
-            setPerson(tenantToMarkAsPaid, tenantToMarkAsPaid);
+            setTenant(tenantToMarkAsPaid, tenantToMarkAsPaid);
         } else {
             throw new IllegalArgumentException("Tenant with the phone number " + phone + " not found.");
         }
@@ -244,8 +244,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return tenantTracker.equals(otherModelManager.tenantTracker)
-                && userPrefs.equals(otherModelManager.userPrefs)
+        return tenantTracker.equals(otherModelManager.tenantTracker) && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredTenants.equals(otherModelManager.filteredTenants)
                 && filteredArchivedTenants.equals(otherModelManager.filteredArchivedTenants);
     }
