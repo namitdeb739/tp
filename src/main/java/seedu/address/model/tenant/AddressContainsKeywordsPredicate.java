@@ -1,9 +1,9 @@
 package seedu.address.model.tenant;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -19,9 +19,9 @@ public class AddressContainsKeywordsPredicate implements Predicate<Tenant> {
     @Override
     public boolean test(Tenant tenant) {
         return keywords.stream().anyMatch(keyword -> {
-            String sanitizedAddress = tenant.getAddress().value.replaceAll("[^a-zA-Z0-9\\s]", "");
-            return StringUtil.containsWordIgnoreCase(sanitizedAddress, keyword)
-                    || sanitizedAddress.toLowerCase().matches(".*\\b" + keyword.toLowerCase() + ".*");
+            String sanitizedAddress = tenant.getAddress().value.toLowerCase();
+            return Arrays.stream(sanitizedAddress.split("[\\s,]+"))
+                    .anyMatch(addressPart -> addressPart.startsWith(keyword.toLowerCase()));
         });
     }
 

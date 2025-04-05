@@ -255,6 +255,10 @@ Examples:
   and `Ridge View`.<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword. 
+</div>
+
 ### Listing all tenants: `list`
 
 Shows a list of all tenants in the Tenant Track.
