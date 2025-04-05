@@ -20,7 +20,7 @@ import seedu.address.model.tenant.exceptions.TenantNotFoundException;
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Tenant#isSamePerson(Tenant)
+ * @see Tenant#isSameTenant(Tenant)
  */
 public class UniqueTenantList implements Iterable<Tenant> {
 
@@ -33,7 +33,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
      */
     public boolean contains(Tenant toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameTenant);
     }
 
     /**
@@ -42,15 +42,15 @@ public class UniqueTenantList implements Iterable<Tenant> {
     public void add(Tenant toAdd) {
         requireNonNull(toAdd);
         // if (contains(toAdd)) {
-        //     throw new DuplicatePersonException();
+        // throw new DuplicatePersonException();
         // }
         internalList.add(toAdd);
     }
 
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}. {@code target} must
-     * exist in the list. The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the list.
+     * exist in the list. The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the list.
      */
     public void setTenant(Tenant target, Tenant editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -61,7 +61,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
         }
 
         // if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-        //     throw new DuplicatePersonException();
+        // throw new DuplicatePersonException();
         // }
 
         internalList.set(index, editedPerson);
@@ -89,7 +89,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
     public void setPersons(List<Tenant> persons) {
         requireAllNonNull(persons);
         // if (!personsAreUnique(persons)) {
-        //     throw new DuplicatePersonException();
+        // throw new DuplicatePersonException();
         // }
 
         internalList.setAll(persons);
@@ -132,17 +132,25 @@ public class UniqueTenantList implements Iterable<Tenant> {
         return internalList.toString();
     }
 
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean containsWith(Tenant tenant, String field) {
+        requireNonNull(tenant);
+        return internalList.stream().anyMatch(t -> t.equalsWith(tenant, field));
+    }
+
     // /**
-    //  * Returns true if {@code persons} contains only unique persons.
-    //  */
+    // * Returns true if {@code persons} contains only unique persons.
+    // */
     // private boolean personsAreUnique(List<Tenant> persons) {
-    //     for (int i = 0; i < persons.size() - 1; i++) {
-    //         for (int j = i + 1; j < persons.size(); j++) {
-    //             if (persons.get(i).isSamePerson(persons.get(j))) {
-    //                 return false;
-    //             }
-    //         }
-    //     }
-    //     return true;
+    // for (int i = 0; i < persons.size() - 1; i++) {
+    // for (int j = i + 1; j < persons.size(); j++) {
+    // if (persons.get(i).isSamePerson(persons.get(j))) {
+    // return false;
+    // }
+    // }
+    // }
+    // return true;
     // }
 }

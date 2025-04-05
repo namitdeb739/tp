@@ -28,19 +28,19 @@ public class TenantTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameTenant(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameTenant(null));
 
         // same name, all other attributes different -> returns true
         Tenant editedAlice = new TenantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HDB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameTenant(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new TenantBuilder(ALICE).withName(VALID_GIVEN_NAME_BOB, VALID_FAMILY_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameTenant(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         // Tenant editedBob =

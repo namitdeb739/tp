@@ -204,6 +204,16 @@ public class AddCommandTest {
         public void unmarkTenantAsPaid(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasTenantWithPhone(Tenant editedTenant) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTenantWithEmail(Tenant editedTenant) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     // /**
@@ -233,7 +243,7 @@ public class AddCommandTest {
         @Override
         public boolean hasTenant(Tenant person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isSameTenant);
         }
 
         @Override

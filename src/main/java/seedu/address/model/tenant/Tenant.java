@@ -32,8 +32,8 @@ public class Tenant {
     /**
      * Every field must be present and not null.
      */
-    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  boolean isArchived, boolean isPaid) {
+    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isArchived,
+            boolean isPaid) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -105,12 +105,13 @@ public class Tenant {
      * Returns true if both persons have the same name. This defines a weaker notion of equality between
      * two persons.
      */
-    public boolean isSamePerson(Tenant otherPerson) {
+    public boolean isSameTenant(Tenant otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null && otherPerson.getName().equals(getName());
+        return otherPerson != null
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     public BooleanProperty isPaidProperty() {
@@ -166,8 +167,29 @@ public class Tenant {
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("name", name).add("phone", phone).add("email", email)
-                .add("address", address).add("tags", tags)
-                .add("archived", isArchived).toString();
+                .add("address", address).add("tags", tags).add("archived", isArchived).toString();
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields. This defines a stronger
+     * notion of equality between two persons.
+     */
+    public boolean equalsWith(Tenant tenant, String field) {
+        requireAllNonNull(tenant);
+        switch (field) {
+        case "name":
+            return name.equals(tenant.name);
+        case "phone":
+            return phone.equals(tenant.phone);
+        case "email":
+            return email.equals(tenant.email);
+        case "address":
+            return address.equals(tenant.address);
+        case "tags":
+            return tags.equals(tenant.tags);
+        default:
+            throw new IllegalArgumentException("Invalid field: " + field);
+        }
     }
 
 }
