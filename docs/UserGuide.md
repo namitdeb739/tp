@@ -116,7 +116,7 @@ A tenant can have any number of tags (including 0).
 Examples:
 
 * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
-* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 456423`
+* `add givenN/ Sam familyN/ Tan phone/ 87543213 email/ sam@example.com address/ Sam street, block 321, #02-04 456423`
 
 ### Archiving a tenant: `archive`
 
