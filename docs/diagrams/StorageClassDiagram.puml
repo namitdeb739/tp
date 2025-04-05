@@ -18,7 +18,7 @@ package "TenantTracker Storage" #F4F6F6{
 Class "<<interface>>\nTenantTrackerStorage" as TenantTrackerStorage
 Class JsonTenantTrackerStorage
 Class JsonSerializableTenantTracker
-Class JsonAdaptedPerson
+Class JsonAdaptedTenant
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> TenantTrackerStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTenantTrackerStorage .up.|> TenantTrackerStorage
 JsonTenantTrackerStorage ..> JsonSerializableTenantTracker
-JsonSerializableTenantTracker --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableTenantTracker --> "*" JsonAdaptedTenant
+JsonAdaptedTenant --> "*" JsonAdaptedTag
 
 @enduml

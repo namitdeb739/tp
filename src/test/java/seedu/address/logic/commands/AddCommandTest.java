@@ -146,7 +146,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Tenant target, Tenant editedPerson) {
+        public void setTenant(Tenant target, Tenant editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -207,21 +207,21 @@ public class AddCommandTest {
     }
 
     // /**
-    //  * A Model stub that contains a single person.
-    //  */
+    // * A Model stub that contains a single person.
+    // */
     // private class ModelStubWithPerson extends ModelStub {
-    //     private final Tenant person;
+    // private final Tenant person;
 
-    //     ModelStubWithPerson(Tenant person) {
-    //         requireNonNull(person);
-    //         this.person = person;
-    //     }
+    // ModelStubWithPerson(Tenant person) {
+    // requireNonNull(person);
+    // this.person = person;
+    // }
 
-    //     @Override
-    //     public boolean hasTenant(Tenant person) {
-    //         requireNonNull(person);
-    //         return this.person.isSamePerson(person);
-    //     }
+    // @Override
+    // public boolean hasTenant(Tenant person) {
+    // requireNonNull(person);
+    // return this.person.isSamePerson(person);
+    // }
     // }
 
     /**
