@@ -315,6 +315,10 @@ Format:
 togglearchive
 </pre>
 
+Details:
+
+* Only the `unarchive` command works on the tenants in the unarchived list
+
 ### Unarchiving a tenant: `unarchive`
 
 Unarchive the specified tenant from the archive list of Tenant Track.
@@ -328,12 +332,15 @@ unarchive INDEX
 Details:
 
 * Unarchive the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed archived tenant list.
+* `INDEX`index refers to the index number in the archived tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Unarchiving works from both the dsiplayed active list and the displayed archive list.
 
 Examples:
 
-* `togglearchive` from the active list, followed by `unarchive 2` archives the 2nd tenant in the archived Tenant Track.
+* `togglearchive` from the active list, followed by `unarchive 2` unarchives the 2nd tenant in the archived Tenant Track.
+* 'unarchive 2' from the archived list unarchives the 2nd tenant in the archived Tenant Track.
+* 'unarchive 2' from the active list unarchives the 2nd tenant in the archived Tenant Track.
 
 ### Marking a tenant as not paid: `unpaid`
 
