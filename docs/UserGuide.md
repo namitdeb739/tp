@@ -279,6 +279,8 @@ Details:
 * Searches the tenant at the specified `INDEX`'s address.
 * `INDEX` index refers to the index number shown in the displayed tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `Map` command will input the address directly into the api call, Google Maps will handle which location is closest to 
+the exact given input.
 
 Examples:
 
