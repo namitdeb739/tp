@@ -131,8 +131,9 @@ archive INDEX
 Details:
 
 * Archive the tenant at the specified `INDEX`.
-* `INDEX`index refers to the index number shown in the displayed tenant list.
+* `INDEX`index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Archiving works on the active list from both the dsiplayed active list and the displayed archive list.
 
 Examples:
 
@@ -162,7 +163,7 @@ delete INDEX
 Details:
 
 * Deletes the tenant at the specified `INDEX`.
-* `INDEX` index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -183,7 +184,7 @@ edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL]
 Details:
 
 * Edit the tenant at the specified `INDEX`.
-* `INDEX` index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You must specify at least one field to update.
 * Specified fields will replace the tenant’s existing values.
@@ -216,7 +217,7 @@ Details:
 
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
-* Only the **name** is searched.
+* Only the **name** in the active tenant list is searched.
 * **Prefixes** of words will be matched. For example, `Han` will match `Hans`. However, `ans` will **NOT** match `Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.
@@ -241,7 +242,7 @@ Details:
 
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
-* Only the **address** is searched.
+* Only the **address** in the active tenant list is searched.
 * **Prefixes** of words or postal codes will be matched. For example, `Kent` will match `Ken` and `229` will
   match `229220`. However, `ent` will **NOT** match `Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
@@ -276,7 +277,7 @@ map INDEX
 Details:
 
 * Searches the tenant at the specified `INDEX`'s address.
-* `INDEX` index refers to the index number shown in the displayed tenant list.
+* `INDEX` index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -297,7 +298,7 @@ paid PHONE
 
 Details:
 
-* Searches the tenant with the specified phone number.
+* Searches the tenant with the specified phone number in the active tenant list.
 * The phone number should be exactly 8 digits long.
 * If the phone number does not belong to any tenant, an error message is returned.
 
@@ -307,7 +308,7 @@ Examples:
 
 ### Toggling between active and archive list: `togglearchive`
 
-Changes the current list to either the active list or the list of archived tenants.
+Changes the current list to either the displayed active list or the displayed archive list.
 
 Format:
 
@@ -317,7 +318,7 @@ togglearchive
 
 Details:
 
-* Only the `unarchive` command works on the tenants in the unarchived list
+* Only the `unarchive` command works on the tenants in the archived list
 
 ### Unarchiving a tenant: `unarchive`
 
@@ -354,7 +355,7 @@ unpaid PHONE
 
 Details:
 
-* Searches the tenant with the specified phone number.
+* Searches the tenant with the specified phone number in the active tenant list.
 * The phone number should be exactly 8 digits long.
 * The phone number should belong to a tenant that has paid.
 
