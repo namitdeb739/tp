@@ -43,7 +43,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new TenantTracker(model.getTenantTracker()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredTenantList().get(0), editedPerson);
+        expectedModel.setTenant(model.getFilteredTenantList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -67,7 +67,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new TenantTracker(model.getTenantTracker()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
+        expectedModel.setTenant(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -99,7 +99,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new TenantTracker(model.getTenantTracker()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredTenantList().get(0), editedPerson);
+        expectedModel.setTenant(model.getFilteredTenantList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

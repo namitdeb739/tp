@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TenantTrackerParser" as TenantTrackerParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("filter Kent Ridge")
+activate LogicManager
+
+LogicManager -> TenantTrackerParser : parseCommand("filter Kent Ridge")
+activate TenantTrackerParser
+
+create FilterCommandParser
+TenantTrackerParser -> FilterCommandParser
+activate FilterCommandParser
+
+FilterCommandParser --> TenantTrackerParser
+deactivate FilterCommandParser
+
+TenantTrackerParser -> FilterCommandParser : parse("Kent Ridge")
+activate FilterCommandParser
+
+create FilterCommand
+FilterCommandParser -> FilterCommand
+activate FilterCommand
+
+FilterCommand --> FilterCommandParser
+deactivate FilterCommand
+
+FilterCommandParser --> LogicManager
+deactivate FilterCommandParser
+
+LogicManager -> FilterCommand : execute(m)
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredTenantList(predicate)
+activate Model
+
+Model --> FilterCommand
+deactivate Model
+
+FilterCommand --> LogicManager
+deactivate FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

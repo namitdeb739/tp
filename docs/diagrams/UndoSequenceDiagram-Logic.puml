@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TenantTrackParser" as TenantTrackParser LOGIC_COLOR
+participant ":TenantTrackerParser" as TenantTrackerParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -14,23 +14,23 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> TenantTrackParser : parseCommand(undo)
-activate TenantTrackParser
+LogicManager -> TenantTrackerParser : parseCommand(undo)
+activate TenantTrackerParser
 
 create UndoCommand
-TenantTrackParser -> UndoCommand
+TenantTrackerParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> TenantTrackParser
+UndoCommand --> TenantTrackerParser
 deactivate UndoCommand
 
-TenantTrackParser --> LogicManager : u
-deactivate TenantTrackParser
+TenantTrackerParser --> LogicManager : u
+deactivate TenantTrackerParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoTenantTrack()
+UndoCommand -> Model : undoTenantTracker()
 activate Model
 
 Model --> UndoCommand

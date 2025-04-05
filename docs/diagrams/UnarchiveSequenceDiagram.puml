@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TenantTrackerParser" as TenantTrackerParser LOGIC_COLOR
+participant ":UnarchiveCommandParser" as UnarchiveCommandParser LOGIC_COLOR
+participant "u:UnarchiveCommand" as UnarchiveCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unarchive 2")
+activate LogicManager
+
+LogicManager -> TenantTrackerParser : parseCommand("unarchive 2")
+activate TenantTrackerParser
+
+create UnarchiveCommandParser
+TenantTrackerParser -> UnarchiveCommandParser
+activate UnarchiveCommandParser
+
+UnarchiveCommandParser --> TenantTrackerParser
+deactivate UnarchiveCommandParser
+
+TenantTrackerParser -> UnarchiveCommandParser : parse("2")
+activate UnarchiveCommandParser
+
+create UnarchiveCommand
+UnarchiveCommandParser -> UnarchiveCommand
+activate UnarchiveCommand
+
+UnarchiveCommand --> UnarchiveCommandParser :
+deactivate UnarchiveCommand
+
+UnarchiveCommandParser --> TenantTrackerParser : u
+deactivate UnarchiveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnarchiveCommandParser -[hidden]-> TenantTrackerParser
+destroy UnarchiveCommandParser
+
+TenantTrackerParser --> LogicManager : u
+deactivate TenantTrackerParser
+
+LogicManager -> UnarchiveCommand : execute(m)
+activate UnarchiveCommand
+
+UnarchiveCommand -> Model : unarchiveTenant(2)
+activate Model
+
+Model --> UnarchiveCommand
+deactivate Model
+
+create CommandResult
+UnarchiveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnarchiveCommand
+deactivate CommandResult
+
+UnarchiveCommand --> LogicManager : r
+deactivate UnarchiveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
