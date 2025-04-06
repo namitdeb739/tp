@@ -50,7 +50,7 @@ public class PaidCommandTest {
     @Test
     public void equals() {
         Tenant firstTenant = model.getFilteredTenantList().get(0);
-        Tenant secondTenant = new TenantBuilder().withPhone("98765432").build();
+        Tenant secondTenant = new TenantBuilder().withPhone("61231231").build();
         PaidCommand paidFirstCommand = new PaidCommand(firstTenant.getPhone());
         PaidCommand paidSecondCommand = new PaidCommand(secondTenant.getPhone());
 

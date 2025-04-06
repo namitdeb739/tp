@@ -101,6 +101,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTenantWith(Tenant person, String field) {
+        requireNonNull(person);
+        return tenantTracker.hasTenantWith(person, field);
+    }
+
+    @Override
     public void deleteTenant(Tenant target) {
         tenantTracker.removeTenant(target);
     }

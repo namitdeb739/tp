@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "hdb " + PREFIX_TAG + "landed";
 
     public static final String MESSAGE_SUCCESS = "New tenant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tenant already exists in the tenant tracker";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Tenants must have unique phone numbers and email addresses.";
 
     private final Tenant toAdd;
 
@@ -45,9 +45,9 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // if (model.hasPerson(toAdd)) {
-        // throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        // }
+        if (model.hasTenant(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
 
         model.addTenant(toAdd);
         return buildCommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
