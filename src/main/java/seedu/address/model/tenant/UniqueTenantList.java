@@ -42,15 +42,15 @@ public class UniqueTenantList implements Iterable<Tenant> {
     public void add(Tenant toAdd) {
         requireNonNull(toAdd);
         // if (contains(toAdd)) {
-        // throw new DuplicatePersonException();
+        //     throw new DuplicatePersonException();
         // }
         internalList.add(toAdd);
     }
 
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}. {@code target} must
-     * exist in the list. The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the list.
+     * exist in the list. The person identity of {@code editedPerson} must not be the same as
+     * another existing person in the list.
      */
     public void setTenant(Tenant target, Tenant editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -61,7 +61,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
         }
 
         // if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-        // throw new DuplicatePersonException();
+        //     throw new DuplicatePersonException();
         // }
 
         internalList.set(index, editedPerson);
@@ -147,4 +147,5 @@ public class UniqueTenantList implements Iterable<Tenant> {
     //         }
     //     }
     //     return true;
+    // }
 }
