@@ -81,7 +81,6 @@ public class EditCommand extends Command {
 
         Tenant editedTenant = createEditedPerson(tenantToEdit, editTenantDescriptor);
 
-
         if ((!editedTenant.getEmail().equals(tenantToEdit.getEmail()) && model.hasTenantWith(editedTenant, "email"))
                 || (!editedTenant.getPhone().equals(tenantToEdit.getPhone())
                         && model.hasTenantWith(editedTenant, "phone"))) {
