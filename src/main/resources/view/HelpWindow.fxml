@@ -49,8 +49,8 @@
 
                 <!-- New collapsible section for command examples -->
                 <TitledPane fx:id="commandExamplesPane" text="Command Examples" expanded="false">
-                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="600" prefViewportHeight="600">
-                        <VBox spacing="12" prefHeight="600">
+                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                        <VBox spacing="12">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
                             </padding>
