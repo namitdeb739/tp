@@ -206,12 +206,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasTenantWithPhone(Tenant editedTenant) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasTenantWithEmail(Tenant editedTenant) {
+        public boolean hasTenantWith(Tenant editedTenant, String field) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -243,7 +238,7 @@ public class AddCommandTest {
         @Override
         public boolean hasTenant(Tenant person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameTenant);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override

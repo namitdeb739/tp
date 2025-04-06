@@ -146,11 +146,9 @@ public class TenantTracker implements ReadOnlyTenantTracker {
     }
 
     /**
-     * Returns true if both tenants have the same identity and data fields. This defines a stronger
-     * notion of equality between two tenants.
+     * Returns true if both tenants have the same identity and data fields.
      */
     public boolean hasTenantWith(Tenant tenant, String field) {
-        requireNonNull(tenant);
         return tenants.containsWith(tenant, field);
     }
 }

@@ -105,7 +105,7 @@ public class Tenant {
      * Returns true if both persons have the same name. This defines a weaker notion of equality between
      * two persons.
      */
-    public boolean isSameTenant(Tenant otherPerson) {
+    public boolean isSamePerson(Tenant otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -171,25 +171,10 @@ public class Tenant {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields. This defines a stronger
-     * notion of equality between two persons.
+     * Returns true if both persons have the same identity and data fields.
      */
     public boolean equalsWith(Tenant tenant, String field) {
-        requireAllNonNull(tenant);
-        switch (field) {
-        case "name":
-            return name.equals(tenant.name);
-        case "phone":
-            return phone.equals(tenant.phone);
-        case "email":
-            return email.equals(tenant.email);
-        case "address":
-            return address.equals(tenant.address);
-        case "tags":
-            return tags.equals(tenant.tags);
-        default:
-            throw new IllegalArgumentException("Invalid field: " + field);
-        }
+        return field == "phone" ? phone.equals(tenant.phone) : field == "email" ? email.equals(tenant.email) : false;
     }
 
 }

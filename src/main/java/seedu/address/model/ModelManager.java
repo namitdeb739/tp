@@ -101,15 +101,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTenantWithEmail(Tenant person) {
+    public boolean hasTenantWith(Tenant person, String field) {
         requireNonNull(person);
-        return tenantTracker.hasTenantWith(person, "email");
-    }
-
-    @Override
-    public boolean hasTenantWithPhone(Tenant person) {
-        requireNonNull(person);
-        return tenantTracker.hasTenantWith(person, "phone");
+        return tenantTracker.hasTenantWith(person, field);
     }
 
     @Override

@@ -47,8 +47,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided. eg. givenN/name |"
             + " familyN/ surname | tag/ | address/ | phone| ";
-    public static final String MESSAGE_DUPLICATE_PERSON =
-            "A tenant with the same phone number or email " + "already exists in the tenant tracker!";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Tenants must have unique phone numbers and email addresses.";
 
     private final Index index;
     private final EditTenantDescriptor editTenantDescriptor;
@@ -83,11 +82,10 @@ public class EditCommand extends Command {
         Tenant editedTenant = createEditedPerson(tenantToEdit, editTenantDescriptor);
 
 
-        if ((!editedTenant.getEmail().equals(tenantToEdit.getEmail()) && model.hasTenantWithEmail(editedTenant))
+        if ((!editedTenant.getEmail().equals(tenantToEdit.getEmail()) && model.hasTenantWith(editedTenant, "email"))
                 || (!editedTenant.getPhone().equals(tenantToEdit.getPhone())
-                        && model.hasTenantWithPhone(editedTenant))) {
+                        && model.hasTenantWith(editedTenant, "phone"))) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-
         }
 
         model.setTenant(tenantToEdit, editedTenant);

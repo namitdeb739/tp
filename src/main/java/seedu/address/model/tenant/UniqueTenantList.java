@@ -20,7 +20,7 @@ import seedu.address.model.tenant.exceptions.TenantNotFoundException;
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Tenant#isSameTenant(Tenant)
+ * @see Tenant#isSamePerson(Tenant)
  */
 public class UniqueTenantList implements Iterable<Tenant> {
 
@@ -33,7 +33,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
      */
     public boolean contains(Tenant toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTenant);
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
@@ -89,7 +89,7 @@ public class UniqueTenantList implements Iterable<Tenant> {
     public void setPersons(List<Tenant> persons) {
         requireAllNonNull(persons);
         // if (!personsAreUnique(persons)) {
-        // throw new DuplicatePersonException();
+        //     throw new DuplicatePersonException();
         // }
 
         internalList.setAll(persons);
@@ -136,21 +136,15 @@ public class UniqueTenantList implements Iterable<Tenant> {
      * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean containsWith(Tenant tenant, String field) {
-        requireNonNull(tenant);
         return internalList.stream().anyMatch(t -> t.equalsWith(tenant, field));
     }
 
-    // /**
-    // * Returns true if {@code persons} contains only unique persons.
-    // */
-    // private boolean personsAreUnique(List<Tenant> persons) {
-    // for (int i = 0; i < persons.size() - 1; i++) {
-    // for (int j = i + 1; j < persons.size(); j++) {
-    // if (persons.get(i).isSamePerson(persons.get(j))) {
-    // return false;
-    // }
-    // }
-    // }
-    // return true;
-    // }
+    //     for (int i = 0; i < persons.size() - 1; i++) {
+    //         for (int j = i + 1; j < persons.size(); j++) {
+    //             if (persons.get(i).isSamePerson(persons.get(j))) {
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     return true;
 }

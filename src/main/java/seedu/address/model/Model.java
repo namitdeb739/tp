@@ -138,7 +138,5 @@ public interface Model {
      */
     void unmarkTenantAsPaid(Phone phone);
 
-    boolean hasTenantWithEmail(Tenant editedTenant);
-
-    boolean hasTenantWithPhone(Tenant editedTenant);
+    boolean hasTenantWith(Tenant editedTenant, String field);
 }
