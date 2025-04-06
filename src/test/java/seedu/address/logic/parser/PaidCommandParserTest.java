@@ -26,14 +26,14 @@ public class PaidCommandParserTest {
      */
     @Test
     public void parse_validArgs_returnsPaidCommand() {
-        Phone phone = new Phone("12345678");
+        Phone phone = new Phone("63213213");
         PaidCommand expectedCommand = new PaidCommand(phone);
 
         // Test without leading and trailing whitespaces
-        assertParseSuccess(parser, "12345678", expectedCommand);
+        assertParseSuccess(parser, "63213213", expectedCommand);
 
         // Test with leading and trailing whitespaces
-        assertParseSuccess(parser, "  12345678  ", expectedCommand);
+        assertParseSuccess(parser, "  63213213  ", expectedCommand);
     }
 
     @Test
