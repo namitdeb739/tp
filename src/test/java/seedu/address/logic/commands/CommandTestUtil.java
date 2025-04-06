@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1, 123456";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3, 987654";
-    public static final String VALID_TAG_HDB = "hdb";
-    public static final String VALID_TAG_LANDED = "landed";
+    public static final String VALID_TAG_HDB = "Hdb";
+    public static final String VALID_TAG_LANDED = "Landed";
 
     public static final String GIVEN_NAME_DESC_AMY = " " + PREFIX_GIVEN_NAME + VALID_GIVEN_NAME_AMY;
     public static final String FAMILY_NAME_DESC_AMY = " " + PREFIX_FAMILY_NAME + VALID_FAMILY_NAME_AMY;
