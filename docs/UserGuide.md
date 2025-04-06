@@ -116,7 +116,7 @@ A tenant can have any number of tags (including 0).
 Examples:
 
 * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
-* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 456423`
+* `add givenN/ Sam familyN/ Tan phone/ 87543213 email/ sam@example.com address/ Sam street, block 321, #02-04 456423`
 
 ### Archiving a tenant: `archive`
 
@@ -217,7 +217,8 @@ Details:
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** is searched.
-* **Prefixes** of words will be matched. For example, `Han` will match `Hans`. However, `ans` will **NOT** match `Hans`.
+* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command 
+`find Hans`. However, a tenant with `ans` in his name will **NOT** satisfy the command `find Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.
 
@@ -242,8 +243,9 @@ Details:
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
-* **Prefixes** of words or postal codes will be matched. For example, `Kent` will match `Ken` and `229` will
-  match `229220`. However, `ent` will **NOT** match `Kent`.
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the 
+command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`. 
+However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
@@ -252,6 +254,10 @@ Examples:
 * `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road`
   and `Ridge View`.<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword. 
+</div>
 
 ### Listing all tenants: `list`
 
