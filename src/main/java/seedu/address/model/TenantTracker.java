@@ -146,4 +146,11 @@ public class TenantTracker implements ReadOnlyTenantTracker {
     public int hashCode() {
         return tenants.hashCode();
     }
+
+    /**
+     * Returns true if both tenants have the same identity and data fields.
+     */
+    public boolean hasTenantWith(Tenant tenant, String field) {
+        return tenants.containsWith(tenant, field);
+    }
 }

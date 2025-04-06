@@ -8,7 +8,7 @@ efficiently. TenantTrack combines a command-line interface with a graphical inte
 use.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ A tenant can have any number of tags (including 0).
 Examples:
 
 * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
-* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 456423`
+* `add givenN/ Sam familyN/ Tan phone/ 87543213 email/ sam@example.com address/ Sam street, block 321, #02-04 456423`
 
 ### Archiving a tenant: `archive`
 
@@ -178,7 +178,7 @@ Updates the details of an existing tenant in the list.
 Format:
 
 <pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
-edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...
+edit INDEX [givenN/GIVEN_NAME familyN/FAMILY_NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG]...
 </pre>
 
 Details:
@@ -188,6 +188,7 @@ Details:
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You must specify at least one field to update.
 * Specified fields will replace the tenant’s existing values.
+* `givenN/` and `familyN/` must both be present if editing name
 
 <div markdown="block" class="alert alert-primary">
 :bulb: **On editing tags:**<br>
@@ -218,7 +219,8 @@ Details:
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** in the active tenant list is searched.
-* **Prefixes** of words will be matched. For example, `Han` will match `Hans`. However, `ans` will **NOT** match `Hans`.
+* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command 
+`find Hans`. However, a tenant with `ans` in his name will **NOT** satisfy the command `find Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.
 
@@ -243,8 +245,9 @@ Details:
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** in the active tenant list is searched.
-* **Prefixes** of words or postal codes will be matched. For example, `Kent` will match `Ken` and `229` will
-  match `229220`. However, `ent` will **NOT** match `Kent`.
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the 
+command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`. 
+However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
@@ -253,6 +256,10 @@ Examples:
 * `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road`
   and `Ridge View`.<br>
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword. 
+</div>
 
 ### Listing all tenants: `list`
 
@@ -279,6 +286,8 @@ Details:
 * Searches the tenant at the specified `INDEX`'s address.
 * `INDEX` index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `Map` command will input the address directly into the api call, Google Maps will handle which location is closest to 
+the exact given input.
 
 Examples:
 
@@ -435,18 +444,18 @@ corruption.
 
 ## Command summary
 
- Action      | Format                                                                                                                  | Examples
--------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
- **Add**     | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com`
- **Archive** | `archive INDEX`                                                                                                         | `archive 1`
- **Clear**   | `clear`                                                                                                                 |
- **Delete**  | `delete INDEX`                                                                                                          | `delete 3`
- **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
- **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`
- **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
- **List**    | `list`                                                                                                                  
- **Paid**    | `paid phone/PHONE`                                                                                                      | `paid 87654321`
- **ToggleArchive**  | `togglearchive`                                                                                                         | 
- **Unarchive**  | `unarchive INDEX`                                                                                                       | `unarchive 1`
- **UnPaid**  | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`
- **Help**    | `help`                                                                                                                  |
+ Action            | Format                                                                                                                  | Examples                                                                                                         
+-------------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
+ **Add**           | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com` 
+ **Archive**       | `archive INDEX`                                                                                                         | `archive 1`                                                                                                      
+ **Clear**         | `clear`                                                                                                                 |
+ **Delete**        | `delete INDEX`                                                                                                          | `delete 3`                                                                                                       
+ **Edit**          | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`                                                  
+ **Find**          | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`                                                                                                
+ **Filter**        | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`                                                                                        
+ **List**          | `list`                                                                                                                  
+ **Paid**          | `paid phone/PHONE`                                                                                                      | `paid 87654321`                                                                                                  
+ **ToggleArchive** | `togglearchive`                                                                                                         |
+ **Unarchive**     | `unarchive INDEX`                                                                                                       | `unarchive 1`                                                                                                    
+ **UnPaid**        | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`                                                                                                
+ **Help**          | `help`                                                                                                                  |

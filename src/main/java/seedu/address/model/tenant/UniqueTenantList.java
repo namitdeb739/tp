@@ -132,10 +132,13 @@ public class UniqueTenantList implements Iterable<Tenant> {
         return internalList.toString();
     }
 
-    // /**
-    //  * Returns true if {@code persons} contains only unique persons.
-    //  */
-    // private boolean personsAreUnique(List<Tenant> persons) {
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean containsWith(Tenant tenant, String field) {
+        return internalList.stream().anyMatch(t -> t.equalsWith(tenant, field));
+    }
+
     //     for (int i = 0; i < persons.size() - 1; i++) {
     //         for (int j = i + 1; j < persons.size(); j++) {
     //             if (persons.get(i).isSamePerson(persons.get(j))) {

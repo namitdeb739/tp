@@ -27,9 +27,9 @@ public class UnpaidCommandParserTest {
     @Test
     public void parse_validArgs_returnsUnpaidCommand() {
         // Test with valid phone number
-        Phone phone = new Phone("12345678");
+        Phone phone = new Phone("63213213");
         UnpaidCommand expectedCommand = new UnpaidCommand(phone);
-        assertParseSuccess(parser, "12345678", expectedCommand);
+        assertParseSuccess(parser, "63213213", expectedCommand);
     }
 
     @Test

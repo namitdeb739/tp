@@ -31,9 +31,9 @@ title: Developer Guide
 * **`archive`**: Archive a tenant record.
 * **`unarchive`**: Unarchive a previously archived tenant.
 * **`togglearchive`**: Toggle the archive status of a tenant.
-* **`paid`**: Mark a tenant as having paid their rent.
-* **`unpaid`**: Mark a tenant as not having paid their rent.
-* **`filter`**: Filter tenants based on multiple fields such as address.
+* **`paid`**: Mark a tenant as having paid their rent with an icon.
+* **`unpaid`**: Mark a tenant as not having paid their rent by removing the paid icon.
+* **`filter`**: Filter tenants based on address.
 * **`map`**: View tenants or properties on a map UI (implementation inferred from `MapCommand`).
 
 Each of these has corresponding command classes and parsers in `logic.commands` and `logic.parser` respectively.
@@ -198,9 +198,9 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TenantTracker`, which `Tenant` references. This allows `TenantTracker` to only require one `Tag` object per unique tag, instead of each `Tenant` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TenantTracker`, which `Tenant` references. This allows `TenantTracker` to only require one `Tag` object per unique tag, instead of each `Tenant` needing their own `Tag` objects.<br>clear
 <!-- <div style="text-align: center;"> -->
-<img src="images/BetterModelClassDiagram.png" width="450" />
+clear<img src="images/BetterModelClassDiagram.png" width="450" />
 <!-- </div> -->
 
 </div>
@@ -576,14 +576,14 @@ The `FilterCommand` allows users to filter tenants based on their address. This 
 
 #### Search Details
 
-* The search is **not case-sensitive**. For example, `Lower Kent Ridge` will match `lower kent ridge`.
-* The **order of the keywords does not matter**. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
+* The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
+* The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
-* **Prefixes of words or postal codes will be matched**:
-  * For example, `Kent` will match `Ken` and `229` will match `229220`.
-  * However, `ent` will **not** match `Kent`.
-* Tenants with addresses matching **at least one keyword** will be returned (i.e., **OR search**):
-  * For example, `Lower Kent Ridge` will return tenants with addresses like `Lower Arab Street`, `Kent Ridge`.
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the
+  command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`.
+  However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
+* Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
+  example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
 
 ---
 
@@ -885,46 +885,46 @@ and client details, streamlining communication and reducing administrative hassl
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                          | I want to …​                                                       | So that I can…​                                                                  |
-|----------|--------------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | Landlord of multiple properties                  | group my tenants/properties by building/neighborhood/zone          | better organize my properties and visits.                                        |
-| `* * *`  | Landlord                                         | update tenant contact details (phone/email)                        | remain in touch with my tenants in the event their contacts change.              |
-| `* * *`  | Landlord                                         | access analytics like total income from properties                 | better manage my personal finances.                                              |
-| `* * *`  | Landlord                                         | see which tenants' rents are overdue or coming up in the next week | remind them to pay rent on time.                                                 |
-| `* * *`  | Landlord with properties housing multiple people | assign multiple tenant contacts to one property                    | contact any of the residents of a single property easily.                        |
-| `* * *`  | Landlord with properties housing multiple people | filter properties by occupancy status                              | access which properties are available for rent so I can list them on the market. |
-| `* * *`  | Landlord                                         | search for a tenant's contact details by name                      | quickly get their contact to communicate with them efficiently.                  |
-| `* * *`  | Landlord                                         | add the property a tenant is staying at to their contact details   | know which property the tenant is renting.                                       |
-| `* * *`  | Landlord                                         | add a duration of stay to a tenant's contact detail                | effectively manage my rental scheduling.                                         |
-| `* *`    | Landlord                                         | sort tenants by attributes like gender                             | derive the demographics for the tenants.                                         |
-| `* *`    | Landlord                                         | tag tenants with custom tags                                       | categorize and manage them effectively.                                          |
-| `* *`    | Landlord                                         | update property details                                            | ensure important details like lease information can be updated.                  |
-| `* *`    | Landlord                                         | export tenant contact list                                         | integrate them with external CRM or communication tools.                         |
-| `* *`    | Landlord                                         | mark tenants as active or inactive                                 | distinguish between current and past tenants without deleting records.           |
-| `* *`    | Landlord                                         | add multiple phone numbers or emails for a tenant                  | contact them through different channels.                                         |
-| `* *`    | Landlord                                         | set a primary contact for a property with multiple tenants         | know who to reach first in case of urgent matters.                               |
-| `* *`    | Landlord                                         | add a profile picture to a tenant’s contact details                | visually recognize them easily.                                                  |
-| `* *`    | Landlord                                         | undo accidental deletions of contacts                              | avoid losing important information.                                              |
-| `* *`    | Landlord                                         | archive past tenants instead of deleting them                      | keep historical records without cluttering my main contact list.                 |
-| `* *`    | Landlord                                         | set up auto-complete for addresses                                 | enter property details faster.                                                   |
-| `* *`    | Landlord                                         | retrieve an address through tenant name and phone number           | know where the tenant is staying.                                                |
-| `* *`    | Landlord                                         | check for validity of tenant occupancy                             | confirm whether the tenant is legally living there.                              |
-| `* *`    | Landlord                                         | retrieve lease agreements                                          | check the specifics on the agreement.                                            |
-| `* *`    | Landlord                                         | retrieve addresses through tenant history                          | track who lived in which apartment over time.                                    |
-| `* *`    | Landlord                                         | retrieve tenant's past rental history                              | know whether a tenant has rented with me before.                                 |
-| `* *`    | Landlord                                         | import tenant contacts from a CSV file                             | quickly set up my database.                                                      |
-| `*`      | Landlord                                         | list my tenants' names                                             | get in touch with them for property-related matters.                             |
-| `*`      | Landlord                                         | list my tenants' phone numbers                                     | get in touch with them for property-related matters.                             |
-| `*`      | Landlord                                         | list my tenants' emails                                            | get in touch with them for property-related matters.                             |
-| `*`      | Landlord                                         | list my tenants' properties                                        | get in touch with them for property-related matters.                             |
-| `*`      | Landlord                                         | delete tenant name when a lease ends                               | keep my database current.                                                        |
-| `*`      | Landlord                                         | delete tenant email when a lease ends                              | keep my database current.                                                        |
-| `*`      | Landlord                                         | delete tenant contact number when a lease ends                     | keep my database current.                                                        |
-| `*`      | Landlord                                         | delete tenant property of residence when a lease ends              | keep my database current.                                                        |
-| `*`      | Landlord                                         | add a new tenant name                                              | record tenant's name.                                                            |
-| `*`      | Landlord                                         | add a new tenant phone number                                      | record tenant's phone number.                                                    |
-| `*`      | Landlord                                         | add a new tenant email                                             | record tenant's email.                                                           |
-| `*`      | Landlord                                         | add a new tenant property                                          | record tenant's property.                                                        |
+| Priority | As a …​                                        |  I want to …​                                                   | So that I can…​                                                                  |
+|----------|---------------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | Landlord                                          | list my tenants' names                                             | get in touch with them for property-related matters.                             
+| `* * *`  | Landlord                                          | list my tenants' phone numbers                                     | get in touch with them for property-related matters.                             |
+| `* * *`  | Landlord                                          | list my tenants' emails                                            | get in touch with them for property-related matters.                             |
+| `* * *`  | Landlord                                          | list my tenants' properties                                        | get in touch with them for property-related matters.                             |
+| `* * *`  | Landlord                                          | delete tenant name when a lease ends                               | keep my database current.                                                        |
+| `* * *`  | Landlord                                          | delete tenant email when a lease ends                              | keep my database current.                                                        |
+| `* * *`  | Landlord                                          | delete tenant contact number when a lease ends                     | keep my database current.                                                        |
+| `* * *`  | Landlord                                          | delete tenant property of residence when a lease ends              | keep my database current.                                                        |
+| `* * *`  | Landlord                                          | add a new tenant name                                              | record tenant's name.                                                            |
+| `* * *`  | Landlord                                          | add a new tenant phone number                                      | record tenant's phone number.                                                    |
+| `* * *`  | Landlord                                          | add a new tenant email                                             | record tenant's email.                                                           |
+| `* * *`  | Landlord                                          | add a new tenant property                                          | record tenant's property.                                                        |
+| `* *`    | Landlord                                          | sort tenants by attributes like gender                             | derive the demographics for the tenants.                                         |
+| `* *`    | Landlord                                          | tag tenants with custom tags                                       | categorize and manage them effectively.                                          |
+| `* *`    | Landlord                                          | update property details                                            | ensure important details like lease information can be updated.                  |
+| `* *`    | Landlord                                          | export tenant contact list                                         | integrate them with external CRM or communication tools.                         |
+| `* *`    | Landlord                                          | mark tenants as active or inactive                                 | distinguish between current and past tenants without deleting records.           |
+| `* *`    | Landlord                                          | add multiple phone numbers or emails for a tenant                  | contact them through different channels.                                         |
+| `* *`    | Landlord                                          | set a primary contact for a property with multiple tenants         | know who to reach first in case of urgent matters.                               |
+| `* *`    | Landlord                                          | add a profile picture to a tenant’s contact details                | visually recognize them easily.                                                  |
+| `* *`    | Landlord                                          | undo accidental deletions of contacts                              | avoid losing important information.                                              |
+| `* *`    | Landlord                                          | archive past tenants instead of deleting them                      | keep historical records without cluttering my main contact list.                 |
+| `* *`    | Landlord                                          | set up auto-complete for addresses                                 | enter property details faster.                                                   |
+| `* *`    | Landlord                                          | retrieve an address through tenant name and phone number           | know where the tenant is staying.                                                |
+| `* *`    | Landlord                                          | check for validity of tenant occupancy                             | confirm whether the tenant is legally living there.                              |
+| `* *`    | Landlord                                          | retrieve lease agreements                                          | check the specifics on the agreement.                                            |
+| `* *`    | Landlord                                          | retrieve addresses through tenant history                          | track who lived in which apartment over time.                                    |
+| `* *`    | Landlord                                          | retrieve tenant's past rental history                              | know whether a tenant has rented with me before.                                 |
+| `* *`    | Landlord                                          | import tenant contacts from a CSV file                             | quickly set up my database.                                                      |
+| `*`      | Landlord of multiple properties                   | group my tenants/properties by building/neighborhood/zone          | better organize my properties and visits.                                        |
+| `*`      | Landlord                                          | update tenant contact details (phone/email)                        | remain in touch with my tenants in the event their contacts change.              |
+| `*`      | Landlord                                          | access analytics like total income from properties                 | better manage my personal finances.                                              |
+| `*`      | Landlord                                          | see which tenants' rents are overdue or coming up in the next week | remind them to pay rent on time.                                                 |
+| `*`      | Landlord with properties housing multiple people  | assign multiple tenant contacts to one property                    | contact any of the residents of a single property easily.                        |
+| `*`      | Landlord with properties housing multiple people  | filter properties by occupancy status                              | access which properties are available for rent so I can list them on the market. |
+| `*`      | Landlord                                          | search for a tenant's contact details by name                      | quickly get their contact to communicate with them efficiently.                  |
+| `*`      | Landlord                                          | add the property a tenant is staying at to their contact details   | know which property the tenant is renting.                                       |
+| `*`      | Landlord                                          | add a duration of stay to a tenant's contact detail                | effectively manage my rental scheduling.                                         |
 
 ### Use cases
 
@@ -1291,7 +1291,7 @@ testers are expected to do more *exploratory* testing.
        Expected: A new tenant named John Doe is added to the list. A success message is displayed.
 
     1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
-       Expected: No tenant is added. Error details are shown in the status message.
+       Expected: No tenant is added as `12345678` is an invalid number. Error details are shown in the status message.
 
 ### Editing a tenant
 
@@ -1327,7 +1327,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The tenant with the phone number `98765432` is marked as paid. A success message is displayed.
 
     1. Test case: `paid 12345678`<br>
-       Expected: No tenant is marked as paid. Error details are shown in the status message.
+       Expected: No tenant is marked as paid as `12345678` is an invalid number. Error details are shown in the status message.
 
 ### Marking a tenant as unpaid
 
@@ -1339,7 +1339,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The tenant with the phone number `98765432` is marked as unpaid. A success message is displayed.
 
     1. Test case: `unpaid 12345678`<br>
-       Expected: No tenant is marked as unpaid. Error details are shown in the status message.
+       Expected: No tenant is marked as unpaid as `12345678` is an invalid number. Error details are shown in the status message.
 
 ### Viewing a tenant's address on Google Maps
 

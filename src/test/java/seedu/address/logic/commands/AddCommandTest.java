@@ -204,6 +204,11 @@ public class AddCommandTest {
         public void unmarkTenantAsPaid(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasTenantWith(Tenant editedTenant, String field) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     // /**
