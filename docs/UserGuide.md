@@ -121,6 +121,7 @@ Examples:
 
 * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`
 * `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 S456423`
+  ![result for 'add givenN/ Katherine familyN/  Lee phone/ 87512311 email/ katl@example.com address/ 5 Jalan Samulun, S629122 tag/Female'](images/AddResult.png)
 
 ### Archiving a tenant: `archive`
 
@@ -142,7 +143,8 @@ Details:
 Examples:
 
 * `list` followed by `archive 2` archives the 2nd tenant in the Tenant Track.
-* `find Betsy` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
+* `find Bob` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
+  ![result for 'archive 1'](images/ArchiveResult.png)
 
 ### Clearing all entries: `clear`
 
@@ -205,8 +207,9 @@ Details:
 
 Examples:
 
-* `edit 1 phone/ 91234567 email/ johndoe@example.com` updates the phone number and email of the first tenant.
 * `edit 2 givenN/ Betsy familyN/ Crower tag/` updates the name of the second tenant and clears all tags.
+* `edit 1 phone/ 91234567 email/ johndoe@example.com` updates the phone number and email of the first tenant.
+  ![result for 'edit 1 phone/ 91234567 email/ johndoe@example.com'](images/EditResult.png)
 
 ### Locating tenants by name: `find`
 
@@ -231,8 +234,8 @@ Details:
 Examples:
 
 * `find John` returns `john` and `John Doe`.
-* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find sam katherine` returns `Sam Wilson`, `Katherine Lee`.<br>
+  ![result for 'find sam katherine'](images/findSamKatherineResult.png)
 
 ### Locating tenants by address: `filter`
 
@@ -259,7 +262,7 @@ Examples:
 
 * `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road`
   and `Ridge View`.<br>
-  ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
+  ![result for 'filter Kent Ridge'](images/filterKentRidge.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword.
@@ -296,8 +299,9 @@ the exact given input.
 Examples:
 
 * `list` followed by `map 2` searches the 2nd tenant in Tenant Track's address in Google Maps.
-* `find Betsy` followed by `map 1` searches the 1st tenant in the results of the `find` command's address in Google
+* `find Tom` followed by `map 1` searches the 1st tenant in the results of the `find` command's address in Google
   Maps.
+  ![result for 'map 1'](images/mapResult.png)
 
 ### Marking a tenant as paid: `paid`
 
@@ -317,7 +321,8 @@ Details:
 
 Examples:
 
-* `paid` followed by `87654321` adds a paid icon to the tenant with the phone number: `87654321`.
+* `paid` followed by `91234567` adds a paid icon to the tenant with the phone number: `91234567`.
+  ![result for 'paid 91234567'](images/paidResult.png)
 
 ### Toggling between active and archive list: `togglearchive`
 
@@ -332,6 +337,12 @@ togglearchive
 Details:
 
 * Only the `unarchive` command works on the tenants in the archived list
+
+Examples:
+
+* `togglearchive` switches to the archive list if active list was displayed before the command.
+
+![result for 'togglearchive'](images/togglearchiveResult.png)
 
 ### Unarchiving a tenant: `unarchive`
 
@@ -348,7 +359,7 @@ Details:
 * Unarchive the tenant at the specified `INDEX`.
 * `INDEX`index refers to the index number in the archived tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* Unarchiving works from both the dsiplayed active list and the displayed archive list.
+* Unarchiving works from both the displayed active list and the displayed archive list.
 
 Examples:
 
