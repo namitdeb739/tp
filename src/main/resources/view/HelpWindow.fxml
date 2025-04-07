@@ -99,7 +99,8 @@
                             <!-- 🛑 Exit Command -->
                             <Label text="🛑 Exit Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
+                                      -fx-min-height: 30;"
                                       prefRowCount="2">
                                 exit: Exits the application.
                             </TextArea>
@@ -107,14 +108,16 @@
                             <!-- 🧲 Filter Command -->
                             <Label text="🧲 Filter Command" style="-fx-font-weight: bold;"/>
                             <TextArea fx:id="filterHelp" editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
+                                      -fx-min-height: 180;"
                                       prefRowCount="7">
                             </TextArea>
 
                             <!-- 🔎 Find Command -->
                             <Label text="🔎 Find Command" style="-fx-font-weight: bold;"/>
                             <TextArea fx:id="findHelp" editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;
+                                            -fx-min-height: 180"
                                       prefRowCount="7">
                             </TextArea>
 
