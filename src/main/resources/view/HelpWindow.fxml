@@ -143,6 +143,16 @@
                                       style="-fx-font-family: monospace; -fx-font-size: 13px;"
                                       prefRowCount="6">
                             </TextArea>
+
+                            <!-- 💵 Paid UnPaid Command -->
+                            <Label text="💵️ Paid Command" style="-fx-font-weight: bold;"/>
+                            <TextArea fx:id="paidHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;" prefRowCount="6">
+                            </TextArea>
+                            <Label text="💸 Unpaid Command" style="-fx-font-weight: bold;"/>
+                            <TextArea fx:id="unpaidHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;" prefRowCount="6">
+                            </TextArea>
                         </VBox>
                     </ScrollPane>
                 </TitledPane>

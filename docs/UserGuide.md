@@ -312,7 +312,7 @@ paid PHONE
 Details:
 
 * Searches the tenant with the specified phone number in the active tenant list.
-* The phone number should be exactly 8 digits long.
+* The phone number should be a valid Singaporean phone number exactly 8 digits long and starting with 6, 8 or 9.
 * If the phone number does not belong to any tenant, an error message is returned.
 
 Examples:
@@ -369,7 +369,7 @@ unpaid PHONE
 Details:
 
 * Searches the tenant with the specified phone number in the active tenant list.
-* The phone number should be exactly 8 digits long.
+* The phone number should be a valid Singaporean phone number exactly 8 digits long and starting with 6, 8 or 9.
 * The phone number should belong to a tenant that has paid.
 
 Examples:

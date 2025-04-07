@@ -527,6 +527,7 @@ unpaid 98765432
 **Notes**
 
 * The phone number must belong to an existing tenant.
+* The phone number should be a valid Singaporean phone number exactly 8 digits long and starting with 6, 8 or 9.
 * If the tenant is already marked as paid or unpaid, an appropriate error message is displayed.
 * The `isPaid` property ensures that the tenant's payment status is tracked accurately.
 
@@ -1291,7 +1292,7 @@ testers are expected to do more *exploratory* testing.
        Expected: A new tenant named John Doe is added to the list. A success message is displayed.
 
     1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
-       Expected: No tenant is added. Error details are shown in the status message.
+       Expected: No tenant is added as `12345678` is an invalid phone number. Error details are shown in the status message.
 
 ### Editing a tenant
 

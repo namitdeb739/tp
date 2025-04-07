@@ -53,6 +53,12 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private TextArea mapHelp;
 
+    @FXML
+    private TextArea paidHelp;
+
+    @FXML
+    private TextArea unpaidHelp;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -136,6 +142,23 @@ public class HelpWindow extends UiPart<Stage> {
             map 1
             """);
 
+        paidHelp.setText("""
+            paid: Marks a tenant as paid with a paid icon based on phone number.
+
+            Parameters:
+            PHONE (must be a valid Singaporean Phone number)
+
+            Example:
+            paid 91234567""");
+
+        unpaidHelp.setText("""
+            unpaid: Marks a tenant as not paid based on phone number. Removes the paid icon.
+
+            Parameters:
+            PHONE (must be a valid Singaporean Phone number)
+
+            Example:
+            unpaid 91234567""");
         root.setMinWidth(600);
         root.setMinHeight(100);
         root.setWidth(600);
