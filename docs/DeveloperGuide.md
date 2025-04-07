@@ -30,7 +30,7 @@ title: Developer Guide
 
 * **`archive`**: Archive a tenant record.
 * **`unarchive`**: Unarchive a previously archived tenant.
-* **`togglearchive`**: Toggle the archive status of a tenant.
+* **`togglearchive`**: Toggle between active tenant list and archived tenant list.
 * **`paid`**: Mark a tenant as having paid their rent with an icon.
 * **`unpaid`**: Mark a tenant as not having paid their rent by removing the paid icon.
 * **`filter`**: Filter tenants based on address.
@@ -356,13 +356,13 @@ The following sequence diagram shows how the `togglearchive` command is executed
 archive INDEX
 ```
 
-* **INDEX**: The index of the tenant in the displayed list to be archived.
+* **INDEX**: The index of the tenant in the active list to be archived.
 
 ```txt
 unarchive INDEX
 ```
 
-* **INDEX**: The index of the tenant in the displayed list to be unarchived.
+* **INDEX**: The index of the tenant in the archived list to be unarchived.
 
 ```txt
 togglearchive
@@ -376,7 +376,7 @@ togglearchive
 archive 3
 ```
 
-* Archives the 3rd tenant in the displayed list.
+* Archives the 3rd tenant in the active list.
 
 ```txt
 unarchive 2
@@ -395,6 +395,9 @@ togglearchive
 * Archived tenants are hidden from the default tenant list but can be accessed using the `togglearchive` command.
 * The `isArchived` property ensures that the tenant's data is retained for future reference.
 * The `togglearchive` command does not modify any tenant data; it only changes the view.
+* Archiving works on the active list from both the dsiplayed active list and the displayed archived list.
+* Unarchiving works on the archived list from both the displayed active list and the displayed archived list.
+* Only the `unarchive` command works on the tenants in the archived list.
 
 ### Paid/Unpaid Tenants
 

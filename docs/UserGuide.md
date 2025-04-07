@@ -336,7 +336,7 @@ togglearchive
 
 Details:
 
-* Only the `unarchive` command works on the tenants in the archived list
+* Only the `unarchive` command works on the tenants in the archived list.
 
 Examples:
 
@@ -359,7 +359,7 @@ Details:
 * Unarchive the tenant at the specified `INDEX`.
 * `INDEX`index refers to the index number in the archived tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* Unarchiving works from both the displayed active list and the displayed archive list.
+* Unarchiving works on the archived list from both the displayed active list and the displayed archive list.
 
 Examples:
 
