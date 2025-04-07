@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Address {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank. "
-            + "It must contain a valid 6-digit Singaporean postcode formatted as: SXXXXXX (example, S123456).";
+            + "It must contain a valid 6-digit Singaporean postcode formatted as: SABXXXX, where AB is a 2-digit number"
+            + "from 01-82 excluding 74, and XXXX is any 4-digit number. For example, 'S123456' is a valid postcode.";
 
     /*
      * The first character of the address must not be a whitespace, otherwise " " (a blank string)

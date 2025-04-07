@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             + PREFIX_GIVEN_NAME + " GIVEN NAME " + PREFIX_FAMILY_NAME + " FAMILY NAME " + PREFIX_PHONE + " PHONE "
             + PREFIX_EMAIL + " EMAIL " + PREFIX_ADDRESS + " ADDRESS " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: "
             + COMMAND_WORD + " " + PREFIX_GIVEN_NAME + " John " + PREFIX_FAMILY_NAME + " Doe " + PREFIX_PHONE
-            + " 98765432 " + PREFIX_EMAIL + " johndoe@email.com " + PREFIX_ADDRESS + " 21 Lower Kent Ridge Rd, 119077 "
+            + " 98765432 " + PREFIX_EMAIL + " johndoe@email.com " + PREFIX_ADDRESS + " 21 Lower Kent Ridge Rd, S119077 "
             + PREFIX_TAG + "hdb " + PREFIX_TAG + "landed";
 
     public static final String MESSAGE_SUCCESS = "New tenant added: %1$s";
