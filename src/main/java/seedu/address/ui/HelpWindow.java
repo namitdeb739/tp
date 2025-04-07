@@ -68,7 +68,7 @@ public class HelpWindow extends UiPart<Stage> {
 
             Example:
             add givenN/ John familyN/ Doe phone/ 98765432 email/ johndoe@email.com
-            address/ 21 Lower Kent Ridge Rd, 119077 tag/ hdb tag/ landed
+            address/ 21 Lower Kent Ridge Rd, S119077 tag/ hdb tag/ landed
             """);
 
         archiveHelp.setText("""
