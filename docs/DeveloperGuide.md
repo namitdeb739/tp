@@ -1297,6 +1297,39 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
        Expected: No tenant is added as `12345678` is an invalid phone number. Error details are shown in the status message.
 
+### Archiving a tenant
+
+1.  Archiving a tenant
+
+    1. Prerequisites: List all tenants using the `list` command. Multiple tenants in the list.
+
+    1. Test case: `archive 1`<br>
+       Expected: First tenant is archived and is now in the archived list. A success message is displayed.
+
+    1. Test case: `archive 0`<br>
+       Expected: No tenant is archived as `0` is an invalid index. Error details are shown in the status message.
+
+### Unarchiving a tenant
+
+1. Unarchiving a tenant
+
+    1. Prerequisites: Toggle to the archived list view using the `togglearchive` command. Ensure at least one tenant is archived.
+
+    1. Test case: `unarchive 1`<br>
+       Expected: First tenant in the archived list is unarchived and is now in the active list. A success message is displayed.
+
+    1. Test case: `unarchive 0`<br>
+       Expected: No tenant is unarchived as `0` is an invalid index. Error details are shown in the status message.
+
+### Toggling between active and archived views
+
+1. Toggling between active and archived views
+
+    1. Prerequisites: Have at least one archived tenant.
+
+    1. Test case: `togglearchive`<br>
+       Expected: View changes from active list to archived list or vice versa. A success message is displayed.
+
 ### Editing a tenant
 
 1. Editing a tenant's details
