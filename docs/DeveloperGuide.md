@@ -580,7 +580,7 @@ The `FilterCommand` allows users to filter tenants based on their address. This 
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
 * **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the
-  command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`.
+  command `filter Ken` and an address with `S229220` in it will satisfy the command `filter S229`.
   However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
@@ -603,8 +603,8 @@ The `FilterCommand` allows users to filter tenants based on their address. This 
 * `filter Kent Ridge`:
   * Returns tenants with addresses like `Lower Kent Ridge`, `Upper Kent Ridge`, `Kent Road`, and `Ridge View`.
 
-* `filter 229`:
-  * Returns tenants with addresses containing postal codes like `229220`.
+* `filter S229`:
+  * Returns tenants with addresses containing postal codes like `S229220`.
 
 ---
 
@@ -647,10 +647,10 @@ filter Kent Ridge
 * Filters tenants whose addresses contain the keywords "Kent" and "Ridge".
 
 ```plaintext
-filter 119077
+filter S119077
 ```
 
-* Filters tenants whose addresses contain the postal code "119077".
+* Filters tenants whose addresses contain the postal code "S119077".
 
 **Notes**
 
@@ -887,7 +887,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                        |  I want to …​                                                   | So that I can…​                                                                  |
 |----------|---------------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | Landlord                                          | list my tenants' names                                             | get in touch with them for property-related matters.                             
+| `* * *`  | Landlord                                          | list my tenants' names                                             | get in touch with them for property-related matters.
 | `* * *`  | Landlord                                          | list my tenants' phone numbers                                     | get in touch with them for property-related matters.                             |
 | `* * *`  | Landlord                                          | list my tenants' emails                                            | get in touch with them for property-related matters.                             |
 | `* * *`  | Landlord                                          | list my tenants' properties                                        | get in touch with them for property-related matters.                             |
@@ -1314,8 +1314,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `filter Kent Ridge`<br>
        Expected: Displays a list of tenants whose addresses contain "Kent Ridge".
 
-    1. Test case: `filter 123`<br>
-       Expected: Displays a list of tenants whose addresses contain "123".
+    1. Test case: `filter S123`<br>
+       Expected: Displays a list of tenants whose addresses contain "S123".
 
 ### Marking a tenant as paid
 

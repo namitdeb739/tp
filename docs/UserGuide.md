@@ -223,7 +223,7 @@ Details:
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** in the active tenant list is searched.
-* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command 
+* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command
 `find Hans`. However, a tenant with `ans` in his name will **NOT** satisfy the command `find Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.
@@ -249,8 +249,8 @@ Details:
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** in the active tenant list is searched.
-* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the 
-command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`. 
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the
+command `filter Ken` and an address with `S229220` in it will satisfy the command `filter S229`.
 However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
@@ -262,7 +262,7 @@ Examples:
   ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword. 
+When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword.
 </div>
 
 ### Listing all tenants: `list`
@@ -290,7 +290,7 @@ Details:
 * Searches the tenant at the specified `INDEX`'s address.
 * `INDEX` index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `Map` command will input the address directly into the api call, Google Maps will handle which location is closest to 
+* `Map` command will input the address directly into the api call, Google Maps will handle which location is closest to
 the exact given input.
 
 Examples:
