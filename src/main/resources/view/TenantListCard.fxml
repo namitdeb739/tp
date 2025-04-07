@@ -27,6 +27,8 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <!-- <a href="https://www.flaticon.com/free-icons/paid" title="paid icons">Paid icons created by
+                Freepik - Flaticon</a> -->
                 <ImageView fx:id="paidIcon" fitHeight="15" fitWidth="15" pickOnBounds="true" preserveRatio="true" visible="false" />
             </HBox>
             <FlowPane fx:id="tags" />
