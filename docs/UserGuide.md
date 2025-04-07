@@ -106,7 +106,11 @@ Details:
 
 * Phone number must be a valid Singaporean 8-digit number.
 * Emails must be a valid email, for example `address@domain.com`.
-* Address must contain a valid 6-digit postcode within it. It must be a word of its own formatted as `SXXXXXX` where S is a prefix for standardisation and `XXXXXX` is a valid postcode. One example valid address is: `NUS School of Computing, COM1, 13, Computing Dr, S117417`.
+* Address must contain a valid 6-digit postcode within it. It must be a word of its own formatted as `SABXXXX` where:
+  * `S` is the string `"S"` a prefix for standardisation.
+  * `AB` is a postal zone, which can be any 2-digit number from `01-82`, excluding `74`
+  * `XXXXXX` is any 4 digits.
+  * One example valid address is: `NUS School of Computing, COM1, 13, Computing Dr, S117417`.
 * Arguments/Prefixes should adhere to the specified order and format above.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
