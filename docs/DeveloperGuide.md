@@ -30,7 +30,7 @@ title: Developer Guide
 
 * **`archive`**: Archive a tenant record.
 * **`unarchive`**: Unarchive a previously archived tenant.
-* **`togglearchive`**: Toggle the archive status of a tenant.
+* **`togglearchive`**: Toggle between active tenant list and archived tenant list.
 * **`paid`**: Mark a tenant as having paid their rent with an icon.
 * **`unpaid`**: Mark a tenant as not having paid their rent by removing the paid icon.
 * **`filter`**: Filter tenants based on address.
@@ -356,13 +356,13 @@ The following sequence diagram shows how the `togglearchive` command is executed
 archive INDEX
 ```
 
-* **INDEX**: The index of the tenant in the displayed list to be archived.
+* **INDEX**: The index of the tenant in the active list to be archived.
 
 ```txt
 unarchive INDEX
 ```
 
-* **INDEX**: The index of the tenant in the displayed list to be unarchived.
+* **INDEX**: The index of the tenant in the archived list to be unarchived.
 
 ```txt
 togglearchive
@@ -376,7 +376,7 @@ togglearchive
 archive 3
 ```
 
-* Archives the 3rd tenant in the displayed list.
+* Archives the 3rd tenant in the active list.
 
 ```txt
 unarchive 2
@@ -395,6 +395,9 @@ togglearchive
 * Archived tenants are hidden from the default tenant list but can be accessed using the `togglearchive` command.
 * The `isArchived` property ensures that the tenant's data is retained for future reference.
 * The `togglearchive` command does not modify any tenant data; it only changes the view.
+* Archiving works on the active list from both the displayed active list and the displayed archived list.
+* Unarchiving works on the archived list from both the displayed active list and the displayed archived list.
+* Only the `unarchive` command works on the tenants in the archived list.
 
 ### Paid/Unpaid Tenants
 
@@ -1293,6 +1296,39 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
        Expected: No tenant is added as `12345678` is an invalid phone number. Error details are shown in the status message.
+
+### Archiving a tenant
+
+1.  Archiving a tenant
+
+    1. Prerequisites: List all tenants using the `list` command. Multiple tenants in the list.
+
+    1. Test case: `archive 1`<br>
+       Expected: First tenant is archived and is now in the archived list. A success message is displayed.
+
+    1. Test case: `archive 0`<br>
+       Expected: No tenant is archived as `0` is an invalid index. Error details are shown in the status message.
+
+### Unarchiving a tenant
+
+1. Unarchiving a tenant
+
+    1. Prerequisites: Toggle to the archived list view using the `togglearchive` command. Ensure at least one tenant is archived.
+
+    1. Test case: `unarchive 1`<br>
+       Expected: First tenant in the archived list is unarchived and is now in the active list. A success message is displayed.
+
+    1. Test case: `unarchive 0`<br>
+       Expected: No tenant is unarchived as `0` is an invalid index. Error details are shown in the status message.
+
+### Toggling between active and archived views
+
+1. Toggling between active and archived views
+
+    1. Prerequisites: Have at least one archived tenant.
+
+    1. Test case: `togglearchive`<br>
+       Expected: View changes from active list to archived list or vice versa. A success message is displayed.
 
 ### Editing a tenant
 
