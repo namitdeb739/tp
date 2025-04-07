@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "99965432";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1, 123456";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3, 987654";
+    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1, S123456";
+    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3, S119032";
     public static final String VALID_TAG_HDB = "Hdb";
     public static final String VALID_TAG_LANDED = "Landed";
 

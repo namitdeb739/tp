@@ -33,7 +33,7 @@ use.
 
     * `list`: Lists all tenants.
 
-    * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`:
+    * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`:
       Adds a tenant named `John Doe`.
 
     * `delete 3`: Deletes the 3rd tenant shown in the current list.
@@ -99,14 +99,18 @@ Adds a tenant to the Tenant Track.
 Format:
 
 <pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
-add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456
+add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456
 </pre>
 
 Details:
 
 * Phone number must be a valid Singaporean 8-digit number.
 * Emails must be a valid email, for example `address@domain.com`.
-* Address must contain a 6-digit postcode.
+* Address must contain a valid 6-digit postcode within it. It must be a word of its own formatted as `SABXXXX` where:
+  * `S` is the string `"S"` a prefix for standardisation.
+  * `AB` is a postal zone, which can be any 2-digit number from `01-82`, excluding `74`
+  * `XXXXXX` is any 4 digits.
+  * One example valid address is: `NUS School of Computing, COM1, 13, Computing Dr, S117417`.
 * Arguments/Prefixes should adhere to the specified order and format above.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -115,8 +119,9 @@ A tenant can have any number of tags (including 0).
 
 Examples:
 
-* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
-* `add givenN/ Sam familyN/ Tan phone/ 87543213 email/ sam@example.com address/ Sam street, block 321, #02-04 456423`
+* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`
+* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 S456423`
+  ![result for 'add givenN/ Katherine familyN/  Lee phone/ 87512311 email/ katl@example.com address/ 5 Jalan Samulun, S629122 tag/Female'](images/AddResult.png)
 
 ### Archiving a tenant: `archive`
 
@@ -138,7 +143,8 @@ Details:
 Examples:
 
 * `list` followed by `archive 2` archives the 2nd tenant in the Tenant Track.
-* `find Betsy` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
+* `find Bob` followed by `archive 1` archives the 1st tenant in the results of the `find` command.
+  ![result for 'archive 1'](images/ArchiveResult.png)
 
 ### Clearing all entries: `clear`
 
@@ -201,8 +207,9 @@ Details:
 
 Examples:
 
-* `edit 1 phone/ 91234567 email/ johndoe@example.com` updates the phone number and email of the first tenant.
 * `edit 2 givenN/ Betsy familyN/ Crower tag/` updates the name of the second tenant and clears all tags.
+* `edit 1 phone/ 91234567 email/ johndoe@example.com` updates the phone number and email of the first tenant.
+  ![result for 'edit 1 phone/ 91234567 email/ johndoe@example.com'](images/EditResult.png)
 
 ### Locating tenants by name: `find`
 
@@ -219,7 +226,7 @@ Details:
 * The search is **NOT** case-sensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the **name** in the active tenant list is searched.
-* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command 
+* **Prefixes** of words will be matched. For example, a tenant with `Han` in his name will satisfy the command
 `find Hans`. However, a tenant with `ans` in his name will **NOT** satisfy the command `find Hans`.
 * Tenants matching at **least one keyword** will be returned (i.e. `OR` search). For example, `Hans Bo` will
   return `Hans Gruber`, `Bo Yang`.
@@ -227,8 +234,8 @@ Details:
 Examples:
 
 * `find John` returns `john` and `John Doe`.
-* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find sam katherine` returns `Sam Wilson`, `Katherine Lee`.<br>
+  ![result for 'find sam katherine'](images/findSamKatherineResult.png)
 
 ### Locating tenants by address: `filter`
 
@@ -245,8 +252,8 @@ Details:
 * The search is **NOT** case-sensitive. For example, `Lower Kent Ridge` will match `lower kent ridge`.
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** in the active tenant list is searched.
-* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the 
-command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`. 
+* **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the
+command `filter Ken` and an address with `S229220` in it will satisfy the command `filter S229`.
 However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
@@ -255,10 +262,10 @@ Examples:
 
 * `filter Kent Ridge` return tenants with addresses `Lower Kent Ridge`,`Upper Kent Ridge`, `Kent Road`
   and `Ridge View`.<br>
-  ![result for 'filter Lower Kent Ridge'](images/filterLowerKentRidge.png)
+  ![result for 'filter Kent Ridge'](images/filterKentRidge.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword. 
+When filtering based on a single KEYWORD, take note to remove any trailing commas from the keyword.
 </div>
 
 ### Listing all tenants: `list`
@@ -286,14 +293,15 @@ Details:
 * Searches the tenant at the specified `INDEX`'s address.
 * `INDEX` index refers to the index number shown in the active tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `Map` command will input the address directly into the api call, Google Maps will handle which location is closest to 
+* `Map` command will input the address directly into the api call, Google Maps will handle which location is closest to
 the exact given input.
 
 Examples:
 
 * `list` followed by `map 2` searches the 2nd tenant in Tenant Track's address in Google Maps.
-* `find Betsy` followed by `map 1` searches the 1st tenant in the results of the `find` command's address in Google
+* `find Tom` followed by `map 1` searches the 1st tenant in the results of the `find` command's address in Google
   Maps.
+  ![result for 'map 1'](images/mapResult.png)
 
 ### Marking a tenant as paid: `paid`
 
@@ -308,12 +316,13 @@ paid PHONE
 Details:
 
 * Searches the tenant with the specified phone number in the active tenant list.
-* The phone number should be exactly 8 digits long.
+* The phone number should be a valid Singaporean phone number exactly 8 digits long and starting with 6, 8 or 9.
 * If the phone number does not belong to any tenant, an error message is returned.
 
 Examples:
 
-* `paid` followed by `87654321` adds a paid icon to the tenant with the phone number: `87654321`.
+* `paid` followed by `91234567` adds a paid icon to the tenant with the phone number: `91234567`.
+  ![result for 'paid 91234567'](images/paidResult.png)
 
 ### Toggling between active and archive list: `togglearchive`
 
@@ -328,6 +337,12 @@ togglearchive
 Details:
 
 * Only the `unarchive` command works on the tenants in the archived list
+
+Examples:
+
+* `togglearchive` switches to the archive list if active list was displayed before the command.
+
+![result for 'togglearchive'](images/togglearchiveResult.png)
 
 ### Unarchiving a tenant: `unarchive`
 
@@ -344,7 +359,7 @@ Details:
 * Unarchive the tenant at the specified `INDEX`.
 * `INDEX`index refers to the index number in the archived tenant list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* Unarchiving works from both the dsiplayed active list and the displayed archive list.
+* Unarchiving works from both the displayed active list and the displayed archive list.
 
 Examples:
 
@@ -365,7 +380,7 @@ unpaid PHONE
 Details:
 
 * Searches the tenant with the specified phone number in the active tenant list.
-* The phone number should be exactly 8 digits long.
+* The phone number should be a valid Singaporean phone number exactly 8 digits long and starting with 6, 8 or 9.
 * The phone number should belong to a tenant that has paid.
 
 Examples:
@@ -444,18 +459,18 @@ corruption.
 
 ## Command summary
 
- Action            | Format                                                                                                                  | Examples                                                                                                         
--------------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
- **Add**           | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com` 
- **Archive**       | `archive INDEX`                                                                                                         | `archive 1`                                                                                                      
- **Clear**         | `clear`                                                                                                                 |
- **Delete**        | `delete INDEX`                                                                                                          | `delete 3`                                                                                                       
- **Edit**          | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`                                                  
- **Find**          | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`                                                                                                
- **Filter**        | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`                                                                                        
- **List**          | `list`                                                                                                                  
- **Paid**          | `paid phone/PHONE`                                                                                                      | `paid 87654321`                                                                                                  
- **ToggleArchive** | `togglearchive`                                                                                                         |
- **Unarchive**     | `unarchive INDEX`                                                                                                       | `unarchive 1`                                                                                                    
- **UnPaid**        | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`                                                                                                
- **Help**          | `help`                                                                                                                  |
+ Action      | Format                                                                                                                  | Examples
+-------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
+ **Add**     | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, S119077 phone/ 81923121 email/ johnd@example.com`
+ **Archive** | `archive INDEX`                                                                                                         | `archive 1`
+ **Clear**   | `clear`                                                                                                                 |
+ **Delete**  | `delete INDEX`                                                                                                          | `delete 3`
+ **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
+ **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`
+ **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
+ **List**    | `list`
+ **Paid**    | `paid phone/PHONE`                                                                                                      | `paid 87654321`
+ **ToggleArchive**  | `togglearchive`                                                                                                         |
+ **Unarchive**  | `unarchive INDEX`                                                                                                       | `unarchive 1`
+ **UnPaid**  | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`
+ **Help**    | `help`                                                                                                                  |

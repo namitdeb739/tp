@@ -32,16 +32,16 @@ public class AddressTest {
         assertFalse(Address.isValidAddress("-")); // one character
 
         // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355, 123456"));
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 349879 USA")); // long address
+        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355, S123456"));
+        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA S349879 USA")); // long address
     }
 
     @Test
     public void equals() {
-        Address address = new Address("Valid Address 123456");
+        Address address = new Address("Valid Address S123456");
 
         // same values -> returns true
-        assertTrue(address.equals(new Address("Valid Address 123456")));
+        assertTrue(address.equals(new Address("Valid Address S123456")));
 
         // same object -> returns true
         assertTrue(address.equals(address));
@@ -53,6 +53,6 @@ public class AddressTest {
         assertFalse(address.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(address.equals(new Address("Valid Address 123456 1")));
+        assertFalse(address.equals(new Address("Valid Address S123456 1")));
     }
 }

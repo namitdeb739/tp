@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -56,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML private Label viewModeLabel;
+
 
     private boolean isShowingArchived = false;
 
@@ -211,6 +215,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the Label for the displayed list depending on archived or not.
+     */
+    private void updateViewLabel() {
+        viewModeLabel.setText(isShowingArchived ? "Viewing: Archived Tenants" : "Viewing: Active Tenants");
+    }
+
+    /**
      * Toggles the archive list
      */
     @FXML
@@ -222,5 +233,7 @@ public class MainWindow extends UiPart<Stage> {
 
         archivedTenantListPanelPlaceholder.setVisible(isShowingArchived);
         archivedTenantListPanelPlaceholder.setManaged(isShowingArchived);
+
+        updateViewLabel();
     }
 }

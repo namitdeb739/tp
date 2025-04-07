@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17"
+<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png"/>
@@ -48,8 +48,10 @@
                 </HBox>
 
                 <!-- New collapsible section for command examples -->
-                <TitledPane fx:id="commandExamplesPane" text="Command Examples" expanded="false">
+                <!-- Added VBox.vgrow="ALWAYS" to allow expansion -->
+                <TitledPane fx:id="commandExamplesPane" text="Command Examples" expanded="false" VBox.vgrow="ALWAYS">
                     <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                        <!-- Remove fixed height values to allow dynamic resizing -->
                         <VBox spacing="12">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
@@ -65,8 +67,8 @@
 
                             <!-- 📁 Archive Command -->
                             <Label text="📁 Archive Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="archiveHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
-                            -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
+                            <TextArea fx:id="archiveHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
                                       prefRowCount="6">
                             </TextArea>
 
@@ -89,8 +91,8 @@
 
                             <!-- 📝 Edit Command -->
                             <Label text="📝 Edit Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="editHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
-                            -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
+                            <TextArea fx:id="editHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
                                       prefRowCount="9">
                             </TextArea>
 
@@ -122,31 +124,38 @@
                             <!-- 📖 Help Command -->
                             <Label text="📖 Help Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
-                                      -fx-min-height: 30;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
                                       prefRowCount="3">
                                 help: Shows program usage instructions.
                             </TextArea>
 
                             <!-- 📋 List Command -->
                             <Label text="📋 List Command" style="-fx-font-weight: bold;"/>
-                            <TextArea editable="false" wrapText="true" style="-fx-font-family: monospace;
-                            -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 30;"
+                            <TextArea editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
                                       prefRowCount="2">
                                 list: Lists all tenants in the address book.
                             </TextArea>
 
                             <!-- 🗺️ Map Command -->
                             <Label text="🗺️ Map Command" style="-fx-font-weight: bold;"/>
-                            <TextArea fx:id="mapHelp" editable="false" wrapText="true" style="-fx-font-family: monospace;
-                            -fx-font-size: 13px; -fx-pref-row-count: 10; -fx-min-height: 180;"
+                            <TextArea fx:id="mapHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
                                       prefRowCount="6">
+                            </TextArea>
+
+                            <!-- 💵 Paid UnPaid Command -->
+                            <Label text="💵️ Paid Command" style="-fx-font-weight: bold;"/>
+                            <TextArea fx:id="paidHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;" prefRowCount="6">
+                            </TextArea>
+                            <Label text="💸 Unpaid Command" style="-fx-font-weight: bold;"/>
+                            <TextArea fx:id="unpaidHelp" editable="false" wrapText="true"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;" prefRowCount="6">
                             </TextArea>
                         </VBox>
                     </ScrollPane>
                 </TitledPane>
-
-
             </VBox>
         </Scene>
     </scene>

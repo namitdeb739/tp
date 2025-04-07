@@ -10,12 +10,23 @@ import seedu.address.model.Model;
 public class ToggleArchiveCommand extends Command {
     public static final String COMMAND_WORD = "togglearchive";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Toggles the view between active and archived tenants.";
-    public static final String MESSAGE_SUCCESS = "Toggled between archived tenants";
+    public static final String MESSAGE_FAILURE = "There are no archived tenants to display.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        boolean currentlyArchived = model.isShowingArchived();
+        boolean hasArchivedTenants = !model.getArchivedTenantList().isEmpty();
+
+        if (!currentlyArchived && !hasArchivedTenants) {
+            return new CommandResult(MESSAGE_FAILURE);
+        }
+
         model.toggleArchiveView();
-        return new CommandResult(MESSAGE_SUCCESS, true);
+        return new CommandResult(
+                currentlyArchived ? "Switched to active tenants view." : "Switched to archived tenants view.",
+                true
+        );
     }
 }

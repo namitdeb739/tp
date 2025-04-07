@@ -20,7 +20,7 @@ public class TenantBuilder {
     public static final String DEFAULT_FAMILY_NAME = "Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111, 123456";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111, S123456";
 
     private Name name;
     private Phone phone;

@@ -17,7 +17,8 @@ public class PaidCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the tenant with the specified phone number as paid.\n"
             + "Parameters: PHONE\n"
-            + "Example: " + COMMAND_WORD + " 12345678";
+            + "Example: " + COMMAND_WORD + " 82345678\n"
+            + "The phone number should be a valid Singaporean phone number also.";
 
     public static final String MESSAGE_SUCCESS = "Successfully marked tenant as paid: %s";
     public static final String MESSAGE_TENANT_NOT_FOUND = "No tenant found with phone number: %s";

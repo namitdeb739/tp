@@ -527,6 +527,7 @@ unpaid 98765432
 **Notes**
 
 * The phone number must belong to an existing tenant.
+* The phone number should be a valid Singaporean phone number exactly 8 digits long and starting with 6, 8 or 9.
 * If the tenant is already marked as paid or unpaid, an appropriate error message is displayed.
 * The `isPaid` property ensures that the tenant's payment status is tracked accurately.
 
@@ -580,7 +581,7 @@ The `FilterCommand` allows users to filter tenants based on their address. This 
 * The order of the keywords does not matter. For example, `Kent Ridge Lower` will match `Lower Kent Ridge`.
 * Only the **address** is searched.
 * **Prefixes** of words or postal codes will be matched. For example, an address with `Kent` in it will satisfy the
-  command `filter Ken` and an address with `229220` in it will satisfy the command `filter 229`.
+  command `filter Ken` and an address with `S229220` in it will satisfy the command `filter S229`.
   However, an address with `ent` in it will **NOT** satisfy the command `filter Kent`.
 * Tenants with addresses matching at least one keyword will be returned (i.e. `OR` search). For
   example, `Lower Kent Ridge` will return `Lower Arab Street`, `Kent Ridge`.
@@ -603,8 +604,8 @@ The `FilterCommand` allows users to filter tenants based on their address. This 
 * `filter Kent Ridge`:
   * Returns tenants with addresses like `Lower Kent Ridge`, `Upper Kent Ridge`, `Kent Road`, and `Ridge View`.
 
-* `filter 229`:
-  * Returns tenants with addresses containing postal codes like `229220`.
+* `filter S229`:
+  * Returns tenants with addresses containing postal codes like `S229220`.
 
 ---
 
@@ -647,10 +648,10 @@ filter Kent Ridge
 * Filters tenants whose addresses contain the keywords "Kent" and "Ridge".
 
 ```plaintext
-filter 119077
+filter S119077
 ```
 
-* Filters tenants whose addresses contain the postal code "119077".
+* Filters tenants whose addresses contain the postal code "S119077".
 
 **Notes**
 
@@ -887,7 +888,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                        |  I want to …​                                                   | So that I can…​                                                                  |
 |----------|---------------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | Landlord                                          | list my tenants' names                                             | get in touch with them for property-related matters.                             
+| `* * *`  | Landlord                                          | list my tenants' names                                             | get in touch with them for property-related matters.
 | `* * *`  | Landlord                                          | list my tenants' phone numbers                                     | get in touch with them for property-related matters.                             |
 | `* * *`  | Landlord                                          | list my tenants' emails                                            | get in touch with them for property-related matters.                             |
 | `* * *`  | Landlord                                          | list my tenants' properties                                        | get in touch with them for property-related matters.                             |
@@ -1287,11 +1288,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a tenant with valid details
 
-    1. Test case: `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
+    1. Test case: `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
        Expected: A new tenant named John Doe is added to the list. A success message is displayed.
 
-    1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
-       Expected: No tenant is added as `12345678` is an invalid number. Error details are shown in the status message.
+    1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
+       Expected: No tenant is added as `12345678` is an invalid phone number. Error details are shown in the status message.
 
 ### Editing a tenant
 
@@ -1314,8 +1315,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `filter Kent Ridge`<br>
        Expected: Displays a list of tenants whose addresses contain "Kent Ridge".
 
-    1. Test case: `filter 123`<br>
-       Expected: Displays a list of tenants whose addresses contain "123".
+    1. Test case: `filter S123`<br>
+       Expected: Displays a list of tenants whose addresses contain "S123".
 
 ### Marking a tenant as paid
 

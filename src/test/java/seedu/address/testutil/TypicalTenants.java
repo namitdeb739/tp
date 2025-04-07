@@ -24,37 +24,37 @@ import seedu.address.model.tenant.Tenant;
 public class TypicalTenants {
 
     public static final Tenant ALICE =
-            new TenantBuilder().withName("Alice", "Pauline").withAddress("123, Jurong West Ave 6, #08-111, 123456")
+            new TenantBuilder().withName("Alice", "Pauline").withAddress("123, Jurong West Ave 6, #08-111, S123456")
                     .withEmail("alice@example.com").withPhone("98765432").withTags("friends").build();
     public static final Tenant BENSON =
-            new TenantBuilder().withName("Benson", "Meier").withAddress("311, Clementi Ave 2, #02-25, 123456")
+            new TenantBuilder().withName("Benson", "Meier").withAddress("311, Clementi Ave 2, #02-25, S123456")
                     .withPhone("98765433").withEmail("benson@example.com").withTags("owesMoney", "friends").build();
     public static final Tenant CARL = new TenantBuilder().withName("Carl", "Kurz").withPhone("98765434")
-            .withEmail("heinz@example.com").withAddress("wall street, 123456").build();
+            .withEmail("heinz@example.com").withAddress("wall street, S123456").build();
     public static final Tenant DANIEL = new TenantBuilder().withName("Daniel", "Meier").withPhone("98765435")
-            .withEmail("cornelia@example.com").withAddress("10th street, 123456").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street, S123456").withTags("friends").build();
     public static final Tenant ELLE = new TenantBuilder().withName("Elle", "Meyer").withPhone("98765436")
-            .withEmail("werner@example.com").withAddress("michegan ave, 123456").build();
+            .withEmail("werner@example.com").withAddress("michegan ave, S123456").build();
     public static final Tenant FIONA = new TenantBuilder().withName("Fiona", "Kunz").withPhone("98765437")
-            .withEmail("lydia@example.com").withAddress("little tokyo, 123456").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo, S123456").build();
     public static final Tenant GEORGE = new TenantBuilder().withName("George", "Best").withPhone("98765438")
-            .withEmail("anna@example.com").withAddress("4th street, 123456").build();
+            .withEmail("anna@example.com").withAddress("4th street, S123456").build();
 
     // Manually added
     public static final Tenant HOON = new TenantBuilder().withName("Hoon", "Meier").withPhone("98765439")
-            .withEmail("stefan@example.com").withAddress("little india, 123456").build();
+            .withEmail("stefan@example.com").withAddress("little india, S123456").build();
     public static final Tenant IDA = new TenantBuilder().withName("Ida", "Mueller").withPhone("98765430")
-            .withEmail("hans@example.com").withAddress("chicago ave, 123456").build();
+            .withEmail("hans@example.com").withAddress("chicago ave, S123456").build();
 
     // Added Manually for FilterCommandTest
     public static final Tenant JAMES = new TenantBuilder().withName("James", "Smith").withPhone("98765431")
-            .withEmail("james@example.com").withAddress("21 Lower Kent Ridge Rd, 119077").build();
+            .withEmail("james@example.com").withAddress("21 Lower Kent Ridge Rd, S119077").build();
 
     public static final Tenant MIKE = new TenantBuilder().withName("Mike", "Johnson").withPhone("98765422")
-            .withEmail("mike@example.com").withAddress("21 Lower Kent Ridge Rd, 119077").build();
+            .withEmail("mike@example.com").withAddress("21 Lower Kent Ridge Rd, S119077").build();
 
     public static final Tenant OLIVER = new TenantBuilder().withName("Oliver", "Jones").withPhone("98765423")
-            .withEmail("oliver@example.com").withAddress("21 Lower Kent Ridge Rd, 119077").build();
+            .withEmail("oliver@example.com").withAddress("21 Lower Kent Ridge Rd, S119077").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Tenant AMY =
