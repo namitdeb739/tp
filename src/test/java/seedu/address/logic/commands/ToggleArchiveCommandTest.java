@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ToggleArchiveCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.ToggleArchiveCommand.MESSAGE_FAILURE;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,8 @@ public class ToggleArchiveCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, true);
+    public void execute_emptyArchiveListException_success() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_FAILURE, true);
         assertCommandSuccess(new ToggleArchiveCommand(), model, expectedCommandResult, expectedModel);
     }
 }
