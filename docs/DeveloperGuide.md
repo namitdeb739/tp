@@ -1287,11 +1287,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a tenant with valid details
 
-    1. Test case: `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
+    1. Test case: `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
        Expected: A new tenant named John Doe is added to the list. A success message is displayed.
 
-    1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 123456`<br>
-       Expected: No tenant is added as `12345678` is an invalid number. Error details are shown in the status message.
+    1. Test case: `add givenN/ John familyN/ Doe phone/ 12345678 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`<br>
+       Expected: No tenant is added. Error details are shown in the status message.
 
 ### Editing a tenant
 

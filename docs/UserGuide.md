@@ -33,7 +33,7 @@ use.
 
     * `list`: Lists all tenants.
 
-    * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`:
+    * `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`:
       Adds a tenant named `John Doe`.
 
     * `delete 3`: Deletes the 3rd tenant shown in the current list.
@@ -99,14 +99,18 @@ Adds a tenant to the Tenant Track.
 Format:
 
 <pre style="background-color: #eeeefe; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 14px; white-space: pre-wrap; word-wrap: break-word;">
-add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456
+add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456
 </pre>
 
 Details:
 
 * Phone number must be a valid Singaporean 8-digit number.
 * Emails must be a valid email, for example `address@domain.com`.
-* Address must contain a 6-digit postcode.
+* Address must contain a valid 6-digit postcode within it. It must be a word of its own formatted as `SABXXXX` where:
+  * `S` is the string `"S"` a prefix for standardisation.
+  * `AB` is a postal zone, which can be any 2-digit number from `01-82`, excluding `74`
+  * `XXXXXX` is any 4 digits.
+  * One example valid address is: `NUS School of Computing, COM1, 13, Computing Dr, S117417`.
 * Arguments/Prefixes should adhere to the specified order and format above.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -115,8 +119,8 @@ A tenant can have any number of tags (including 0).
 
 Examples:
 
-* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 123456`
-* `add givenN/ Sam familyN/ Tan phone/ 87543213 email/ sam@example.com address/ Sam street, block 321, #02-04 456423`
+* `add givenN/ John familyN/ Doe phone/ 98765432 email/ johnd@example.com address/ John street, block 123, #01-01 S123456`
+* `add givenN/ Sam familyN/ Wilson phone/ 87543213 email/ samw@example.com address/ Sam street, block 321, #02-04 S456423`
 
 ### Archiving a tenant: `archive`
 
@@ -444,18 +448,18 @@ corruption.
 
 ## Command summary
 
- Action            | Format                                                                                                                  | Examples                                                                                                         
--------------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
- **Add**           | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, 119077 phone/ 81923121 email/ johnd@example.com` 
- **Archive**       | `archive INDEX`                                                                                                         | `archive 1`                                                                                                      
- **Clear**         | `clear`                                                                                                                 |
- **Delete**        | `delete INDEX`                                                                                                          | `delete 3`                                                                                                       
- **Edit**          | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`                                                  
- **Find**          | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`                                                                                                
- **Filter**        | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`                                                                                        
- **List**          | `list`                                                                                                                  
- **Paid**          | `paid phone/PHONE`                                                                                                      | `paid 87654321`                                                                                                  
- **ToggleArchive** | `togglearchive`                                                                                                         |
- **Unarchive**     | `unarchive INDEX`                                                                                                       | `unarchive 1`                                                                                                    
- **UnPaid**        | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`                                                                                                
- **Help**          | `help`                                                                                                                  |
+ Action      | Format                                                                                                                  | Examples
+-------------|-------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------
+ **Add**     | `add givenN/ GIVEN NAME familyN/ FAMILY NAME address/ ADDRESS phone/PHONE email/EMAIL`                                  | `add givenN/ John familyN/ Doe address/ 21 Lower Kent Ridge Rd, S119077 phone/ 81923121 email/ johnd@example.com`
+ **Archive** | `archive INDEX`                                                                                                         | `archive 1`
+ **Clear**   | `clear`                                                                                                                 |
+ **Delete**  | `delete INDEX`                                                                                                          | `delete 3`
+ **Edit**    | `edit INDEX [givenN/GIVEN_NAME] [familyN/FAMILY_NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG]…​` | `edit 2 givenN/ James familyN/ Lee email/ jameslee@example.com`
+ **Find**    | `find KEYWORD [MORE_KEYWORDS]`                                                                                          | `find James Jake`
+ **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`                                                                                        | `filter Lower Kent Ridge`
+ **List**    | `list`
+ **Paid**    | `paid phone/PHONE`                                                                                                      | `paid 87654321`
+ **ToggleArchive**  | `togglearchive`                                                                                                         |
+ **Unarchive**  | `unarchive INDEX`                                                                                                       | `unarchive 1`
+ **UnPaid**  | `unpaid phone/PHONE`                                                                                                    | `unpaid 87654321`
+ **Help**    | `help`                                                                                                                  |

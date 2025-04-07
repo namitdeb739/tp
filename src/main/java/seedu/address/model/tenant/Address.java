@@ -10,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Address {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank. "
-            + "It must contain a 6-digit Singaporean postcode.";
+            + "It must contain a valid 6-digit Singaporean postcode formatted as: SXXXXXX (example, S123456).";
 
     /*
      * The first character of the address must not be a whitespace, otherwise " " (a blank string)
      * becomes a valid input. It must contain a 6-digit Singaporean postcode.
      */
-    public static final String VALIDATION_REGEX = ".*\\b\\d{6}\\b.*";
+    public static final String VALIDATION_REGEX =
+            "(?:^|.*\\s)S" + "(?:(0[1-9]|[1-6][0-9]|7[0-3]|7[5-9]|8[0-2]))\\d{4}" + "(?:\\s.*|$)";
 
 
     public final String value;
