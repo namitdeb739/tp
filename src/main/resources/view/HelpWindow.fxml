@@ -60,7 +60,8 @@
                             <!-- 📦 Add Command -->
                             <Label text="📦 Add Command" style="-fx-font-weight: bold;"/>
                             <TextArea fx:id="addHelp" editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px;
+                                        -fx-pref-row-count: 10; -fx-min-height: 180;"
                                       prefRowCount="9">
                             </TextArea>
 
@@ -74,7 +75,8 @@
                             <!-- 🧹 Clear Command -->
                             <Label text="🧹 Clear Command" style="-fx-font-weight: bold;"/>
                             <TextArea editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
+                                       -fx-min-height: 30;"
                                       prefRowCount="2">
                                 clear: Clears all tenants from the address book.
                             </TextArea>
@@ -82,7 +84,8 @@
                             <!-- 🛠️ Delete Command -->
                             <Label text="🛠️ Delete Command" style="-fx-font-weight: bold;"/>
                             <TextArea fx:id="deleteHelp" editable="false" wrapText="true"
-                                      style="-fx-font-family: monospace; -fx-font-size: 13px;"
+                                      style="-fx-font-family: monospace; -fx-font-size: 13px; -fx-pref-row-count: 10;
+                                      -fx-min-height: 180;"
                                       prefRowCount="6">
                             </TextArea>
 
