@@ -45,6 +45,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 " + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided. eg. givenN/name"
         + " + familyN/ surname | tag/ | address/ | phone| (giveN/ must be used with familyN)";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
@@ -81,7 +82,9 @@ public class EditCommand extends Command {
 
         Tenant editedTenant = createEditedPerson(tenantToEdit, editTenantDescriptor);
 
-        if (!tenantToEdit.isSamePerson(editedTenant) && model.hasTenant(editedTenant)) {
+        if ((!editedTenant.getEmail().equals(tenantToEdit.getEmail()) && model.hasTenantWith(editedTenant, "email"))
+                || (!editedTenant.getPhone().equals(tenantToEdit.getPhone())
+                        && model.hasTenantWith(editedTenant, "phone"))) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

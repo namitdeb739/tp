@@ -4,7 +4,7 @@
         {
             "givenName": "Alice",
             "familyName": "Pauline",
-            "phone": "12345678",
+            "phone": "98765432",
             "email": "alice@example.com",
             "address": "123, Jurong West Ave 6, #08-111, 123456",
             "tags": ["friends"]
@@ -12,7 +12,7 @@
         {
             "givenName": "Benson",
             "familyName": "Meier",
-            "phone": "12345678",
+            "phone": "98765433",
             "email": "benson@example.com",
             "address": "311, Clementi Ave 2, #02-25, 123456",
             "tags": ["owesMoney", "friends"]
@@ -20,14 +20,14 @@
         {
             "givenName": "Carl",
             "familyName": "Kurz",
-            "phone": "12345678",
+            "phone": "98765434",
             "email": "heinz@example.com",
             "address": "wall street, 123456"
         },
         {
             "givenName": "Daniel",
             "familyName": "Meier",
-            "phone": "12345678",
+            "phone": "98765435",
             "email": "cornelia@example.com",
             "address": "10th street, 123456",
             "tags": ["friends"]
@@ -35,42 +35,42 @@
         {
             "givenName": "Elle",
             "familyName": "Meyer",
-            "phone": "12345678",
+            "phone": "98765436",
             "email": "werner@example.com",
             "address": "michegan ave, 123456"
         },
         {
             "givenName": "Fiona",
             "familyName": "Kunz",
-            "phone": "12345678",
+            "phone": "98765437",
             "email": "lydia@example.com",
             "address": "little tokyo, 123456"
         },
         {
             "givenName": "George",
             "familyName": "Best",
-            "phone": "12345678",
+            "phone": "98765438",
             "email": "anna@example.com",
             "address": "4th street, 123456"
         },
         {
             "givenName": "James",
             "familyName": "Smith",
-            "phone": "12345678",
+            "phone": "98765431",
             "email": "james@example.com",
             "address": "21 Lower Kent Ridge Rd, 119077"
         },
         {
             "givenName": "Mike",
             "familyName": "Johnson",
-            "phone": "12345678",
+            "phone": "98765422",
             "email": "mike@example.com",
             "address": "21 Lower Kent Ridge Rd, 119077"
         },
         {
             "givenName": "Oliver",
             "familyName": "Jones",
-            "phone": "12345678",
+            "phone": "98765423",
             "email": "oliver@example.com",
             "address": "21 Lower Kent Ridge Rd, 119077"
         }

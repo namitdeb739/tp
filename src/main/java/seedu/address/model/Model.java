@@ -137,4 +137,6 @@ public interface Model {
      * Marks the tenant as not paid based on their phone number.
      */
     void unmarkTenantAsPaid(Phone phone);
+
+    boolean hasTenantWith(Tenant editedTenant, String field);
 }

@@ -32,8 +32,8 @@ public class Tenant {
     /**
      * Every field must be present and not null.
      */
-    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  boolean isArchived, boolean isPaid) {
+    public Tenant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isArchived,
+            boolean isPaid) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -110,7 +110,8 @@ public class Tenant {
             return true;
         }
 
-        return otherPerson != null && otherPerson.getName().equals(getName());
+        return otherPerson != null
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     public BooleanProperty isPaidProperty() {
@@ -166,8 +167,14 @@ public class Tenant {
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("name", name).add("phone", phone).add("email", email)
-                .add("address", address).add("tags", tags)
-                .add("archived", isArchived).toString();
+                .add("address", address).add("tags", tags).add("archived", isArchived).toString();
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     */
+    public boolean equalsWith(Tenant tenant, String field) {
+        return field == "phone" ? phone.equals(tenant.phone) : field == "email" ? email.equals(tenant.email) : false;
     }
 
 }
