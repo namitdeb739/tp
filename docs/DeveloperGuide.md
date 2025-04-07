@@ -395,7 +395,7 @@ togglearchive
 * Archived tenants are hidden from the default tenant list but can be accessed using the `togglearchive` command.
 * The `isArchived` property ensures that the tenant's data is retained for future reference.
 * The `togglearchive` command does not modify any tenant data; it only changes the view.
-* Archiving works on the active list from both the dsiplayed active list and the displayed archived list.
+* Archiving works on the active list from both the displayed active list and the displayed archived list.
 * Unarchiving works on the archived list from both the displayed active list and the displayed archived list.
 * Only the `unarchive` command works on the tenants in the archived list.
 
