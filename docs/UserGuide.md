@@ -8,7 +8,7 @@ efficiently. TenantTrack combines a command-line interface with a graphical inte
 use.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
